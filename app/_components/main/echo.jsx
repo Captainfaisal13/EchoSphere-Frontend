@@ -14,9 +14,9 @@ const Echo = ({ echo }) => {
     shares,
   } = echo;
   return (
-    <div className="flex p-4 gap-2 bg-[#E9E9E9] rounded-lg">
+    <div className="flex p-4 gap-2 bg-[#E9E9E9] rounded-md">
       <div className="">
-        <div className="relative w-14 h-14 rounded-full overflow-hidden">
+        <div className="relative w-12 h-12 rounded-full overflow-hidden">
           <Image src={avatar} fill />
         </div>
       </div>
