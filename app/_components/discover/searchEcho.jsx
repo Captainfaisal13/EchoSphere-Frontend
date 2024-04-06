@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import SearchIcon from "@/public/_assets/svgComponents/searchIcon";
 

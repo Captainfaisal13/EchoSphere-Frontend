@@ -1,8 +1,15 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 const homeTabs = ["For you", "Following", "Recents"];
 
-const HomeTab = ({ currentHomeTab, handleHomeTabClick }) => {
+const HomeTab = () => {
+  const [currentHomeTab, setCurrentHomeTab] = useState(0);
+
+  const handleHomeTabClick = (index) => {
+    setCurrentHomeTab(index);
+  };
+
   return (
     <div className="flex border-b border-[#D7D7D7]">
       {homeTabs.map((tab, index) => {
