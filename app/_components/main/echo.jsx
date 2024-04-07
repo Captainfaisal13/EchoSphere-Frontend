@@ -22,8 +22,10 @@ const Echo = ({ echo }) => {
       </div>
       <div className="flex flex-col gap-[2px]">
         <div className="flex gap-1 items-center">
-          <h3 className="text-sm font-bold text-[#1B1B1B]">{username}</h3>
-          <p className="font text-xs text-[#5B5B5B]">@{userid}</p>
+          <div className="flex gap-1 items-center hover:underline cursor-pointer">
+            <h3 className="text-sm font-bold text-[#1B1B1B]">{username}</h3>
+            <p className="font text-xs text-[#5B5B5B]">@{userid}</p>
+          </div>
           <div className="flex items-center text-[4px]">&#8226;</div>
           <p className="text-sm font-light">{time}</p>
         </div>

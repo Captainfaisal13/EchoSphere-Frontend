@@ -3,7 +3,7 @@ import NavButtons from "./navButtons";
 
 const Navbar = () => {
   return (
-    <nav className="w-[22vw] flex-col gap-8">
+    <nav className="w-[20vw] flex-col gap-8">
       <div className="py-4">
         <h3 className="text-center text-[1.65rem] font-extrabold">
           echosphere
