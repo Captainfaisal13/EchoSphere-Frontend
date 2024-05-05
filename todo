@@ -17,3 +17,5 @@ Tweet ke saath jo media dena hai wo bhi baaki hai backend pe
 Media ki conditions bhi lagani baaki hai (jaise size limit, types etc)
 
 /profile/[slug] has to shifted as /[slug] according to twitter.com
+
+create reusable component for consistent sizing of middle div(dynamic using routing)

@@ -1,6 +1,5 @@
 import React from "react";
 import Echo from "../reusables/echo";
-// import echos from "../../data/discoverProfiles.json";
 
 const getEchos = async ({ userId }) => {
   try {
@@ -29,8 +28,8 @@ const PostEchoList = async ({ userId }) => {
   });
   return (
     <div className="px-5 py-4 flex flex-col gap-4">
-      {echos.map((echo) => {
-        return <Echo echo={echo} />;
+      {echos.map((echo, idx) => {
+        return <Echo key={idx} echo={echo} />;
       })}
     </div>
   );

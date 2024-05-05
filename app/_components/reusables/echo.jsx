@@ -20,7 +20,7 @@ const Echo = ({ echo }) => {
     >
       <div className="col-span-1">
         <div className="relative w-12 h-12 rounded-full overflow-hidden">
-          <Image src={userAvatar} fill />
+          <Image src={userAvatar} fill alt="user-avatar" />
         </div>
       </div>
       <div className="flex flex-col gap-[2px] col-span-8">
@@ -48,7 +48,7 @@ const Echo = ({ echo }) => {
           </button>
           <button className="flex gap-1">
             <div className="relative w-4 h-4">
-              <Image src="/_assets/repost-icon.svg" fill alt="comment-icon" />
+              <Image src="/_assets/repost-icon.svg" fill alt="repost-icon" />
             </div>
             <p className="text-xs font-thin my-auto text-[#5B5B5B]">
               {reposts}
@@ -56,19 +56,19 @@ const Echo = ({ echo }) => {
           </button>
           <button className="flex gap-1">
             <div className="relative w-4 h-4">
-              <Image src="/_assets/like-icon.svg" fill alt="comment-icon" />
+              <Image src="/_assets/like-icon.svg" fill alt="like-icon" />
             </div>
             <p className="text-xs font-thin my-auto text-[#5B5B5B]">{likes}</p>
           </button>
           <button className="flex gap-1">
             <div className="relative w-4 h-4">
-              <Image src="/_assets/share-icon.svg" fill alt="comment-icon" />
+              <Image src="/_assets/share-icon.svg" fill alt="share-icon" />
             </div>
             <p className="text-xs font-thin my-auto text-[#5B5B5B]">{shares}</p>
           </button>
 
           <button className="relative w-4 h-4 justify-self-end">
-            <Image src="/_assets/bookmark-icon.svg" fill alt="comment-icon" />
+            <Image src="/_assets/bookmark-icon.svg" fill alt="bookmark-icon" />
           </button>
         </div>
       </div>

@@ -37,7 +37,7 @@ const ProfilePage = async ({ username }) => {
   if (!isUserExist) {
     return (
       <div className="w-[50vw] border border-t-0 border-[#D7D7D7] max-h-screen overflow-scroll scrollbar-hide">
-        <h1>User Doesn't Exists...........</h1>;
+        <h1>User Doesn&apost;t Exists...........</h1>;
       </div>
     );
   }
@@ -49,9 +49,9 @@ const ProfilePage = async ({ username }) => {
         <ClientTabsServerContent
           tabs={tabs}
           PostEchoList={<PostEchoList userId={result.user.id} />}
-          ReplyEchoList={<ReplyEchoList />}
-          MediaEchoList={<MediaEchoList />}
-          LikeEchoList={<LikeEchoList />}
+          ReplyEchoList={<ReplyEchoList userId={result.user.id} />}
+          MediaEchoList={<MediaEchoList userId={result.user.id} />}
+          LikeEchoList={<LikeEchoList userId={result.user.id} />}
         />
       </div>
     </div>

@@ -17,6 +17,7 @@ const ClientTabsServerContent = (prop) => {
         {prop.tabs.map((tab, index) => {
           return (
             <div
+              key={index}
               className={`px-4 py-3 ${
                 (currentHomeTab === index && "border-b-2") ||
                 "hover:bg-[#E6E6E6] text-[#505050]"

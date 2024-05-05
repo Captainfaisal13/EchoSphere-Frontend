@@ -14,7 +14,7 @@ const EchoButton = () => {
           className="flex gap-2 px-16 py-3 justify-center items-center bg-[rgb(127,127,127)] rounded-[32px] text-white font-bold"
         >
           <div className="w-5 h-5 relative">
-            <Image src="/_assets/edit.svg" fill />
+            <Image src="/_assets/edit.svg" fill alt="edit" />
           </div>
           <span className="text-sm">Echo</span>
         </button>

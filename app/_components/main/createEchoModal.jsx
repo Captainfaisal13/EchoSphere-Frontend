@@ -16,7 +16,7 @@ const CreateEchoModal = ({ setShowCreateModal }) => {
         </div>
         <div className="flex gap-2">
           <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
-            <Image src="/_assets/images/dp.jpg" fill />
+            <Image src="/_assets/images/dp.jpg" fill alt="user-image" />
           </div>
           <div
             className="h-56 w-full outline-none overflow-auto p-2"
@@ -27,11 +27,11 @@ const CreateEchoModal = ({ setShowCreateModal }) => {
           <div className="flex gap-3">
             <div className="w-7 h-7 relative">
               <input type="file" name="media" id="media" className="hidden" />
-              <Image src="/_assets/media-upload.svg" fill />
+              <Image src="/_assets/media-upload.svg" fill alt="media-svg" />
             </div>
             <div className="w-7 h-7 relative">
               <input type="file" name="media" id="media" className="hidden" />
-              <Image src="/_assets/emoji.svg" fill />
+              <Image src="/_assets/emoji.svg" fill alt="emoji-svg" />
             </div>
           </div>
           <div>

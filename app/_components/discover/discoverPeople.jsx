@@ -13,7 +13,7 @@ const DiscoverPeople = () => {
             <div key={id} className="flex justify-between">
               <div className="flex gap-2 items-center">
                 <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                  <Image src={avatar} fill />
+                  <Image src={avatar} fill alt="avatar" />
                 </div>
                 <div className="text-sm">
                   <h3 className="text-sm font-bold text-[#1B1B1B]">
