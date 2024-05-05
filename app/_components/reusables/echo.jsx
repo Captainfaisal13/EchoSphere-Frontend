@@ -4,27 +4,32 @@ const Echo = ({ echo }) => {
   const {
     id,
     username,
-    userid,
-    avatar,
+    userDisplayName,
+    userAvatar,
     time,
     text,
     replies,
-    reposts,
-    likes,
+    retweets_count: reposts,
+    likes_count: likes,
     shares,
   } = echo;
   return (
-    <div className="flex p-4 gap-2 bg-[#E9E9E9] rounded-md">
-      <div className="">
+    <div
+      key={id}
+      className="grid grid-cols-9 p-4 gap-2 bg-[#E9E9E9] rounded-md"
+    >
+      <div className="col-span-1">
         <div className="relative w-12 h-12 rounded-full overflow-hidden">
-          <Image src={avatar} fill />
+          <Image src={userAvatar} fill />
         </div>
       </div>
-      <div className="flex flex-col gap-[2px]">
+      <div className="flex flex-col gap-[2px] col-span-8">
         <div className="flex gap-1 items-center">
           <div className="flex gap-1 items-center hover:underline cursor-pointer">
-            <h3 className="text-sm font-bold text-[#1B1B1B]">{username}</h3>
-            <p className="font text-xs text-[#5B5B5B]">@{userid}</p>
+            <h3 className="text-sm font-bold text-[#1B1B1B]">
+              {userDisplayName}
+            </h3>
+            <p className="font text-xs text-[#5B5B5B]">@{username}</p>
           </div>
           <div className="flex items-center text-[4px]">&#8226;</div>
           <p className="text-sm font-light">{time}</p>

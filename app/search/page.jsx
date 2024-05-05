@@ -1,11 +1,11 @@
 import React from "react";
 
-const ProfilePage = () => {
+const SearchPage = () => {
   return (
     <div className="w-[50vw] border border-[#D7D7D7] max-h-screen overflow-scroll scrollbar-hide">
-      Settings
+      Search
     </div>
   );
 };
 
-export default ProfilePage;
+export default SearchPage;

@@ -1,6 +1,5 @@
 import React from "react";
 import Echo from "../reusables/echo";
-// import echos from "../../data/foryouechos.json";
 
 const getEchos = async () => {
   try {
@@ -20,7 +19,7 @@ const getEchos = async () => {
   }
 };
 
-const ReplyEchoList = async () => {
+const PhotosEchoList = async () => {
   const data = await getEchos();
   const echos = data.tweets.map((echo) => {
     return {
@@ -36,6 +35,7 @@ const ReplyEchoList = async () => {
       shares: "569",
     };
   });
+
   return (
     <div className="px-5 py-4 flex flex-col gap-4">
       {echos.map((echo) => {
@@ -45,4 +45,4 @@ const ReplyEchoList = async () => {
   );
 };
 
-export default ReplyEchoList;
+export default PhotosEchoList;

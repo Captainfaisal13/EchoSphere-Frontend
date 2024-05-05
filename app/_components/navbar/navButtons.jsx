@@ -8,7 +8,7 @@ import Link from "next/link";
 const NavButtons = () => {
   const [currentSelectIcon, setCurrrentSelectedIcon] = useState(0);
   const pathName = usePathname();
-  console.log(pathName);
+  // console.log(pathName);
   return (
     <ul className="">
       {navbarList.map(({ title }, idx) => {

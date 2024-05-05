@@ -10,7 +10,7 @@ const DiscoverPeople = () => {
         {discoverProfiles.map((profile) => {
           const { id, username, userid, avatar } = profile;
           return (
-            <div className="flex justify-between">
+            <div key={id} className="flex justify-between">
               <div className="flex gap-2 items-center">
                 <div className="relative w-12 h-12 rounded-full overflow-hidden">
                   <Image src={avatar} fill />

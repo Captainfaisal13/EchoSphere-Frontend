@@ -1,6 +1,6 @@
 import React from "react";
 import Echo from "../reusables/echo";
-// import echos from "../../data/foryouechos.json";
+// import echos from "../../data/followingechos.json";
 
 const getEchos = async () => {
   try {
@@ -20,7 +20,7 @@ const getEchos = async () => {
   }
 };
 
-const ReplyEchoList = async () => {
+const VideosEchoList = async () => {
   const data = await getEchos();
   const echos = data.tweets.map((echo) => {
     return {
@@ -45,4 +45,4 @@ const ReplyEchoList = async () => {
   );
 };
 
-export default ReplyEchoList;
+export default VideosEchoList;
