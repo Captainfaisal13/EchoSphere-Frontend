@@ -1,4 +1,4 @@
-import ProfilePage from "@/app/_components/profile/profile";
+import ProfilePage from "../../_components/profile/profile";
 
 const ProfileInfo = async ({ params }) => {
   return <ProfilePage username={params.slug} />;

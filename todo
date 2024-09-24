@@ -8,14 +8,27 @@
 - Rate limiter
 - API modifications based on frontend
 
+**----
 Thoughts
-Followers, reply wala baad me sochenge pehle likes, retweets aur user api ek baar sort ho jaaye to
-Pehle user ko inplace karte hai....... username se routing karlenge sabki to user ka api pehle sahi karna hoga aur usko search/find according to username karna hoga.
-Har user request ke liye uske followers following bhi fetch karna hoga wo bhi baaki hai backend side se
+----**
 
-Tweet ke saath jo media dena hai wo bhi baaki hai backend pe
-Media ki conditions bhi lagani baaki hai (jaise size limit, types etc)
-
+Frontend
 /profile/[slug] has to shifted as /[slug] according to twitter.com
-
 create reusable component for consistent sizing of middle div(dynamic using routing)
+
+Work
+Pura frontend ka loading state dekhna hai, responsiveness, auth handling, global state handling
+icons and colouring par bhi alag se time nikalna padega
+create tweet/echo ka div bhi complete karna hai with text/word wrap issue
+
+Backend
+Tweet ke saath jo media dena hai wo bhi baaki hai backend pe [Done]
+Media ki conditions bhi lagani baaki hai (jaise size limit, types etc)
+after media handling from backend, Media, likes ke apis likh sakte hai abhi
+for you ko hold par rakhte hai, AI ka angle aa sakta ha isme(most probably drop hi kar denge)
+following aur recent wala kar sakte hai abhit ke liye [Done]
+Consistency on returning data from backend
+Text, image, video wali apis bhi likhni hai(google or chatGPT)
+
+Work
+FeedApis pura karna hai

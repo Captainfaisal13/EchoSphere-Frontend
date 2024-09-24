@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import MediaLayout from "./mediaLayout";
+
 const Echo = ({ echo }) => {
   const {
     id,
@@ -12,18 +14,14 @@ const Echo = ({ echo }) => {
     retweets_count: reposts,
     likes_count: likes,
     shares,
+    media,
   } = echo;
   return (
-    <div
-      key={id}
-      className="grid grid-cols-9 p-4 gap-2 bg-[#E9E9E9] rounded-md"
-    >
-      <div className="col-span-1">
-        <div className="relative w-12 h-12 rounded-full overflow-hidden">
-          <Image src={userAvatar} fill alt="user-avatar" />
-        </div>
+    <div key={id} className="flex p-4 gap-2 bg-[#E9E9E9] rounded-md">
+      <div className="shrink-0 relative w-12 h-12 rounded-full overflow-hidden">
+        <Image src={userAvatar} fill alt="user-avatar" />
       </div>
-      <div className="flex flex-col gap-[2px] col-span-8">
+      <div className="shrink w-full flex flex-col gap-[2px]">
         <div className="flex gap-1 items-center">
           <div className="flex gap-1 items-center hover:underline cursor-pointer">
             <h3 className="text-sm font-bold text-[#1B1B1B]">
@@ -34,10 +32,11 @@ const Echo = ({ echo }) => {
           <div className="flex items-center text-[4px]">&#8226;</div>
           <p className="text-sm font-light">{time}</p>
         </div>
-        <p className="text-sm text-[#2B2B2B] pb-3 border-b border-[#D7D7D7]">
-          {text}
-        </p>
-        <div className="grid grid-cols-5 pt-3">
+        <p className="text-sm text-[#2B2B2B]">{text}</p>
+        <div className="pt-1 pb-3 border-b border-[#D7D7D7]">
+          <MediaLayout media={media} />
+        </div>
+        <div className="flex justify-between md:grid grid-cols-5 pt-3">
           <button className="flex gap-1">
             <div className="relative w-4 h-4">
               <Image src="/_assets/comment-icon.svg" fill alt="comment-icon" />

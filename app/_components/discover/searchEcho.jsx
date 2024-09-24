@@ -1,6 +1,6 @@
 "use client";
+import SearchIcon from "../../../public/_assets/svgComponents/searchIcon";
 import React, { useState } from "react";
-import SearchIcon from "@/public/_assets/svgComponents/searchIcon";
 
 const SearchEcho = () => {
   const [searchFocused, setSearchFocused] = useState(false);

@@ -1,21 +1,37 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import NavButtons from "./navButtons";
-import Image from "next/image";
 import EchoButton from "./echoButton";
+import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
 
-const Navbar = () => {
+const Navbar = ({ expandNavbar, setExpandNavbar, setShowCreateModal }) => {
   return (
-    <nav className="w-[20vw] flex-col gap-8">
-      <div className="flex flex-col h-full justify-between">
+    <nav
+      className={`bg-white fixed md:static z-30 h-full top-0 left-0 md:block w-64 md:w-24 lg:w-60 flex-col gap-8 transition-transform border-r md:translate-x-0 ${
+        expandNavbar ? "translate-x-0" : "-translate-x-full"
+      }`}
+    >
+      <div className="flex flex-col min-h-screen justify-between">
         <div>
-          <div className="py-4">
-            <h3 className="text-center text-[1.65rem] font-extrabold">
-              echosphere
-            </h3>
+          <div className="py-4 px-4 md:px-0">
+            <div className="flex justify-between text-center text-2xl font-extrabold">
+              <h2 className="block md:hidden lg:block md:mx-auto">
+                echosphere
+              </h2>
+              <h2 className="hidden md:block lg:hidden mx-auto">E</h2>
+              <button
+                className="text-xs font-thin block md:hidden"
+                onClick={() => setExpandNavbar(!expandNavbar)}
+              >
+                <CloseIcon />
+              </button>
+            </div>
           </div>
           <NavButtons />
         </div>
-        <EchoButton />
+        <div className="hidden md:block">
+          <EchoButton setShowCreateModal={setShowCreateModal} />
+        </div>
       </div>
     </nav>
   );

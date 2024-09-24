@@ -1,9 +1,9 @@
-import ExploreIcon from "@/public/_assets/svgComponents/exploreIcon";
-import HomeIcon from "@/public/_assets/svgComponents/homeIcon";
-import NotificationIcon from "@/public/_assets/svgComponents/notificationIcon";
-import ProfileIcon from "@/public/_assets/svgComponents/profileIcon";
-import SearchIcon from "@/public/_assets/svgComponents/searchIcon";
-import SettingIcon from "@/public/_assets/svgComponents/settingIcon";
+import ExploreIcon from "../../../public/_assets/svgComponents/exploreIcon";
+import HomeIcon from "../../../public/_assets/svgComponents/homeIcon";
+import NotificationIcon from "../../../public/_assets/svgComponents/notificationIcon";
+import ProfileIcon from "../../../public/_assets/svgComponents/profileIcon";
+import SearchIcon from "../../../public/_assets/svgComponents/searchIcon";
+import SettingIcon from "../../../public/_assets/svgComponents/settingIcon";
 
 const getIcons = (pathName, title) => {
   switch (title) {

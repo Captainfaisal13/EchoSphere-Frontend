@@ -1,22 +1,9 @@
 import React from "react";
 import Echo from "../reusables/echo";
-// import echos from "../../data/followingechos.json";
-
-const getEchos = async ({ userId }) => {
-  try {
-    const data = await fetch(
-      `http://localhost:3000/api/v1/tweet/${userId}/tweets`,
-      { cache: "no-store" }
-    );
-    const json = await data.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-};
+import { getEchos } from "../../../network/apiCalls";
 
 const TextEchoList = async () => {
-  const userId = "66378a47021912ed94a959a9";
+  const userId = "66eef0f757fd66d8ba9ceca1";
   const data = await getEchos({ userId });
   const echos = data.detailedTweets.map((echo) => {
     return {
@@ -28,7 +15,7 @@ const TextEchoList = async () => {
     };
   });
   return (
-    <div className="px-5 py-4 flex flex-col gap-4">
+    <div className="px-2 md:px-5 py-2 md:py-4 flex flex-col gap-2 md:gap-4">
       {echos.map((echo, idx) => {
         return <Echo key={idx} echo={echo} />;
       })}

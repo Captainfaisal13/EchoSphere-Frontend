@@ -1,18 +1,6 @@
 import React from "react";
 import Echo from "../reusables/echo";
-
-const getEchos = async ({ userId }) => {
-  try {
-    const data = await fetch(
-      `http://localhost:3000/api/v1/tweet/${userId}/tweets`,
-      { cache: "no-store" }
-    );
-    const json = await data.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-};
+import { getEchos } from "../../../network/apiCalls";
 
 const PostEchoList = async ({ userId }) => {
   const data = await getEchos({ userId });
@@ -24,10 +12,16 @@ const PostEchoList = async ({ userId }) => {
       time: "5hr",
       replies: "2.5k",
       shares: "569",
+      // media: [
+      //   "/_assets/images/sample-profile.jpg",
+      //   "/_assets/images/dp.jpg",
+      //   "/_assets/images/avatar1.png",
+      //   // "/_assets/images/avatar2.png",
+      // ],
     };
   });
   return (
-    <div className="px-5 py-4 flex flex-col gap-4">
+    <div className="px-2 md:px-5 py-2 md:py-4 flex flex-col gap-2 md:gap-4">
       {echos.map((echo, idx) => {
         return <Echo key={idx} echo={echo} />;
       })}

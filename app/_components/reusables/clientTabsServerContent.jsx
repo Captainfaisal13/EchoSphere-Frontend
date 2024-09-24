@@ -12,8 +12,8 @@ const ClientTabsServerContent = (prop) => {
   });
 
   return (
-    <div>
-      <div className="flex border-b border-[#D7D7D7]">
+    <div className="relative">
+      <div className="sticky top-0 left-0 z-20 flex bg-white border-b border-[#D7D7D7]">
         {prop.tabs.map((tab, index) => {
           return (
             <div

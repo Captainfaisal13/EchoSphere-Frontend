@@ -2,8 +2,8 @@ import Image from "next/image";
 
 const CreateEchoModal = ({ setShowCreateModal }) => {
   return (
-    <div className="fixed inset-0 bg-black/80 z-10 flex justify-center items-center">
-      <div className="w-[32vw] bg-[#E9E9E9] rounded-md py-3 px-3 flex flex-col gap-3">
+    <div className="fixed inset-0 bg-black/80 z-30 flex justify-center items-center">
+      <div className="w-full sm:w-[600px] bg-[#E9E9E9] rounded-md py-3 px-3 flex flex-col gap-3">
         <div className="flex justify-between items-center pb-2 px-2 border-b border-[#D7D7D7]">
           <div>
             <button onClick={() => setShowCreateModal(false)}>Cancel</button>
@@ -19,7 +19,7 @@ const CreateEchoModal = ({ setShowCreateModal }) => {
             <Image src="/_assets/images/dp.jpg" fill alt="user-image" />
           </div>
           <div
-            className="h-56 w-full outline-none overflow-auto p-2"
+            className="min-h-28 w-full outline-none overflow-auto p-2"
             contentEditable={true}
           />
         </div>

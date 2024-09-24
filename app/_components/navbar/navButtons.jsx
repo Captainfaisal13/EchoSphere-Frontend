@@ -18,13 +18,13 @@ const NavButtons = () => {
             onClick={() => handleNavClick(idx, setCurrrentSelectedIcon)}
           >
             <Link href={"/" + title.toLowerCase()}>
-              <div className="py-3 px-4 hover:bg-[#E6E6E6]">
-                <button className="flex gap-2">
-                  <div className="w-5 h-5 text-[#505050]">
+              <div className="py-3 px-4 md:px-0 lg:px-4 hover:bg-[#E6E6E6]">
+                <button className="flex flex-row md:flex-col lg:flex-row gap-2 mx-0 md:mx-auto lg:mx-0">
+                  <div className="w-5 h-5 text-[#505050] m-auto">
                     {getIcons(pathName, "/" + title.toLowerCase())}
                   </div>
                   <p
-                    className={`text-sm ${
+                    className={`text-sm md:text-[10px] lg:text-sm ${
                       pathName === "/" + title.toLowerCase()
                         ? "text-[#000000]"
                         : "text-[#505050]"
