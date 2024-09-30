@@ -1,21 +1,16 @@
-import ClientTabsServerContent from "../reusables/clientTabsServerContent";
+import Tabs from "../reusables/tabs";
 import PhotosEchoList from "./photosEchos";
 import TextEchoList from "./textEchos";
 import VideosEchoList from "./videosEchos";
 
-const homeTabs = ["Text", "Photos", "Videos"];
+const exploreTabs = [
+  { id: 0, name: "Text", component: <TextEchoList /> },
+  { id: 1, name: "Photos", component: <PhotosEchoList /> },
+  { id: 2, name: "Videos", component: <VideosEchoList /> },
+];
 
 const ExploreContent = () => {
-  return (
-    <div>
-      <ClientTabsServerContent
-        tabs={homeTabs}
-        TextEchoList={<TextEchoList />}
-        PhotosEchoList={<PhotosEchoList />}
-        VideosEchoList={<VideosEchoList />}
-      />
-    </div>
-  );
+  return <Tabs tabList={exploreTabs} />;
 };
 
 export default ExploreContent;

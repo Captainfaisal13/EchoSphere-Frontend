@@ -8,7 +8,7 @@ const CloseIcon = () => {
       height="24px"
       viewBox="0 0 1024 1024"
       fill="#000000"
-      class="icon"
+      className="icon"
       version="1.1"
     >
       <path

@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import CreateEchoModal from "../main/createEchoModal";
 
 const EchoButton = ({ setShowCreateModal }) => {
   return (

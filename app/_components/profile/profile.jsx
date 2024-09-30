@@ -1,26 +1,13 @@
-import ClientTabsServerContent from "../reusables/clientTabsServerContent";
 import PostEchoList from "./postEchoList";
 import ReplyEchoList from "./replyEchoList";
 import MediaEchoList from "./mediaEchoList";
 import LikeEchoList from "./likeEchoList";
 import ProfileInfo from "./profileInfo";
-import { useGetProfile } from "../../../network/customHooks";
 import { getProfile } from "../../../network/apiCalls";
-
-const tabs = ["Posts", "Replies", "Media", "Likes"];
+import Tabs from "../reusables/tabs";
 
 const ProfilePage = async ({ username }) => {
   const { result, isUserExist } = await getProfile({ username });
-  // const {
-  //   data: { result, isUserExist },
-  //   isError,
-  //   isLoading,
-  //   error,
-  // } = useGetProfile({ username });
-
-  // if (isError) {
-  //   return <h2>{error.message}</h2>;
-  // }
 
   if (!isUserExist) {
     return (
@@ -30,17 +17,34 @@ const ProfilePage = async ({ username }) => {
     );
   }
 
+  const profileTabs = [
+    {
+      id: 0,
+      name: "Posts",
+      component: <PostEchoList userId={result.user.id} />,
+    },
+    {
+      id: 1,
+      name: "Replies",
+      component: <ReplyEchoList userId={result.user.id} />,
+    },
+    {
+      id: 2,
+      name: "Media",
+      component: <MediaEchoList userId={result.user.id} />,
+    },
+    {
+      id: 3,
+      name: "Likes",
+      component: <LikeEchoList userId={result.user.id} />,
+    },
+  ];
+
   return (
     <div>
       <div className="flex flex-col gap-4">
         <ProfileInfo user={result.user} isUserExist={isUserExist} />
-        <ClientTabsServerContent
-          tabs={tabs}
-          PostEchoList={<PostEchoList userId={result.user.id} />}
-          ReplyEchoList={<ReplyEchoList userId={result.user.id} />}
-          MediaEchoList={<MediaEchoList userId={result.user.id} />}
-          LikeEchoList={<LikeEchoList userId={result.user.id} />}
-        />
+        <Tabs tabList={profileTabs} />
       </div>
     </div>
   );

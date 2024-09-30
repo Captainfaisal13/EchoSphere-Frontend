@@ -9,7 +9,7 @@ const Echo = ({ echo }) => {
     userDisplayName,
     userAvatar,
     time,
-    text,
+    content,
     replies,
     retweets_count: reposts,
     likes_count: likes,
@@ -30,9 +30,9 @@ const Echo = ({ echo }) => {
             <p className="font text-xs text-[#5B5B5B]">@{username}</p>
           </div>
           <div className="flex items-center text-[4px]">&#8226;</div>
-          <p className="text-sm font-light">{time}</p>
+          <p className="text-sm font-light">{time ? time : "5hr"}</p>
         </div>
-        <p className="text-sm text-[#2B2B2B]">{text}</p>
+        <p className="text-sm text-[#2B2B2B]">{content}</p>
         <div className="pt-1 pb-3 border-b border-[#D7D7D7]">
           <MediaLayout media={media} />
         </div>
@@ -42,7 +42,7 @@ const Echo = ({ echo }) => {
               <Image src="/_assets/comment-icon.svg" fill alt="comment-icon" />
             </div>
             <p className="text-xs font-thin my-auto text-[#5B5B5B]">
-              {replies}
+              {replies ? replies : "2.5k"}
             </p>
           </button>
           <button className="flex gap-1">
@@ -63,7 +63,9 @@ const Echo = ({ echo }) => {
             <div className="relative w-4 h-4">
               <Image src="/_assets/share-icon.svg" fill alt="share-icon" />
             </div>
-            <p className="text-xs font-thin my-auto text-[#5B5B5B]">{shares}</p>
+            <p className="text-xs font-thin my-auto text-[#5B5B5B]">
+              {shares ? shares : "569"}
+            </p>
           </button>
 
           <button className="relative w-4 h-4 justify-self-end">

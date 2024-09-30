@@ -1,11 +1,9 @@
-import React from "react";
-import Echo from "../reusables/echo";
-import { getEchos } from "../../../network/apiCalls";
+import { getTextEchos } from "../../../network/apiCalls";
+import Echos from "../reusables/Echos";
 
 const TextEchoList = async () => {
-  const userId = "66eef0f757fd66d8ba9ceca1";
-  const data = await getEchos({ userId });
-  const echos = data.detailedTweets.map((echo) => {
+  const data = await getTextEchos();
+  const echos = data.AllTweets.map((echo) => {
     return {
       ...echo,
       text: echo.content,
@@ -14,13 +12,7 @@ const TextEchoList = async () => {
       shares: "569",
     };
   });
-  return (
-    <div className="px-2 md:px-5 py-2 md:py-4 flex flex-col gap-2 md:gap-4">
-      {echos.map((echo, idx) => {
-        return <Echo key={idx} echo={echo} />;
-      })}
-    </div>
-  );
+  return <Echos echos={echos} />;
 };
 
 export default TextEchoList;

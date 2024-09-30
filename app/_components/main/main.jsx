@@ -1,21 +1,17 @@
 import React from "react";
 import ForYouEchoList from "./forYouEchoList";
 import FollowingEchoList from "./followingEchoList";
-import ClientTabsServerContent from "../reusables/clientTabsServerContent";
+import Tabs from "../reusables/tabs";
 import RecentEchoList from "./recentEchoList";
-const homeTabs = ["For you", "Following", "Recents"];
+
+const homeTabs = [
+  { id: 0, name: "For you", component: <ForYouEchoList /> },
+  { id: 1, name: "Following", component: <FollowingEchoList /> },
+  { id: 2, name: "Recents", component: <RecentEchoList /> },
+];
 
 const MainContent = () => {
-  return (
-    <div>
-      <ClientTabsServerContent
-        tabs={homeTabs}
-        ForYouEchoList={<ForYouEchoList />}
-        FollowingEchoList={<FollowingEchoList />}
-        RecentEchoList={<RecentEchoList />}
-      />
-    </div>
-  );
+  return <Tabs tabList={homeTabs} />;
 };
 
 export default MainContent;

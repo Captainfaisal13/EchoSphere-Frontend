@@ -14,6 +14,7 @@ const ProfileInfo = async ({ user }) => {
               className=""
               fill
               alt="profile avatar"
+              sizes="auto"
             />
           </div>
           <div className="flex items-center">

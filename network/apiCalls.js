@@ -1,10 +1,32 @@
+import axios from "axios";
+
 const url = "http://localhost:5000/api/v1";
 
 // signup [POST]
 // {{URL}}/auth/signup
+export const signup = async (signupUser) => {
+  try {
+    const { data } = await axios.post(`${url}/auth/signup`, signupUser, {
+      withCredentials: true,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // login [POST]
 // {{URL}}/auth/login
+export const login = async (loginUser) => {
+  try {
+    const { data } = await axios.post(`${url}/auth/login`, loginUser, {
+      withCredentials: true,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // get single user [GET]
 // {{URL}}/auth/updateUser
@@ -17,6 +39,16 @@ const url = "http://localhost:5000/api/v1";
 
 // create tweet [POST] [Token Required]
 // {{URL}}/tweet
+export const createEcho = async (echoContent) => {
+  try {
+    const { data } = await axios.post(`${url}/tweet`, echoContent, {
+      withCredentials: true,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // Get a single tweet [GET] [Token Required]
 // {{URL}}/tweet/65fada48b5d4641cf01b2a8e
@@ -87,12 +119,8 @@ export const getTextEchos = async () => {
 // {{URL}}/feed/photos
 export const getPhotosEchos = async () => {
   try {
-    const data = await fetch(
-      `${url}/feed/photos`
-      //   { cache: "no-store" }
-    );
-    const json = await data.json();
-    return json;
+    const data = await axios.get(`${url}/feed/photos`);
+    return data.data;
   } catch (error) {
     console.log(error);
   }
@@ -102,12 +130,22 @@ export const getPhotosEchos = async () => {
 // {{URL}}/feed/videos
 export const getVideosEchos = async () => {
   try {
-    const data = await fetch(
-      `${url}/feed/videos`
-      //   { cache: "no-store" }
-    );
-    const json = await data.json();
-    return json;
+    const data = await axios.get(`${url}/feed/videos`);
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Get following user tweets [GET]
+// {{URL}}/feed/following
+export const getFollowingEchos = async () => {
+  try {
+    const data = await axios.get(`${url}/feed/following`, {
+      withCredentials: true,
+    });
+
+    return data.data;
   } catch (error) {
     console.log(error);
   }
@@ -115,12 +153,8 @@ export const getVideosEchos = async () => {
 
 export const getEchos = async ({ userId }) => {
   try {
-    const data = await fetch(
-      `${url}/tweet/${userId}/tweets`
-      //   { cache: "no-store" }
-    );
-    const json = await data.json();
-    return json;
+    const data = await axios.get(`${url}/tweet/${userId}/tweets`);
+    return data.data;
   } catch (error) {
     console.log(error);
   }
@@ -130,35 +164,15 @@ export const getEchos = async ({ userId }) => {
 // {{URL}}/feed/:username
 export const getProfile = async ({ username }) => {
   try {
-    const data = await fetch(`${url}/feed/user/${username}`, {
-      cache: "no-store",
-    });
-
-    if (!data.ok) {
-      throw new Error("404 Not found");
-    }
-
-    const result = await data.json();
-    return { result, isUserExist: true };
+    const data = await axios.get(`${url}/feed/user/${username}`);
+    return { result: data.data, isUserExist: true };
   } catch (error) {
-    if (error.message === "404 Not found") {
-      return {
-        isUserExist: false,
-        result: {},
-      };
+    console.log("error", error);
+    console.log("error message", error.message);
+    console.log("error status", error.status);
+    if (error.status === 404) {
+      return { result: {}, isUserExist: false };
     }
-    throw new Error(`Internal Server Error`);
+    throw error;
   }
-
-  // try {
-  //   const data = await axios.get(`${url}/feed/user/${username}`);
-  //   // console.log({ data });
-
-  //   return { result: data.data, isUserExist: true };
-  // } catch (error) {
-  //   console.log("error", error);
-  //   console.log("error message", error.message);
-  //   console.log("error status", error.status);
-  //   return { result: {}, isUserExist: false };
-  // }
 };

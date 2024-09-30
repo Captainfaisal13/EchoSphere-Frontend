@@ -19,8 +19,9 @@ const MediaLayout = ({ media }) => {
             className={`relative w-full aspect-[1.03/1] rounded-md overflow-hidden ${
               media.length === 3 && idx === 0 && "col-span-2 row-span-2"
             }`}
+            key={idx}
           >
-            <Image src={mediaItem} fill />
+            <Image src={mediaItem} fill alt={`echo-media-img-${idx}`} />
           </div>
         );
       })}
