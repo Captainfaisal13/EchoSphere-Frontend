@@ -86,7 +86,7 @@ const LoginPage = () => {
           </button>
         </form>
         <p>
-          don't have an account ? <Link href="/signup">Create one</Link>
+          don&apos;t have an account ? <Link href="/signup">Create one</Link>
         </p>
       </div>
     </div>

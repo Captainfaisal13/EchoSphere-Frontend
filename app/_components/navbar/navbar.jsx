@@ -7,7 +7,7 @@ import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
 const Navbar = ({ expandNavbar, setExpandNavbar, setShowCreateModal }) => {
   return (
     <nav
-      className={`bg-white fixed md:static z-30 h-full top-0 left-0 md:block w-64 md:w-24 lg:w-60 flex-col gap-8 transition-transform border-r md:translate-x-0 ${
+      className={`bg-white fixed md:sticky z-30 h-full top-0 left-0 md:block w-64 md:w-24 lg:w-60 flex-col gap-8 transition-transform md:translate-x-0 ${
         expandNavbar ? "translate-x-0" : "-translate-x-full"
       }`}
     >

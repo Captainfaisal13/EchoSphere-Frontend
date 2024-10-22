@@ -17,6 +17,9 @@ const ForYouEchoList = () => {
   if (isError) {
     return <p>{error}</p>;
   }
+
+  console.log({ echos: data.detailedTweets });
+
   return <Echos echos={data.detailedTweets} />;
 };
 

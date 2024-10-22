@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import Header from "./_components/header/header";
 import Navbar from "./_components/navbar/navbar";
-import CreateEchoModal from "./_components/main/createEchoModal";
-import CreateEcho from "./_components/main/createEcho";
+import CreateEchoModal from "./_components/modals/createEchoModal";
 import EchoButton from "./_components/navbar/echoButton";
 import { useGlobalContext } from "./context";
 import Discover from "./_components/discover/discover";
@@ -25,7 +24,7 @@ const ConditionalLayout = ({ children }) => {
         expandNavbar={expandNavbar}
         setExpandNavbar={setExpandNavbar}
       />
-      <div className="w-[600px] border border-t-0 border-[#D7D7D7] h-screen overflow-scroll scrollbar-hide pt-12 md:pt-0">
+      <div className="w-[600px] border border-t-0 border-[#D7D7D7] min-h-screen scrollbar-hide pt-12 md:pt-0">
         <Header expandNavbar={expandNavbar} setExpandNavbar={setExpandNavbar} />
         {children}
       </div>
@@ -34,7 +33,10 @@ const ConditionalLayout = ({ children }) => {
       <div className="block md:hidden fixed bottom-8 right-8">
         <EchoButton setShowCreateModal={setShowCreateModal} />
       </div>
-      <CreateEcho isOpen={showCreateModal} setIsOpen={setShowCreateModal} />
+      <CreateEchoModal
+        isOpen={showCreateModal}
+        setIsOpen={setShowCreateModal}
+      />
     </>
   ) : (
     <>{children}</>

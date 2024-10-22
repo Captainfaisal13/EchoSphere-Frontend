@@ -16,7 +16,7 @@ const MediaLayout = ({ media }) => {
       {media.map((mediaItem, idx) => {
         return (
           <div
-            className={`relative w-full aspect-[1.03/1] rounded-md overflow-hidden ${
+            className={`relative w-full aspect-[1/1] rounded-md overflow-hidden ${
               media.length === 3 && idx === 0 && "col-span-2 row-span-2"
             }`}
             key={idx}
@@ -25,18 +25,6 @@ const MediaLayout = ({ media }) => {
           </div>
         );
       })}
-      {/* <div className="relative w-full aspect-[1.03/1] rounded-md overflow-hidden">
-        <Image src="/_assets/images/sample-profile.jpg" fill />
-      </div>
-      <div className="relative w-full aspect-[1.03/1] rounded-md overflow-hidden">
-        <Image src="/_assets/images/sample-profile.jpg" fill />
-      </div>
-      <div className="relative w-full aspect-[1.03/1] rounded-md overflow-hidden">
-        <Image src="/_assets/images/sample-profile.jpg" fill />
-      </div>
-      <div className="relative w-full aspect-[1.03/1] rounded-md overflow-hidden">
-        <Image src="/_assets/images/sample-profile.jpg" fill />
-      </div> */}
     </div>
   );
 };

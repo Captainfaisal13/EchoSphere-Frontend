@@ -4,7 +4,7 @@ import DiscoverPeople from "./discoverPeople";
 
 const Discover = () => {
   return (
-    <div className="w-80 hidden lg:flex flex-col gap-4 px-2 pt-4">
+    <div className="w-80 hidden md:block sticky top-0 space-y-4 px-2 pt-4 h-full">
       <SearchEcho />
       <DiscoverPeople />
     </div>

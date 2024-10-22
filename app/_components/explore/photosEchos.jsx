@@ -1,20 +1,20 @@
+"use client";
 import React from "react";
-import Echo from "../reusables/echo";
-import { getPhotosEchos } from "../../../network/apiCalls";
 import Echos from "../reusables/Echos";
+import { useGetPhotosEchos } from "../../../network/customHooks";
 
-const PhotosEchoList = async () => {
-  const data = await getPhotosEchos();
-  const echos = data.AllTweets.map((echo) => {
-    return {
-      ...echo,
-      text: echo.content,
-      time: "5hr",
-      replies: "2.5k",
-      shares: "569",
-    };
-  });
-  return <Echos echos={echos} />;
+const PhotosEchoList = () => {
+  const { data, isLoading, isError, error } = useGetPhotosEchos();
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isError) {
+    return <p>{error}</p>;
+  }
+
+  return <Echos echos={data.AllTweets} />;
 };
 
 export default PhotosEchoList;

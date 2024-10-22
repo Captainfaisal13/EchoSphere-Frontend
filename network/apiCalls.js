@@ -50,23 +50,69 @@ export const createEcho = async (echoContent) => {
   }
 };
 
-// Get a single tweet [GET] [Token Required]
+// Get a single tweet [GET] [Token Optional]
 // {{URL}}/tweet/65fada48b5d4641cf01b2a8e
+export const getSingleEcho = async ({ echoId }) => {
+  try {
+    const { data } = await axios.get(`${url}/tweet/${echoId}`, {
+      withCredentials: true,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // Update tweet [POST] [Token Required]
 // {{URL}}/tweet/65fada48b5d4641cf01b2a8e
 
 // Delete Tweet [POST] [Token Required]
 // {{URL}}/tweet/65fada08b5d4641cf01b2a8c
+export const deleteEcho = async (echoId) => {
+  try {
+    const { data } = await axios.delete(`${url}/tweet/${echoId}`, {
+      withCredentials: true,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // Like/Dislike Tweet [POST] [Token Required]
 // {{URL}}/tweet/65fada48b5d4641cf01b2a8e/like
+export const likeDislikeEcho = async (tweetId) => {
+  try {
+    await axios.post(
+      `${url}/tweet/${tweetId}/like`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+};
 
 // Get all likes of tweet [GET] [Token Required]
 // {{URL}}/tweet/65fada48b5d4641cf01b2a8e/likes
 
 // Retweet Tweet [POST] [Token Required]
 // {{URL}}/tweet/65fada48b5d4641cf01b2a8e/retweet
+export const reEcho = async (tweetId) => {
+  try {
+    await axios.post(
+      `${url}/tweet/${tweetId}/retweet`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+};
 
 // Get All Retweets of Tweet [POST] [Token Required]
 // {{URL}}/tweet/65fada48b5d4641cf01b2a8e/retweets
@@ -89,27 +135,22 @@ export const createEcho = async (echoContent) => {
 // {{URL}}/feed/recents
 export const getRecentFeedEchos = async () => {
   try {
-    const data = await fetch(
-      `${url}/feed/recents`
-      //   { cache: "no-store" }
-    );
-    const json = await data.json();
-    return json;
+    const data = await axios.get(`${url}/feed/recents`, {
+      withCredentials: true,
+    });
+    return data.data;
   } catch (error) {
     console.log(error);
   }
 };
-
 // Get text tweets [GET]
 // {{URL}}/feed/text
 export const getTextEchos = async () => {
   try {
-    const data = await fetch(
-      `${url}/feed/text`
-      //   { cache: "no-store" }
-    );
-    const json = await data.json();
-    return json;
+    const data = await axios.get(`${url}/feed/photos`, {
+      withCredentials: true,
+    });
+    return data.data;
   } catch (error) {
     console.log(error);
   }
@@ -119,7 +160,9 @@ export const getTextEchos = async () => {
 // {{URL}}/feed/photos
 export const getPhotosEchos = async () => {
   try {
-    const data = await axios.get(`${url}/feed/photos`);
+    const data = await axios.get(`${url}/feed/photos`, {
+      withCredentials: true,
+    });
     return data.data;
   } catch (error) {
     console.log(error);
@@ -130,8 +173,16 @@ export const getPhotosEchos = async () => {
 // {{URL}}/feed/videos
 export const getVideosEchos = async () => {
   try {
-    const data = await axios.get(`${url}/feed/videos`);
-    return data.data;
+    const data = await fetch(`${url}/feed/videos`, {
+      method: "GET",
+      credentials: "include",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const res = await data.json();
+    return res;
   } catch (error) {
     console.log(error);
   }
@@ -153,7 +204,9 @@ export const getFollowingEchos = async () => {
 
 export const getEchos = async ({ userId }) => {
   try {
-    const data = await axios.get(`${url}/tweet/${userId}/tweets`);
+    const data = await axios.get(`${url}/tweet/${userId}/tweets`, {
+      withCredentials: true,
+    });
     return data.data;
   } catch (error) {
     console.log(error);

@@ -11,7 +11,7 @@ const homeTabs = [
 ];
 
 const MainContent = () => {
-  return <Tabs tabList={homeTabs} />;
+  return <Tabs tabList={homeTabs} storageKey="home-tab" />;
 };
 
 export default MainContent;

@@ -4,6 +4,15 @@ import NotificationIcon from "../../../public/_assets/svgComponents/notification
 import ProfileIcon from "../../../public/_assets/svgComponents/profileIcon";
 import SearchIcon from "../../../public/_assets/svgComponents/searchIcon";
 import SettingIcon from "../../../public/_assets/svgComponents/settingIcon";
+import {
+  differenceInSeconds,
+  differenceInMinutes,
+  differenceInHours,
+  differenceInDays,
+  differenceInMonths,
+  differenceInYears,
+  format,
+} from "date-fns";
 
 const getIcons = (pathName, title) => {
   switch (title) {
@@ -47,4 +56,40 @@ const handleNavClick = (idx, setCurrrentSelectedIcon) => {
   setCurrrentSelectedIcon(idx);
 };
 
-export { getIcons, handleNavClick };
+const formatTimeAgo = (date) => {
+  const now = new Date();
+  const diffInSeconds = differenceInSeconds(now, date);
+
+  if (diffInSeconds < 60) {
+    return `${diffInSeconds}s`; // Seconds
+  }
+
+  const diffInMinutes = differenceInMinutes(now, date);
+  if (diffInMinutes < 60) {
+    return `${diffInMinutes}m`; // Minutes
+  }
+
+  const diffInHours = differenceInHours(now, date);
+  if (diffInHours < 24) {
+    return `${diffInHours}h`; // Hours
+  }
+
+  const diffInDays = differenceInDays(now, date);
+  if (diffInDays < 30) {
+    return `${diffInDays}d`; // Days
+  }
+
+  const diffInMonths = differenceInMonths(now, date);
+  if (diffInMonths < 12) {
+    return `${diffInMonths}mo`; // Months
+  }
+
+  const diffInYears = differenceInYears(now, date);
+  return `${diffInYears}y`; // Years
+};
+
+const formatFullDate = (date) => {
+  return format(date, "MMMM d, yyyy 'at' hh:mm a");
+};
+
+export { getIcons, handleNavClick, formatTimeAgo, formatFullDate };
