@@ -40,7 +40,9 @@ const getIcons = (pathName, title) => {
 
     case "/profile":
       return (
-        <ProfileIcon colour={`${pathName !== title ? "#505050" : "#000000"}`} />
+        <ProfileIcon
+          colour={`${!pathName.startsWith(title) ? "#505050" : "#000000"}`}
+        />
       );
 
     case "/settings":

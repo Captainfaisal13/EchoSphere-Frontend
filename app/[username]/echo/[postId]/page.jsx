@@ -10,11 +10,15 @@ import LikeButton from "../../../_components/reusables/likeButton";
 import EchoOptions from "../../../_components/reusables/echoOptions";
 import EchoStats from "../../../_components/reusables/echoStats";
 import { formatFullDate } from "../../../_components/navbar/util";
+import { useRouter } from "next/navigation";
 
 const EchoPage = ({ params }) => {
   const { data, isLoading, isError } = useGetSingleEcho({
     echoId: params.postId,
   });
+
+  const router = useRouter();
+
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
@@ -51,9 +55,12 @@ const EchoPage = ({ params }) => {
   return (
     <div>
       <div className="py-2 border-b-[1px] border-b-[#D7D7D7] px-4 relative">
-        <Link href="/" className="my-auto p-[6px] absolute">
+        <button
+          onClick={() => router.back()}
+          className="my-auto p-[6px] absolute"
+        >
           <BackIcon />
-        </Link>
+        </button>
         <h3 className="text-center text-xl font-semibold">Echo</h3>
       </div>
       <div className="p-4">

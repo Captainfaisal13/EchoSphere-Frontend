@@ -10,7 +10,7 @@ const exploreTabs = [
 ];
 
 const ExploreContent = () => {
-  return <Tabs tabList={exploreTabs} />;
+  return <Tabs tabList={exploreTabs} storageKey="explore-tab" />;
 };
 
 export default ExploreContent;

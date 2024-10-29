@@ -2,10 +2,10 @@
 import { useEffect, useRef } from "react";
 
 const sizeClasses = {
-  small: "w-1/4",
-  medium: "w-1/2",
-  large: "w-3/4",
-  full: "w-full",
+  small: "w-1/4", // yet to design
+  medium: "w-11/12 max-w-[600px] ",
+  large: "w-3/4", // yet to design
+  full: "w-full", // yet to design
 };
 
 // Vertical positioning classes
@@ -54,7 +54,7 @@ const Modal = ({
       className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center z-50 ${positionClasses[postion]}`}
     >
       <div
-        className="bg-white rounded-lg w-11/12 max-w-md shadow-lg"
+        className={`bg-white rounded-lg shadow-lg ${sizeClasses[size]}`}
         ref={modalRef}
       >
         {children}

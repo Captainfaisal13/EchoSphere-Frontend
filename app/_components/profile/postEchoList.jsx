@@ -1,25 +1,20 @@
+"use client";
 import React from "react";
-import { getEchos } from "../../../network/apiCalls";
 import Echos from "../reusables/Echos";
+import { useGetVideosEchos } from "../../../network/customHooks";
 
-const PostEchoList = async ({ userId }) => {
-  const data = await getEchos({ userId });
-  const echos = data.detailedTweets.map((echo) => {
-    return {
-      ...echo,
-      text: echo.content,
-      time: "5hr",
-      replies: "2.5k",
-      shares: "569",
-      // media: [
-      //   "/_assets/images/sample-profile.jpg",
-      //   "/_assets/images/dp.jpg",
-      //   "/_assets/images/avatar1.png",
-      //   // "/_assets/images/avatar2.png",
-      // ],
-    };
-  });
-  return <Echos echos={echos} />;
+const PostEchoList = ({ userId }) => {
+  const { data, isLoading, isError, error } = useGetVideosEchos();
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isError) {
+    return <p>{error}</p>;
+  }
+
+  return <Echos echos={data.AllTweets} />;
 };
 
 export default PostEchoList;

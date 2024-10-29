@@ -33,6 +33,16 @@ export const login = async (loginUser) => {
 
 // update user [PATCH] [Token Required]
 // {{URL}}/auth/updateUser
+export const updateUser = async (user) => {
+  try {
+    const { data } = await axios.patch(`${url}/users/updateUser`, user, {
+      withCredentials: true,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // get all tweets [GET] [Token Required]
 // {{URL}}/tweet/
@@ -215,7 +225,7 @@ export const getEchos = async ({ userId }) => {
 
 // Get single user [GET]
 // {{URL}}/feed/:username
-export const getProfile = async ({ username }) => {
+export const getUserProfile = async ({ username }) => {
   try {
     const data = await axios.get(`${url}/feed/user/${username}`);
     return { result: data.data, isUserExist: true };

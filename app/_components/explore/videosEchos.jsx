@@ -1,12 +1,20 @@
+"use client";
 import React from "react";
-import { getVideosEchos } from "../../../network/apiCalls";
 import Echos from "../reusables/Echos";
+import { useGetVideosEchos } from "../../../network/customHooks";
 
-const VideosEchoList = async () => {
-  const data = await getVideosEchos();
-  const echos = data.AllTweets;
+const VideosEchoList = () => {
+  const { data, isLoading, isError, error } = useGetVideosEchos();
 
-  return <Echos echos={echos} />;
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isError) {
+    return <p>{error}</p>;
+  }
+
+  return <Echos echos={data.AllTweets} />;
 };
 
 export default VideosEchoList;

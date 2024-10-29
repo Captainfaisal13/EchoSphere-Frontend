@@ -6,15 +6,16 @@ import {
   getEchos,
   getFollowingEchos,
   getPhotosEchos,
-  getProfile,
   getRecentFeedEchos,
   getSingleEcho,
   getTextEchos,
+  getUserProfile,
   getVideosEchos,
   likeDislikeEcho,
   login,
   reEcho,
   signup,
+  updateUser,
 } from "./apiCalls";
 
 export const useSignup = () => {
@@ -23,6 +24,17 @@ export const useSignup = () => {
 
 export const useLogin = () => {
   return useMutation({ mutationFn: (loginUser) => login(loginUser) });
+};
+
+export const useGetUserProfile = ({ username }) => {
+  return useQuery({
+    queryKey: ["get-user-profile"],
+    queryFn: () => getUserProfile({ username }),
+  });
+};
+
+export const useUpdateUser = () => {
+  return useMutation({ mutationFn: (user) => updateUser(user) });
 };
 
 export const useGetUserEchos = ({ userId }) => {

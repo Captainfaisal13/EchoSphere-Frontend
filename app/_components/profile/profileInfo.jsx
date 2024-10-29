@@ -1,6 +1,6 @@
 import Image from "next/image";
-
-const ProfileInfo = async ({ user }) => {
+import EditProfileButton from "./editProfileButton";
+const ProfileInfo = ({ user }) => {
   return (
     <div>
       <div className="min-h-[24vh] relative bg-[#e9e9e9]">
@@ -17,11 +17,7 @@ const ProfileInfo = async ({ user }) => {
               sizes="auto"
             />
           </div>
-          <div className="flex items-center">
-            <button className="text-xs text-[#414141] bg-[#E6E6E6] py-2 px-4 rounded-3xl font-bold">
-              Edit Profile
-            </button>
-          </div>
+          <EditProfileButton user={user} />
         </div>
         <div className="flex flex-col gap-2 mt-2 px-4">
           <div>

@@ -37,6 +37,7 @@ const Echo = ({ echo }) => {
 
   return (
     <Link
+      scroll={true}
       href={`/${username}/echo/${id}`}
       key={id}
       className="flex p-4 gap-2 bg-[#E9E9E9] rounded-md"
