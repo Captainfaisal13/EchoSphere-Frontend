@@ -8,7 +8,9 @@ import EmojiPickerModal from "../reusables/emojiPicker";
 import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
 
 const CreateEcho = ({ isOpen, setIsOpen }) => {
-  const { user } = useGlobalContext();
+  const { user, replyEchoData, setReplyEchoData } = useGlobalContext();
+  console.log({ replyEchoData });
+
   const queryClient = useQueryClient();
   const { mutate: createEcho } = useCreateEcho();
 
@@ -20,6 +22,7 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
   const onClose = () => {
     setIsOpen(false);
     setEchoContent("");
+    setReplyEchoData(null);
     setMediaFiles([]);
   };
 
@@ -65,6 +68,10 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
         formData.append("media", files);
       });
 
+      if (replyEchoData) {
+        formData.append("parentTweet", replyEchoData._id);
+      }
+
       createEcho(formData, {
         onSuccess: (data) => {
           console.log({ data });
@@ -99,10 +106,29 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
               type="submit"
               className="bg-white text-[#5B5B5B] py-1 px-4 rounded-3xl font-bold"
             >
-              Post
+              {replyEchoData ? "Reply" : "Post"}
             </button>
           </div>
         </div>
+        {replyEchoData && (
+          <div className="py-3 border-b border-[#D7D7D7]">
+            <div className="flex gap-2">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
+                <Image
+                  src={replyEchoData?.userAvatar || "/_assets/images/dp.jpg"}
+                  fill
+                  alt="user-image"
+                />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-[#1B1B1B] pr-1">
+                  {replyEchoData?.name}
+                </p>
+                <p className="text-sm line-clamp-4">{replyEchoData?.content}</p>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="flex gap-2">
           <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
             <Image
@@ -113,7 +139,9 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
           </div>
           <textarea
             className="w-full p-2 max-h-40 min-h-28  border-none rounded-md outline-none focus:outline-none bg-[#E9E9E9] resize-none"
-            placeholder="What's happening?"
+            placeholder={
+              replyEchoData ? "Write your reply" : "What's happening?"
+            }
             rows="6"
             value={echoContent}
             onChange={(e) => setEchoContent(e.target.value)}

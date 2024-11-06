@@ -6,6 +6,9 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [replyEchoData, setReplyEchoData] = useState(null);
+
   const saveUser = (user) => {
     setUser(user);
   };
@@ -53,6 +56,10 @@ const AppProvider = ({ children }) => {
         saveUser,
         user,
         logoutUser,
+        showCreateModal,
+        setShowCreateModal,
+        replyEchoData,
+        setReplyEchoData,
       }}
     >
       {children}

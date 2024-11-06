@@ -56,7 +56,7 @@ const EchoOptions = ({ echo }) => {
 
   return (
     <div className="relative" onClick={(e) => e.preventDefault()}>
-      {user.userId === echo.user && (
+      {user?.userId === echo?.user && (
         <div
           onClick={() => {
             setShowOption(true);

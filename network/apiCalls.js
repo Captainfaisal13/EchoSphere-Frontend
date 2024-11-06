@@ -183,16 +183,10 @@ export const getPhotosEchos = async () => {
 // {{URL}}/feed/videos
 export const getVideosEchos = async () => {
   try {
-    const data = await fetch(`${url}/feed/videos`, {
-      method: "GET",
-      credentials: "include",
-      cache: "no-store",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const data = await axios.get(`${url}/feed/videos`, {
+      withCredentials: true,
     });
-    const res = await data.json();
-    return res;
+    return data.data;
   } catch (error) {
     console.log(error);
   }
@@ -219,7 +213,7 @@ export const getEchos = async ({ userId }) => {
     });
     return data.data;
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
 

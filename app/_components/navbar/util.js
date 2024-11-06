@@ -1,3 +1,4 @@
+import React from "react";
 import ExploreIcon from "../../../public/_assets/svgComponents/exploreIcon";
 import HomeIcon from "../../../public/_assets/svgComponents/homeIcon";
 import NotificationIcon from "../../../public/_assets/svgComponents/notificationIcon";
@@ -94,4 +95,21 @@ const formatFullDate = (date) => {
   return format(date, "MMMM d, yyyy 'at' hh:mm a");
 };
 
-export { getIcons, handleNavClick, formatTimeAgo, formatFullDate };
+const getFormattedContent = (content) => {
+  return content.split("\n").map((line, index) => {
+    return (
+      <React.Fragment key={index}>
+        {line}
+        <br />
+      </React.Fragment>
+    );
+  });
+};
+
+export {
+  getIcons,
+  handleNavClick,
+  formatTimeAgo,
+  formatFullDate,
+  getFormattedContent,
+};

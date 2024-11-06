@@ -11,7 +11,9 @@ import { usePathname } from "next/navigation";
 const ConditionalLayout = ({ children }) => {
   const pathname = usePathname();
   const [expandNavbar, setExpandNavbar] = useState(false);
-  const [showCreateModal, setShowCreateModal] = useState(false);
+  const { showCreateModal, setShowCreateModal } = useGlobalContext();
+
+  // const [showCreateModal, setShowCreateModal] = useState(false);
 
   const NO_LAYOUT_ROUTES = ["/signup", "/login"];
   const isLayoutVisible = !NO_LAYOUT_ROUTES.includes(pathname);
