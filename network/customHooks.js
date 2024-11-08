@@ -3,12 +3,15 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   createEcho,
   deleteEcho,
+  followUnfollowUser,
   getEchos,
   getFollowingEchos,
   getPhotosEchos,
   getRecentFeedEchos,
   getSingleEcho,
   getTextEchos,
+  getUserFollowers,
+  getUserFollowings,
   getUserProfile,
   getVideosEchos,
   likeDislikeEcho,
@@ -107,6 +110,26 @@ export const useLikeDislikeEcho = () => {
 export const useReEcho = () => {
   return useMutation({
     mutationFn: (tweetId) => reEcho(tweetId),
+  });
+};
+
+export const useFollowUnfollowUser = () => {
+  return useMutation({
+    mutationFn: (userId) => followUnfollowUser(userId),
+  });
+};
+
+export const useGetUserFollowers = ({ username }) => {
+  return useQuery({
+    queryKey: ["get-user-followers"],
+    queryFn: () => getUserFollowers({ username }),
+  });
+};
+
+export const useGetUserFollowings = ({ username }) => {
+  return useQuery({
+    queryKey: ["get-user-followers"],
+    queryFn: () => getUserFollowings({ username }),
   });
 };
 

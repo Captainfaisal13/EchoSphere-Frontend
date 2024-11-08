@@ -129,12 +129,51 @@ export const reEcho = async (tweetId) => {
 
 // Follow User [POST] [Token Required]
 // {{URL}}/user/65fad979b5d4641cf01b2a85/follow
+export const followUnfollowUser = async (userId) => {
+  try {
+    await axios.post(
+      `${url}/follow/${userId}`,
+      {},
+      {
+        withCredentials: true,
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+};
 
 // Get Followers of User [GET] [Token Required]
-// {{URL}}/user/65fadd41a08b6648d8c8aead/followers
+// {{URL}}/follow/65fadd41a08b6648d8c8aead/followers
+export const getUserFollowers = async ({ username }) => {
+  try {
+    const data = await axios.get(
+      `${url}/follow/${username}/followers?isUsername=true`,
+      {
+        withCredentials: true,
+      }
+    );
+    return data.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 // Get Following of User [GET] [Token Required]
-// {{URL}}/user/65fadd41a08b6648d8c8aead/following
+// {{URL}}/user/65fadd41a08b6648d8c8aead/followings
+export const getUserFollowings = async ({ username }) => {
+  try {
+    const data = await axios.get(
+      `${url}/follow/${username}/followings?isUsername=true`,
+      {
+        withCredentials: true,
+      }
+    );
+    return data.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 
 // Get following user tweets [GET] [Token Required]
 // {{URL}}/feed/following
@@ -221,7 +260,9 @@ export const getEchos = async ({ userId }) => {
 // {{URL}}/feed/:username
 export const getUserProfile = async ({ username }) => {
   try {
-    const data = await axios.get(`${url}/feed/user/${username}`);
+    const data = await axios.get(`${url}/feed/user/${username}`, {
+      withCredentials: true,
+    });
     return { result: data.data, isUserExist: true };
   } catch (error) {
     console.log("error", error);

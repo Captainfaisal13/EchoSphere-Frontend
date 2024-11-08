@@ -1,5 +1,6 @@
 import Image from "next/image";
-import EditProfileButton from "./editProfileButton";
+import ConditionalButtons from "./conditionalButtons";
+import Link from "next/link";
 const ProfileInfo = ({ user }) => {
   return (
     <div>
@@ -17,7 +18,7 @@ const ProfileInfo = ({ user }) => {
               sizes="auto"
             />
           </div>
-          <EditProfileButton user={user} />
+          <ConditionalButtons user={user} />
         </div>
         <div className="flex flex-col gap-2 mt-2 px-4">
           <div>
@@ -25,18 +26,24 @@ const ProfileInfo = ({ user }) => {
             <h4 className="text-sm text-[#5B5B5B]">@{user?.username}</h4>
           </div>
           <div className="text-sm flex gap-4">
-            <button className="text-[#5B5B5B] hover:underline">
+            <Link
+              href={`/profile/${user?.username}/followings`}
+              className="text-[#5B5B5B] hover:underline"
+            >
               <span className="font-bold text-black">
-                {user?.following_count}
+                {user?.followingCount}
               </span>{" "}
               following
-            </button>
-            <button className="text-[#5B5B5B] hover:underline">
+            </Link>
+            <Link
+              href={`/profile/${user?.username}/followers`}
+              className="text-[#5B5B5B] hover:underline"
+            >
               <span className="font-bold text-black">
-                {user?.followers_count}
+                {user?.followerCount}
               </span>{" "}
               followers
-            </button>
+            </Link>
           </div>
           <p>{user?.bio}</p>
         </div>

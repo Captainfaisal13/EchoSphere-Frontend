@@ -14,6 +14,8 @@ const ProfilePage = ({ username }) => {
     return <h1>Loading Hai....</h1>;
   }
 
+  console.log({ userProfile: data });
+
   if (!data.isUserExist) {
     return (
       <div className="w-[50vw] border border-t-0 border-[#D7D7D7] max-h-screen overflow-scroll scrollbar-hide">
