@@ -14,21 +14,19 @@ const FollowingsSection = () => {
 
   return (
     <div className="">
-      {data?.detailedFollowings?.map(
-        ({ userAvatar, username, name, isFollowed, followerId }) => {
-          return (
-            <FollowerUser
-              key={followerId}
-              currentUserId={user.userId}
-              isFollowed={isFollowed}
-              name={name}
-              userAvatar={userAvatar}
-              userId={followerId}
-              username={username}
-            />
-          );
-        }
-      )}
+      {data?.map(({ userAvatar, username, name, isFollowed, followerId }) => {
+        return (
+          <FollowerUser
+            key={followerId}
+            currentUserId={user.userId}
+            isFollowed={isFollowed}
+            name={name}
+            userAvatar={userAvatar}
+            userId={followerId}
+            username={username}
+          />
+        );
+      })}
     </div>
   );
 };

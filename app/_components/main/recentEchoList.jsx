@@ -1,24 +1,33 @@
 "use client";
 import { useGetRecentEchos } from "../../../network/customHooks";
-import { useGlobalContext } from "../../context";
 import Echos from "../reusables/Echos";
 
 const RecentEchoList = () => {
-  const { user } = useGlobalContext();
+  const {
+    data,
+    status,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useGetRecentEchos();
 
-  const { data, isLoading, isError, error } = useGetRecentEchos({
-    userId: user.userId,
-  });
-
-  if (isLoading) {
+  if (status === "pending") {
     return <h1>Loading...</h1>;
   }
 
-  if (isError) {
+  if (status === "error") {
     return <p>{error}</p>;
   }
 
-  return <Echos echos={data.AllTweets} />;
+  return (
+    <Echos
+      echos={data.pages}
+      fetchNextPage={fetchNextPage}
+      hasNextPage={hasNextPage}
+      isFetchingNextPage={isFetchingNextPage}
+    />
+  );
 };
 
 export default RecentEchoList;

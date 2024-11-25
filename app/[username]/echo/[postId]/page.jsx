@@ -153,7 +153,7 @@ const EchoPage = ({ params }) => {
           </div>
         </button>
       )}
-      <Echos echos={data.repliesDetailedTweet} />
+      <Echos echos={[data.repliesDetailedTweet]} />
     </div>
   );
 };

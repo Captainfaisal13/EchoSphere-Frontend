@@ -1,276 +1,100 @@
-import axios from "axios";
-
+import axiosInstance from "./axiosInstance";
 const url = "http://localhost:5000/api/v1";
 
-// signup [POST]
-// {{URL}}/auth/signup
+const apiCall = async (method, url, data = null, params = null) => {
+  try {
+    return await axiosInstance({
+      method,
+      url,
+      data,
+      params,
+    });
+  } catch (error) {
+    console.error("API Calling Error:", error);
+    throw error;
+  }
+};
+
 export const signup = async (signupUser) => {
-  try {
-    const { data } = await axios.post(`${url}/auth/signup`, signupUser, {
-      withCredentials: true,
-    });
-    return data;
-  } catch (error) {
-    throw error;
-  }
+  return apiCall("post", `/auth/signup`, signupUser);
 };
 
-// login [POST]
-// {{URL}}/auth/login
 export const login = async (loginUser) => {
-  try {
-    const { data } = await axios.post(`${url}/auth/login`, loginUser, {
-      withCredentials: true,
-    });
-    return data;
-  } catch (error) {
-    throw error;
-  }
+  return apiCall("post", `/auth/login`, loginUser);
 };
 
-// get single user [GET]
-// {{URL}}/auth/updateUser
-
-// update user [PATCH] [Token Required]
-// {{URL}}/auth/updateUser
 export const updateUser = async (user) => {
-  try {
-    const { data } = await axios.patch(`${url}/users/updateUser`, user, {
-      withCredentials: true,
-    });
-    return data;
-  } catch (error) {
-    throw error;
-  }
+  return apiCall("patch", `/users/updateUser`, user);
 };
 
-// get all tweets [GET] [Token Required]
-// {{URL}}/tweet/
-
-// create tweet [POST] [Token Required]
-// {{URL}}/tweet
 export const createEcho = async (echoContent) => {
-  try {
-    const { data } = await axios.post(`${url}/tweet`, echoContent, {
-      withCredentials: true,
-    });
-    return data;
-  } catch (error) {
-    throw error;
-  }
+  return apiCall("post", `/tweet`, echoContent);
 };
 
-// Get a single tweet [GET] [Token Optional]
-// {{URL}}/tweet/65fada48b5d4641cf01b2a8e
 export const getSingleEcho = async ({ echoId }) => {
-  try {
-    const { data } = await axios.get(`${url}/tweet/${echoId}`, {
-      withCredentials: true,
-    });
-    return data;
-  } catch (error) {
-    throw error;
-  }
+  return apiCall("get", `/tweet/${echoId}`);
 };
 
-// Update tweet [POST] [Token Required]
-// {{URL}}/tweet/65fada48b5d4641cf01b2a8e
-
-// Delete Tweet [POST] [Token Required]
-// {{URL}}/tweet/65fada08b5d4641cf01b2a8c
 export const deleteEcho = async (echoId) => {
-  try {
-    const { data } = await axios.delete(`${url}/tweet/${echoId}`, {
-      withCredentials: true,
-    });
-    return data;
-  } catch (error) {
-    throw error;
-  }
+  return apiCall("delete", `/tweet/${echoId}`);
 };
 
-// Like/Dislike Tweet [POST] [Token Required]
-// {{URL}}/tweet/65fada48b5d4641cf01b2a8e/like
-export const likeDislikeEcho = async (tweetId) => {
-  try {
-    await axios.post(
-      `${url}/tweet/${tweetId}/like`,
-      {},
-      {
-        withCredentials: true,
-      }
-    );
-  } catch (error) {
-    throw error;
-  }
+export const likeDislikeEcho = async (echoId) => {
+  return apiCall("post", `/tweet/${echoId}/like`);
 };
 
-// Get all likes of tweet [GET] [Token Required]
-// {{URL}}/tweet/65fada48b5d4641cf01b2a8e/likes
-
-// Retweet Tweet [POST] [Token Required]
-// {{URL}}/tweet/65fada48b5d4641cf01b2a8e/retweet
-export const reEcho = async (tweetId) => {
-  try {
-    await axios.post(
-      `${url}/tweet/${tweetId}/retweet`,
-      {},
-      {
-        withCredentials: true,
-      }
-    );
-  } catch (error) {
-    throw error;
-  }
+export const reEcho = async (echoId) => {
+  return apiCall("post", `/tweet/${echoId}/retweet`);
 };
 
-// Get All Retweets of Tweet [POST] [Token Required]
-// {{URL}}/tweet/65fada48b5d4641cf01b2a8e/retweets
-
-// Follow User [POST] [Token Required]
-// {{URL}}/user/65fad979b5d4641cf01b2a85/follow
 export const followUnfollowUser = async (userId) => {
-  try {
-    await axios.post(
-      `${url}/follow/${userId}`,
-      {},
-      {
-        withCredentials: true,
-      }
-    );
-  } catch (error) {
-    throw error;
-  }
+  return apiCall("post", `/follow/${userId}`);
 };
 
-// Get Followers of User [GET] [Token Required]
-// {{URL}}/follow/65fadd41a08b6648d8c8aead/followers
 export const getUserFollowers = async ({ username }) => {
-  try {
-    const data = await axios.get(
-      `${url}/follow/${username}/followers?isUsername=true`,
-      {
-        withCredentials: true,
-      }
-    );
-    return data.data;
-  } catch (error) {
-    throw new Error(error);
-  }
+  return apiCall("get", `/follow/${username}/followers?isUsername=true`);
 };
 
-// Get Following of User [GET] [Token Required]
-// {{URL}}/user/65fadd41a08b6648d8c8aead/followings
 export const getUserFollowings = async ({ username }) => {
-  try {
-    const data = await axios.get(
-      `${url}/follow/${username}/followings?isUsername=true`,
-      {
-        withCredentials: true,
-      }
-    );
-    return data.data;
-  } catch (error) {
-    throw new Error(error);
-  }
+  return apiCall("get", `/follow/${username}/followings?isUsername=true`);
 };
 
-// Get following user tweets [GET] [Token Required]
-// {{URL}}/feed/following
-
-/**************************** Feed API Calls **********************************/
-
-// Get recent tweets [GET]
-// {{URL}}/feed/recents
-export const getRecentFeedEchos = async () => {
-  try {
-    const data = await axios.get(`${url}/feed/recents`, {
-      withCredentials: true,
-    });
-    return data.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-// Get text tweets [GET]
-// {{URL}}/feed/text
-export const getTextEchos = async () => {
-  try {
-    const data = await axios.get(`${url}/feed/photos`, {
-      withCredentials: true,
-    });
-    return data.data;
-  } catch (error) {
-    console.log(error);
-  }
+export const getRecentFeedEchos = async ({ pageParam }) => {
+  return apiCall("get", `/feed/recents?page=${pageParam}`);
 };
 
-// Get photos tweets [GET]
-// {{URL}}/feed/photos
-export const getPhotosEchos = async () => {
-  try {
-    const data = await axios.get(`${url}/feed/photos`, {
-      withCredentials: true,
-    });
-    return data.data;
-  } catch (error) {
-    console.log(error);
-  }
+export const getTextEchos = async ({ pageParam }) => {
+  return apiCall("get", `/feed/text?page=${pageParam}`);
 };
 
-// Get videos tweets [GET]
-// {{URL}}/feed/videos
-export const getVideosEchos = async () => {
-  try {
-    const data = await axios.get(`${url}/feed/videos`, {
-      withCredentials: true,
-    });
-    return data.data;
-  } catch (error) {
-    console.log(error);
-  }
+export const getPhotosEchos = async ({ pageParam }) => {
+  return apiCall("get", `/feed/photos?page=${pageParam}`);
 };
 
-// Get following user tweets [GET]
-// {{URL}}/feed/following
-export const getFollowingEchos = async () => {
-  try {
-    const data = await axios.get(`${url}/feed/following`, {
-      withCredentials: true,
-    });
-
-    return data.data;
-  } catch (error) {
-    console.log(error);
-  }
+export const getVideosEchos = async ({ pageParam }) => {
+  return apiCall("get", `/feed/videos?page=${pageParam}`);
 };
 
-export const getEchos = async ({ userId }) => {
-  try {
-    const data = await axios.get(`${url}/tweet/${userId}/tweets`, {
-      withCredentials: true,
-    });
-    return data.data;
-  } catch (error) {
-    throw new Error(error);
-  }
+export const getFollowingEchos = async ({ pageParam }) => {
+  return apiCall("get", `/feed/following?page=${pageParam}`);
 };
 
-// Get single user [GET]
-// {{URL}}/feed/:username
 export const getUserProfile = async ({ username }) => {
-  try {
-    const data = await axios.get(`${url}/feed/user/${username}`, {
-      withCredentials: true,
-    });
-    return { result: data.data, isUserExist: true };
-  } catch (error) {
-    console.log("error", error);
-    console.log("error message", error.message);
-    console.log("error status", error.status);
-    if (error.status === 404) {
-      return { result: {}, isUserExist: false };
-    }
-    throw error;
-  }
+  return apiCall("get", `/feed/user/${username}`);
+};
+
+export const getUserPosts = async ({ username, pageParam }) => {
+  return apiCall("get", `/feed/user/${username}/posts?page=${pageParam}`);
+};
+
+export const getUserReplies = async ({ username, pageParam }) => {
+  return apiCall("get", `/feed/user/${username}/replies?page=${pageParam}`);
+};
+
+export const getUserLikedPosts = async ({ username, pageParam }) => {
+  return apiCall("get", `/feed/user/${username}/likes?page=${pageParam}`);
+};
+
+export const getUserMediaPosts = async ({ username, pageParam }) => {
+  return apiCall("get", `/feed/user/${username}/media?page=${pageParam}`);
 };

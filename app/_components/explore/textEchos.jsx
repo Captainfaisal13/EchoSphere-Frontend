@@ -1,20 +1,33 @@
 "use client";
 import { useGetTextEchos } from "../../../network/customHooks";
-import { useGlobalContext } from "../../context";
 import Echos from "../reusables/Echos";
 
 const TextEchoList = () => {
-  const { data, isLoading, isError, error } = useGetTextEchos();
+  const {
+    data,
+    status,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useGetTextEchos();
 
-  if (isLoading) {
+  if (status === "pending") {
     return <h1>Loading...</h1>;
   }
 
-  if (isError) {
+  if (status === "error") {
     return <p>{error}</p>;
   }
 
-  return <Echos echos={data.AllTweets} />;
+  return (
+    <Echos
+      echos={data.pages}
+      fetchNextPage={fetchNextPage}
+      hasNextPage={hasNextPage}
+      isFetchingNextPage={isFetchingNextPage}
+    />
+  );
 };
 
 export default TextEchoList;

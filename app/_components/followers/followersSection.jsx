@@ -10,25 +10,22 @@ const FollowersSection = () => {
   const { data, isLoading } = useGetUserFollowers({ username: params.slug });
 
   if (isLoading) return <p>Loading...</p>;
-  console.log({ data });
 
   return (
     <div className="">
-      {data?.detailedFollowers?.map(
-        ({ userAvatar, username, name, isFollowed, userId }) => {
-          return (
-            <FollowersUser
-              key={userId}
-              currentUserId={user.userId}
-              isFollowed={isFollowed}
-              name={name}
-              userAvatar={userAvatar}
-              userId={userId}
-              username={username}
-            />
-          );
-        }
-      )}
+      {data?.map(({ userAvatar, username, name, isFollowed, userId }) => {
+        return (
+          <FollowersUser
+            key={userId}
+            currentUserId={user.userId}
+            isFollowed={isFollowed}
+            name={name}
+            userAvatar={userAvatar}
+            userId={userId}
+            username={username}
+          />
+        );
+      })}
     </div>
   );
 };

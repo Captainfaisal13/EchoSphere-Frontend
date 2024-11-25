@@ -28,15 +28,15 @@ const SignUpPage = () => {
   const onSuccess = (data) => {
     setValues({ name: "", username: "", email: "", password: "" });
     showAlert({
-      text: `Welcome, ${data.user.name}. Redirecting to dashboard...`,
+      text: `Welcome, ${data.name}. Redirecting to dashboard...`,
       type: "success",
     });
-    saveUser(data.user);
+    saveUser(data);
     router.push("/");
   };
 
   const onError = (error) => {
-    showAlert({ text: error.response.data.msg });
+    showAlert({ text: error.msg });
   };
 
   const onSettled = () => {

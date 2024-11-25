@@ -1,20 +1,33 @@
 "use client";
-import React from "react";
 import Echos from "../reusables/Echos";
-import { useGetVideosEchos } from "../../../network/customHooks";
+import { useGetUserReplies } from "../../../network/customHooks";
 
-const ReplyEchoList = () => {
-  const { data, isLoading, isError, error } = useGetVideosEchos();
+const ReplyEchoList = ({ username }) => {
+  const {
+    data,
+    status,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useGetUserReplies({ username });
 
-  if (isLoading) {
+  if (status === "pending") {
     return <h1>Loading...</h1>;
   }
 
-  if (isError) {
+  if (status === "error") {
     return <p>{error}</p>;
   }
 
-  return <Echos echos={data.AllTweets} />;
+  return (
+    <Echos
+      echos={data.pages}
+      fetchNextPage={fetchNextPage}
+      hasNextPage={hasNextPage}
+      isFetchingNextPage={isFetchingNextPage}
+    />
+  );
 };
 
 export default ReplyEchoList;

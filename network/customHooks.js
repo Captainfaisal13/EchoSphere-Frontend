@@ -1,10 +1,9 @@
 "use client";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import {
   createEcho,
   deleteEcho,
   followUnfollowUser,
-  getEchos,
   getFollowingEchos,
   getPhotosEchos,
   getRecentFeedEchos,
@@ -12,7 +11,11 @@ import {
   getTextEchos,
   getUserFollowers,
   getUserFollowings,
+  getUserLikedPosts,
+  getUserMediaPosts,
+  getUserPosts,
   getUserProfile,
+  getUserReplies,
   getVideosEchos,
   likeDislikeEcho,
   login,
@@ -40,13 +43,6 @@ export const useUpdateUser = () => {
   return useMutation({ mutationFn: (user) => updateUser(user) });
 };
 
-export const useGetUserEchos = ({ userId }) => {
-  return useQuery({
-    queryKey: ["get-user-echos"],
-    queryFn: () => getEchos({ userId }),
-  });
-};
-
 export const useGetSingleEcho = ({ echoId }) => {
   return useQuery({
     queryKey: ["get-single-echos", echoId],
@@ -55,37 +51,67 @@ export const useGetSingleEcho = ({ echoId }) => {
 };
 
 export const useGetFollowingEchos = () => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["get-following-echos"],
-    queryFn: () => getFollowingEchos(),
+    queryFn: ({ pageParam }) => getFollowingEchos({ pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
   });
 };
 
 export const useGetRecentEchos = () => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["get-recent-echos"],
-    queryFn: () => getRecentFeedEchos(),
+    queryFn: ({ pageParam }) => getRecentFeedEchos({ pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
   });
 };
 
 export const useGetTextEchos = () => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["get-text-echos"],
-    queryFn: () => getTextEchos(),
+    queryFn: ({ pageParam }) => getTextEchos({ pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
   });
 };
 
 export const useGetPhotosEchos = () => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["get-photos-echos"],
-    queryFn: () => getPhotosEchos(),
+    queryFn: ({ pageParam }) => getPhotosEchos({ pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
   });
 };
 
 export const useGetVideosEchos = () => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["get-videos-echos"],
-    queryFn: () => getVideosEchos(),
+    queryFn: ({ pageParam }) => getVideosEchos({ pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
   });
 };
 
@@ -133,9 +159,54 @@ export const useGetUserFollowings = ({ username }) => {
   });
 };
 
-// export const useGetProfile = ({ username }) => {
-//   return useQuery({
-//     queryKey: ["get-profile", username],
-//     queryFn: () => getProfile({ username }),
-//   });
-// };
+export const useGetUserPosts = ({ username }) => {
+  return useInfiniteQuery({
+    queryKey: ["get-user-posts"],
+    queryFn: ({ pageParam }) => getUserPosts({ pageParam, username }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
+  });
+};
+
+export const useGetUserReplies = ({ username }) => {
+  return useInfiniteQuery({
+    queryKey: ["get-user-replies"],
+    queryFn: ({ pageParam }) => getUserReplies({ pageParam, username }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
+  });
+};
+
+export const useGetUserLikedPosts = ({ username }) => {
+  return useInfiniteQuery({
+    queryKey: ["get-user-liked-posts"],
+    queryFn: ({ pageParam }) => getUserLikedPosts({ pageParam, username }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
+  });
+};
+
+export const useGetUserMediaPosts = ({ username }) => {
+  return useInfiniteQuery({
+    queryKey: ["get-user-media-posts"],
+    queryFn: ({ pageParam }) => getUserMediaPosts({ pageParam, username }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
+  });
+};

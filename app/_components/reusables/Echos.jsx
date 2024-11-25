@@ -1,12 +1,41 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 import Echo from "./echo";
 
-const Echos = ({ echos }) => {
+const Echos = ({ echos, fetchNextPage, hasNextPage, isFetchingNextPage }) => {
+  const observerRef = useRef();
+  const [fetchFlag, setFetchFlag] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (observerRef.current) {
+        const rect = observerRef.current.getBoundingClientRect();
+        if (rect.top <= window.innerHeight && hasNextPage && !fetchFlag) {
+          console.log("scrolling");
+          setFetchFlag(true);
+          fetchNextPage();
+        }
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [fetchNextPage, hasNextPage, fetchFlag]);
+
+  useEffect(() => {
+    if (!isFetchingNextPage) {
+      setFetchFlag(false);
+    }
+  }, [isFetchingNextPage]);
+
   return (
     <div className="px-2 md:px-5 py-2 md:py-4 flex flex-col gap-2 md:gap-4">
-      {echos.map((echo) => {
-        return <Echo key={echo._id} echo={echo} />;
+      {echos.map((currentPage) => {
+        return currentPage.map((echo) => <Echo key={echo._id} echo={echo} />);
       })}
+      <div ref={observerRef}>
+        {hasNextPage && <h1 className="text-black text-3xl">Loading...</h1>}
+      </div>
     </div>
   );
 };

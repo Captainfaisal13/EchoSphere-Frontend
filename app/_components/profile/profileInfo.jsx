@@ -5,13 +5,13 @@ const ProfileInfo = ({ user }) => {
   return (
     <div>
       <div className="min-h-[24vh] relative bg-[#e9e9e9]">
-        {user.cover && <Image src={user?.cover} fill alt="profile cover" />}
+        {user?.cover && <Image src={user?.cover} fill alt="profile cover" />}
       </div>
       <div>
         <div className="flex justify-between px-4">
           <div className="h-28 w-28 rounded-full relative overflow-hidden mt-[-62px] ">
             <Image
-              src={user.avatar || "/_assets/images/unknown-image.png"}
+              src={user?.avatar || "/_assets/images/unknown-image.png"}
               className=""
               fill
               alt="profile avatar"
