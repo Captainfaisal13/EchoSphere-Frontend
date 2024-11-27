@@ -34,7 +34,7 @@ export const useLogin = () => {
 
 export const useGetUserProfile = ({ username }) => {
   return useQuery({
-    queryKey: ["get-user-profile"],
+    queryKey: ["echo-query", "get-user-profile"],
     queryFn: () => getUserProfile({ username }),
   });
 };
@@ -45,14 +45,14 @@ export const useUpdateUser = () => {
 
 export const useGetSingleEcho = ({ echoId }) => {
   return useQuery({
-    queryKey: ["get-single-echos", echoId],
+    queryKey: ["echo-query", "get-single-echos", echoId],
     queryFn: () => getSingleEcho({ echoId }),
   });
 };
 
 export const useGetFollowingEchos = () => {
   return useInfiniteQuery({
-    queryKey: ["get-following-echos"],
+    queryKey: ["echo-query", "get-following-echos"],
     queryFn: ({ pageParam }) => getFollowingEchos({ pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -65,7 +65,7 @@ export const useGetFollowingEchos = () => {
 
 export const useGetRecentEchos = () => {
   return useInfiniteQuery({
-    queryKey: ["get-recent-echos"],
+    queryKey: ["echo-query", "get-recent-echos"],
     queryFn: ({ pageParam }) => getRecentFeedEchos({ pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -78,7 +78,7 @@ export const useGetRecentEchos = () => {
 
 export const useGetTextEchos = () => {
   return useInfiniteQuery({
-    queryKey: ["get-text-echos"],
+    queryKey: ["echo-query", "get-text-echos"],
     queryFn: ({ pageParam }) => getTextEchos({ pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -91,7 +91,7 @@ export const useGetTextEchos = () => {
 
 export const useGetPhotosEchos = () => {
   return useInfiniteQuery({
-    queryKey: ["get-photos-echos"],
+    queryKey: ["echo-query", "get-photos-echos"],
     queryFn: ({ pageParam }) => getPhotosEchos({ pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -104,7 +104,7 @@ export const useGetPhotosEchos = () => {
 
 export const useGetVideosEchos = () => {
   return useInfiniteQuery({
-    queryKey: ["get-videos-echos"],
+    queryKey: ["echo-query", "get-videos-echos"],
     queryFn: ({ pageParam }) => getVideosEchos({ pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -147,21 +147,21 @@ export const useFollowUnfollowUser = () => {
 
 export const useGetUserFollowers = ({ username }) => {
   return useQuery({
-    queryKey: ["get-user-followers"],
+    queryKey: ["echo-query", "get-user-followers"],
     queryFn: () => getUserFollowers({ username }),
   });
 };
 
 export const useGetUserFollowings = ({ username }) => {
   return useQuery({
-    queryKey: ["get-user-followers"],
+    queryKey: ["echo-query", "get-user-followers"],
     queryFn: () => getUserFollowings({ username }),
   });
 };
 
 export const useGetUserPosts = ({ username }) => {
   return useInfiniteQuery({
-    queryKey: ["get-user-posts"],
+    queryKey: ["echo-query", "get-user-posts"],
     queryFn: ({ pageParam }) => getUserPosts({ pageParam, username }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -174,7 +174,7 @@ export const useGetUserPosts = ({ username }) => {
 
 export const useGetUserReplies = ({ username }) => {
   return useInfiniteQuery({
-    queryKey: ["get-user-replies"],
+    queryKey: ["echo-query", "get-user-replies"],
     queryFn: ({ pageParam }) => getUserReplies({ pageParam, username }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -187,7 +187,7 @@ export const useGetUserReplies = ({ username }) => {
 
 export const useGetUserLikedPosts = ({ username }) => {
   return useInfiniteQuery({
-    queryKey: ["get-user-liked-posts"],
+    queryKey: ["echo-query", "get-user-liked-posts"],
     queryFn: ({ pageParam }) => getUserLikedPosts({ pageParam, username }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -200,7 +200,7 @@ export const useGetUserLikedPosts = ({ username }) => {
 
 export const useGetUserMediaPosts = ({ username }) => {
   return useInfiniteQuery({
-    queryKey: ["get-user-media-posts"],
+    queryKey: ["echo-query", "get-user-media-posts"],
     queryFn: ({ pageParam }) => getUserMediaPosts({ pageParam, username }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {

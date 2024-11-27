@@ -18,7 +18,9 @@ const FollowButton = ({ isUserFollowed, userId }) => {
     setIsFollowed(!isFollowed);
     followUnfollowUser(userId, {
       onSuccess: () => {
-        queryClient.invalidateQueries(["get-user-profile"]);
+        queryClient.invalidateQueries({
+          queryKey: ["echo-query"],
+        });
       },
     });
   };

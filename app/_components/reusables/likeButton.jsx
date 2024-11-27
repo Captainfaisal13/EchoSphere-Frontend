@@ -18,12 +18,9 @@ const LikeButton = ({ isEchoLiked, echoLikedCount, echoId }) => {
     setIsLiked(!isLiked);
     likeDislikeEcho(echoId, {
       onSuccess: () => {
-        Promise.all([
-          queryClient.invalidateQueries(["get-single-echos", echoId]),
-          queryClient.invalidateQueries(["get-user-echos"]),
-          queryClient.invalidateQueries(["get-following-echos"]),
-          queryClient.invalidateQueries(["get-recent-echos"]),
-        ]);
+        queryClient.invalidateQueries({
+          queryKey: ["echo-query"],
+        });
       },
     });
   };

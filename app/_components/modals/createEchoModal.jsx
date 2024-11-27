@@ -77,8 +77,7 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
           console.log({ data });
 
           queryClient.invalidateQueries({
-            queryKey: ["get-user-echos"],
-            // refetchType: "all",
+            queryKey: ["echo-query"],
           });
         },
       });
