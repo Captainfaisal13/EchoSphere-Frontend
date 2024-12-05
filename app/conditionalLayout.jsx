@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Header from "./_components/header/header";
 import Navbar from "./_components/navbar/navbar";
 import CreateEchoModal from "./_components/modals/createEchoModal";
+import ShareEchoModal from "./_components/modals/shareEchoModal";
 import EchoButton from "./_components/navbar/echoButton";
 import { useGlobalContext } from "./context";
 import Discover from "./_components/discover/discover";
@@ -11,9 +12,12 @@ import { usePathname } from "next/navigation";
 const ConditionalLayout = ({ children }) => {
   const pathname = usePathname();
   const [expandNavbar, setExpandNavbar] = useState(false);
-  const { showCreateModal, setShowCreateModal } = useGlobalContext();
-
-  // const [showCreateModal, setShowCreateModal] = useState(false);
+  const {
+    showCreateModal,
+    setShowCreateModal,
+    showShareModal,
+    setShowShareModal,
+  } = useGlobalContext();
 
   const NO_LAYOUT_ROUTES = ["/signup", "/login"];
   const isLayoutVisible = !NO_LAYOUT_ROUTES.includes(pathname);
@@ -39,6 +43,7 @@ const ConditionalLayout = ({ children }) => {
         isOpen={showCreateModal}
         setIsOpen={setShowCreateModal}
       />
+      <ShareEchoModal isOpen={showShareModal} setIsOpen={setShowShareModal} />
     </>
   ) : (
     <>{children}</>

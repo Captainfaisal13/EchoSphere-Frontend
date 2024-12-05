@@ -17,6 +17,8 @@ import { useGlobalContext } from "../../../context";
 import ReplyButton from "../../../_components/reusables/replyButton";
 import SectionHeader from "../../../_components/reusables/sectionHeader";
 import ParentEchos from "../../../_components/echo/parentEchos";
+import ShareButton from "../../../_components/reusables/shareButton";
+import BookmarkButton from "../../../_components/reusables/bookmarkButton";
 
 const EchoPage = ({ params }) => {
   const {
@@ -40,17 +42,18 @@ const EchoPage = ({ params }) => {
 
   const {
     _id: id,
-    name,
     username,
+    name,
     userAvatar,
     createdAt,
     content,
     retweets_count: reposts,
     likes_count: likes,
     replies_count: replies,
+    shareCount: shares,
     isLiked,
     isRepost,
-    shares,
+    isBookmarked,
     media,
     parentTweet,
   } = echo;
@@ -114,22 +117,8 @@ const EchoPage = ({ params }) => {
               isEchoLiked={isLiked}
               echoId={id}
             />
-            <button className="flex gap-1">
-              <div className="relative w-4 h-4">
-                <Image src="/_assets/share-icon.svg" fill alt="share-icon" />
-              </div>
-              <p className="text-xs font-thin my-auto text-[#5B5B5B]">
-                {shares ? shares : "0"}
-              </p>
-            </button>
-
-            <button className="relative w-4 h-4 justify-self-end">
-              <Image
-                src="/_assets/bookmark-icon.svg"
-                fill
-                alt="bookmark-icon"
-              />
-            </button>
+            <ShareButton echoId={id} shares={shares} />
+            <BookmarkButton echoId={id} isEchoBookmarked={isBookmarked} />
           </div>
         </div>
       </div>

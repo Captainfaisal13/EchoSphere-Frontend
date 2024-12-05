@@ -1,9 +1,11 @@
 "use client";
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import {
+  bookmarkEcho,
   createEcho,
   deleteEcho,
   followUnfollowUser,
+  getBookmarkEchos,
   getFollowingEchos,
   getPhotosEchos,
   getRecentFeedEchos,
@@ -20,6 +22,7 @@ import {
   likeDislikeEcho,
   login,
   reEcho,
+  shareEcho,
   signup,
   updateUser,
 } from "./apiCalls";
@@ -136,6 +139,25 @@ export const useLikeDislikeEcho = () => {
 export const useReEcho = () => {
   return useMutation({
     mutationFn: (tweetId) => reEcho(tweetId),
+  });
+};
+
+export const useShareEcho = () => {
+  return useMutation({
+    mutationFn: (tweetId) => shareEcho(tweetId),
+  });
+};
+
+export const useBookmarkEcho = () => {
+  return useMutation({
+    mutationFn: (tweetId) => bookmarkEcho(tweetId),
+  });
+};
+
+export const useGetBookmarkPosts = () => {
+  return useQuery({
+    queryKey: ["echo-query", "get-bookmark-posts"],
+    queryFn: () => getBookmarkEchos(),
   });
 };
 

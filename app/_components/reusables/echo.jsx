@@ -4,6 +4,8 @@ import MediaLayout from "./mediaLayout";
 import LikeButton from "./likeButton";
 import ReEchoButton from "./reEchoButton";
 import ReplyButton from "./replyButton";
+import ShareButton from "./shareButton";
+import BookmarkButton from "./bookmarkButton";
 import Link from "next/link";
 import EchoOptions from "./echoOptions";
 import { formatTimeAgo } from "../navbar/util";
@@ -19,9 +21,10 @@ const Echo = ({ echo }) => {
     retweets_count: reposts,
     likes_count: likes,
     replies_count: replies,
+    shareCount: shares,
     isLiked,
     isRepost,
-    shares,
+    isBookmarked,
     media,
     parentTweet,
   } = echo;
@@ -48,9 +51,8 @@ const Echo = ({ echo }) => {
         <Image src={userAvatar} fill alt="user-avatar" />
       </div>
       <div className="shrink w-full flex flex-col gap-[2px]">
-        {/* <div className="flex justify-between"> */}
         <div className="flex gap-1 items-center">
-          <Link
+          {/* <Link
             href={`/profile/${username}`}
             className="hover:underline cursor-pointer line-clamp-1"
           >
@@ -58,7 +60,24 @@ const Echo = ({ echo }) => {
               {name}
             </span>
             <span className="font text-xs text-[#5B5B5B]">@{username}</span>
+          </Link> */}
+          <Link
+            href={`/profile/${username}`}
+            className="cursor-pointer flex items-center"
+          >
+            <span className="text-sm font-bold text-[#1B1B1B] flex items-center pr-1 hover:underline">
+              <span className="line-clamp-1">{name}</span>
+              {username === "shaikhfaisal" && (
+                <div className="ml-1 relative size-[18px] my-auto">
+                  <Image src="/_assets/crown-icon.svg" fill alt="crown-icon" />
+                </div>
+              )}
+            </span>
+            <span className="font text-xs text-[#5B5B5B] ml-2 line-clamp-1">
+              @{username}
+            </span>
           </Link>
+
           <div className="flex items-center text-[4px]">&#8226;</div>
           <p className="text-xs font-light">{time}</p>
         </div>
@@ -70,8 +89,6 @@ const Echo = ({ echo }) => {
             Replied to an <span className="text-blue-600 underline">Echo</span>
           </Link>
         )}
-        {/* <EchoOptions echo={echo} /> */}
-        {/* </div> */}
         <p className="text-sm text-[#2B2B2B]">{formattedContent}</p>
         <div className="pt-1 pb-3 border-b border-[#D7D7D7]">
           <MediaLayout media={media} />
@@ -88,18 +105,8 @@ const Echo = ({ echo }) => {
             isEchoLiked={isLiked}
             echoId={id}
           />
-          <button className="flex gap-1">
-            <div className="relative w-4 h-4">
-              <Image src="/_assets/share-icon.svg" fill alt="share-icon" />
-            </div>
-            <p className="text-xs font-thin my-auto text-[#5B5B5B]">
-              {shares ? shares : "569"}
-            </p>
-          </button>
-
-          <button className="relative w-4 h-4 justify-self-end">
-            <Image src="/_assets/bookmark-icon.svg" fill alt="bookmark-icon" />
-          </button>
+          <ShareButton echoId={id} shares={shares} />
+          <BookmarkButton echoId={id} isEchoBookmarked={isBookmarked} />
         </div>
       </div>
     </Link>

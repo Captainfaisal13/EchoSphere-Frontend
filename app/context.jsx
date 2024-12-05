@@ -8,6 +8,8 @@ const AppProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [replyEchoData, setReplyEchoData] = useState(null);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [shareEchoData, setShareEchoData] = useState(null);
 
   const saveUser = (user) => {
     setUser(user);
@@ -60,6 +62,10 @@ const AppProvider = ({ children }) => {
         setShowCreateModal,
         replyEchoData,
         setReplyEchoData,
+        showShareModal,
+        setShowShareModal,
+        shareEchoData,
+        setShareEchoData,
       }}
     >
       {children}

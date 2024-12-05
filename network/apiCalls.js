@@ -47,6 +47,18 @@ export const reEcho = async (echoId) => {
   return apiCall("post", `/tweet/${echoId}/retweet`);
 };
 
+export const shareEcho = async (echoId) => {
+  return apiCall("post", `/tweet/${echoId}/share`);
+};
+
+export const bookmarkEcho = async (echoId) => {
+  return apiCall("post", `/tweet/${echoId}/bookmark`);
+};
+
+export const getBookmarkEchos = async () => {
+  return apiCall("get", `/tweet/bookmarks`);
+};
+
 export const followUnfollowUser = async (userId) => {
   return apiCall("post", `/follow/${userId}`);
 };

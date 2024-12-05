@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 
 const sizeClasses = {
-  small: "w-1/4", // yet to design
+  small: "w-11/12 lg:w-1/3 max-w-[400px]", // yet to design
   medium: "w-11/12 max-w-[600px] ",
   large: "w-3/4", // yet to design
   full: "w-full", // yet to design
