@@ -6,6 +6,7 @@ import LikeEchoList from "./likeEchoList";
 import ProfileInfo from "./profileInfo";
 import Tabs from "../reusables/tabs";
 import { useGetUserProfile } from "../../../network/customHooks";
+import SectionHeader from "../reusables/sectionHeader";
 
 const ProfilePage = ({ username }) => {
   const { data, isLoading, isError, error } = useGetUserProfile({ username });
@@ -37,6 +38,7 @@ const ProfilePage = ({ username }) => {
 
   return (
     <div>
+      <SectionHeader heading={`${data?.name}`} />
       <div className="flex flex-col gap-4">
         <ProfileInfo user={data} />
         <Tabs

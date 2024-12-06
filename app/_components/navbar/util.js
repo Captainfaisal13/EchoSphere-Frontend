@@ -14,6 +14,7 @@ import {
   differenceInYears,
   format,
 } from "date-fns";
+import BookmarkIconNav from "../../../public/_assets/svgComponents/bookmarkIconNav";
 
 const getIcons = (pathName, title) => {
   switch (title) {
@@ -35,6 +36,13 @@ const getIcons = (pathName, title) => {
     case "/notifications":
       return (
         <NotificationIcon
+          colour={`${pathName !== title ? "#505050" : "#000000"}`}
+        />
+      );
+
+    case "/bookmark":
+      return (
+        <BookmarkIconNav
           colour={`${pathName !== title ? "#505050" : "#000000"}`}
         />
       );

@@ -1,10 +1,12 @@
 import React from "react";
+import CheckAuth from "../checkAuth";
+import Settings from "../_components/settings/page";
 
 const SettingPage = () => {
   return (
-    <div className="w-[50vw] border border-[#D7D7D7] max-h-screen overflow-scroll scrollbar-hide">
-      Settings
-    </div>
+    <CheckAuth>
+      <Settings />
+    </CheckAuth>
   );
 };
 

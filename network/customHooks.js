@@ -155,9 +155,15 @@ export const useBookmarkEcho = () => {
 };
 
 export const useGetBookmarkPosts = () => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["echo-query", "get-bookmark-posts"],
-    queryFn: () => getBookmarkEchos(),
+    queryFn: ({ pageParam }) => getBookmarkEchos({ pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
   });
 };
 

@@ -55,8 +55,8 @@ export const bookmarkEcho = async (echoId) => {
   return apiCall("post", `/tweet/${echoId}/bookmark`);
 };
 
-export const getBookmarkEchos = async () => {
-  return apiCall("get", `/tweet/bookmarks`);
+export const getBookmarkEchos = async ({ pageParam }) => {
+  return apiCall("get", `/tweet/bookmarks?page=${pageParam}`);
 };
 
 export const followUnfollowUser = async (userId) => {
