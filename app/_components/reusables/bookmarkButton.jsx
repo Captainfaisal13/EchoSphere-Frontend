@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  useBookmarkEcho,
-  useLikeDislikeEcho,
-} from "../../../network/customHooks";
-import LikeIcon from "../../../public/_assets/svgComponents/likeIcon";
+import { useBookmarkEcho } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
 import BookmarkIcon from "../../../public/_assets/svgComponents/bookmarkIcon";
 
-const BookmarkButton = ({ isEchoBookmarked, echoId }) => {
+const BookmarkButton = ({
+  isEchoBookmarked,
+  echoId,
+  bgColor = "text-[#E9E9E9]",
+}) => {
   const queryClient = useQueryClient();
   const { mutate: bookmarkEcho } = useBookmarkEcho();
   const [isBookmarked, setIsBookmarked] = useState(isEchoBookmarked);
@@ -32,23 +32,9 @@ const BookmarkButton = ({ isEchoBookmarked, echoId }) => {
   }, [isEchoBookmarked]);
 
   return (
-    // <button className="flex gap-1" onClick={handleLike}>
-    //   <div
-    //     className={`${
-    //       isLiked
-    //         ? "fill-red-600 stroke-red-600"
-    //         : "fill-transparent stroke-[#5B5B5B]"
-    //     }`}
-    //   >
-    //     <LikeIcon />
-    //   </div>
-    //   <p className="text-xs font-thin my-auto text-[#5B5B5B]">{likeCount}</p>
-    // </button>
     <button
       className={`my-auto justify-self-end ${
-        isBookmarked
-          ? "text-black stroke-none"
-          : "text-[#E9E9E9] stroke-[#5B5B5B]"
+        isBookmarked ? "text-black stroke-none" : `${bgColor} stroke-[#5B5B5B]`
       }`}
       onClick={handleLike}
     >

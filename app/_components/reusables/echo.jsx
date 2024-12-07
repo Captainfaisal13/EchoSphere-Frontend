@@ -52,15 +52,6 @@ const Echo = ({ echo }) => {
       </div>
       <div className="shrink w-full flex flex-col gap-[2px]">
         <div className="flex gap-1 items-center">
-          {/* <Link
-            href={`/profile/${username}`}
-            className="hover:underline cursor-pointer line-clamp-1"
-          >
-            <span className="text-sm font-bold text-[#1B1B1B] pr-1">
-              {name}
-            </span>
-            <span className="font text-xs text-[#5B5B5B]">@{username}</span>
-          </Link> */}
           <Link
             href={`/profile/${username}`}
             className="cursor-pointer flex items-center"

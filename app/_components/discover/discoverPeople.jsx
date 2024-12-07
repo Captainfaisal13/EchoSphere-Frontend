@@ -5,7 +5,9 @@ import discoverProfiles from "../../data/discoverProfiles";
 const DiscoverPeople = () => {
   return (
     <div className="flex flex-col bg-[#E6E6E6] rounded-[4px]">
-      <h2 className="p-4 border-b border-[#D7D7D7]">Check out these peoples</h2>
+      <h2 className="p-4 border-b border-[#D7D7D7] text-[#000000]">
+        Check out these peoples
+      </h2>
       <div className="flex flex-col gap-4 px-3 py-4">
         {discoverProfiles.map((profile) => {
           const { id, username, userid, avatar } = profile;

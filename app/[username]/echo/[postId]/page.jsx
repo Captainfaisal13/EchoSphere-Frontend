@@ -118,7 +118,11 @@ const EchoPage = ({ params }) => {
               echoId={id}
             />
             <ShareButton echoId={id} shares={shares} />
-            <BookmarkButton echoId={id} isEchoBookmarked={isBookmarked} />
+            <BookmarkButton
+              echoId={id}
+              isEchoBookmarked={isBookmarked}
+              bgColor="text-[#FFFFFF]"
+            />
           </div>
         </div>
       </div>
@@ -132,7 +136,7 @@ const EchoPage = ({ params }) => {
             setShowCreateModal(true);
           }}
         >
-          <div className="flex gap-2 rounded-3xl hover:bg-black/10 p-2">
+          <div className="flex gap-2 rounded-3xl bg-[#F1F3F5] p-2">
             <div className="shrink-0 relative size-6 rounded-full overflow-hidden">
               <Image src={userAvatar} fill alt="user-avatar" />
             </div>

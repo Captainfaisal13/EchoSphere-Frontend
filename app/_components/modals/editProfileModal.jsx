@@ -78,15 +78,18 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} postion="center" size="medium">
-      <form onSubmit={handleSubmit} className="space-y-6 mx-auto p-4">
-        <h1 className="text-xl font-bold text-black text-center">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 mx-auto p-4 bg-[#E9E9E9] rounded-md"
+      >
+        <h1 className="text-xl font-bold text-[#000000] text-center">
           Edit profile
         </h1>
 
         <div className="relative">
           {/* Cover Picture */}
           <div
-            className="h-36 bg-[#e9e9e9] relative cursor-pointer"
+            className="h-36 bg-[#E9E9E9] relative cursor-pointer"
             onClick={handleCoverPicClick}
           >
             <Image
@@ -135,31 +138,33 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
           onChange={handleProfilePicChange}
         />
 
-        <div>
-          <label className="block text-gray-700">Name</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-        </div>
+        <div className="space-y-2">
+          <div>
+            <label className="block text-[#414141]">Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full p-2 border border-[#D7D7D7] rounded"
+            />
+          </div>
 
-        <div>
-          <label className="block text-gray-700">Bio</label>
-          <textarea
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded"
-            rows="4"
-          />
+          <div>
+            <label className="block text-[#414141]">Bio</label>
+            <textarea
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              className="w-full p-2 border border-[#D7D7D7] rounded"
+              rows="4"
+            />
+          </div>
+          <button
+            type="submit"
+            className="px-4 py-2 text-[#E9E9E9] bg-[#000000] rounded"
+          >
+            Save Changes
+          </button>
         </div>
-        <button
-          type="submit"
-          className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-        >
-          Save Changes
-        </button>
       </form>
     </Modal>
   );

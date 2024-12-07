@@ -103,7 +103,7 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
           <div>
             <button
               type="submit"
-              className="bg-white text-[#5B5B5B] py-1 px-4 rounded-3xl font-bold"
+              className="text-[#E9E9E9] bg-[#000000] py-1 px-4 rounded-3xl font-bold"
             >
               {replyEchoData ? "Reply" : "Post"}
             </button>

@@ -13,7 +13,9 @@ const SectionHeader = ({ heading }) => {
       >
         <BackIcon />
       </button>
-      <h3 className="text-center text-xl font-semibold">{heading}</h3>
+      <h3 className="text-center text-xl font-semibold text-[#000000]">
+        {heading}
+      </h3>
     </div>
   );
 };

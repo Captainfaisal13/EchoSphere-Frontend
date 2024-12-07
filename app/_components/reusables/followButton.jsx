@@ -29,7 +29,9 @@ const FollowButton = ({ isUserFollowed, userId }) => {
     <div className="my-auto" onClick={handleFollow}>
       <button
         className={`flex gap-1 text-xs py-2 px-4 rounded-3xl font-bold ${
-          isFollowed ? "bg-[#E9E9E9] text-black" : "bg-black text-white"
+          isFollowed
+            ? "bg-[#E9E9E9] text-[#000000]"
+            : "bg-[#000000] text-[#FFFFFF]"
         }`}
       >
         <div className="relative size-4">

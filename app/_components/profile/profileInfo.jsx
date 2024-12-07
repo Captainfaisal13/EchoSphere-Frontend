@@ -4,7 +4,7 @@ import Link from "next/link";
 const ProfileInfo = ({ user }) => {
   return (
     <div>
-      <div className="min-h-[24vh] relative bg-[#e9e9e9]">
+      <div className="min-h-[24vh] relative bg-[#E9E9E9]">
         {user?.cover && <Image src={user?.cover} fill alt="profile cover" />}
       </div>
       <div>
@@ -22,7 +22,7 @@ const ProfileInfo = ({ user }) => {
         </div>
         <div className="flex flex-col gap-2 mt-2 px-4">
           <div>
-            <h2 className="text-2xl font-bold">{user?.name}</h2>
+            <h2 className="text-2xl font-bold text-[#1B1B1B]">{user?.name}</h2>
             <h4 className="text-sm text-[#5B5B5B]">@{user?.username}</h4>
           </div>
           <div className="text-sm flex gap-4">
@@ -30,7 +30,7 @@ const ProfileInfo = ({ user }) => {
               href={`/profile/${user?.username}/followings`}
               className="text-[#5B5B5B] hover:underline"
             >
-              <span className="font-bold text-black">
+              <span className="font-bold text-[#000000]">
                 {user?.followingCount}
               </span>{" "}
               following
@@ -39,7 +39,7 @@ const ProfileInfo = ({ user }) => {
               href={`/profile/${user?.username}/followers`}
               className="text-[#5B5B5B] hover:underline"
             >
-              <span className="font-bold text-black">
+              <span className="font-bold text-[#000000]">
                 {user?.followerCount}
               </span>{" "}
               followers
