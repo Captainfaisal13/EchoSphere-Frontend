@@ -4,16 +4,12 @@ import { useBookmarkEcho } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
 import BookmarkIcon from "../../../public/_assets/svgComponents/bookmarkIcon";
 
-const BookmarkButton = ({
-  isEchoBookmarked,
-  echoId,
-  bgColor = "text-[#E9E9E9]",
-}) => {
+const BookmarkButton = ({ isEchoBookmarked, echoId }) => {
   const queryClient = useQueryClient();
   const { mutate: bookmarkEcho } = useBookmarkEcho();
   const [isBookmarked, setIsBookmarked] = useState(isEchoBookmarked);
 
-  const handleLike = async (e) => {
+  const handleBookmark = async (e) => {
     e.preventDefault();
 
     // Optimistic UI update
@@ -34,12 +30,13 @@ const BookmarkButton = ({
   return (
     <button
       className={`my-auto justify-self-end ${
-        isBookmarked ? "text-black stroke-none" : `${bgColor} stroke-[#5B5B5B]`
+        isBookmarked
+          ? "text-text-1 stroke-none"
+          : `text-transparent stroke-text-3`
       }`}
-      onClick={handleLike}
+      onClick={handleBookmark}
     >
       <BookmarkIcon />
-      {/* <Image src="/_assets/bookmark-icon.svg" fill alt="bookmark-icon" /> */}
     </button>
   );
 };

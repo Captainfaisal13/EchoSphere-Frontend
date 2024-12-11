@@ -67,7 +67,7 @@ const EchoPage = ({ params }) => {
         <div className="flex gap-2">
           <div className="w-14 pb-[2px]">
             <div
-              className={`w-[2px] h-4 mx-auto ${parentTweet && "bg-[#D7D7D7]"}`}
+              className={`w-[2px] h-4 mx-auto ${parentTweet && "bg-border-3"}`}
             ></div>
           </div>
           <div className="w-full"></div>
@@ -78,8 +78,8 @@ const EchoPage = ({ params }) => {
               <Image src={userAvatar} fill alt={`${username}-profile-image`} />
             </div>
             <Link href={`/profile/${username}`}>
-              <h2 className="text-base font-semibold text-[#1B1B1B]">{name}</h2>
-              <h3 className="text-sm text-[#5B5B5B]">@{username}</h3>
+              <h2 className="text-base font-semibold text-text-2">{name}</h2>
+              <h3 className="text-sm text-text-3">@{username}</h3>
             </Link>
           </div>
           <div className="my-auto">
@@ -87,13 +87,11 @@ const EchoPage = ({ params }) => {
           </div>
         </div>
         <div className="p-2">
-          <p className="text-lg text-[#2B2B2B]">
-            {getFormattedContent(content)}
-          </p>
+          <p className="text-lg text-text-4">{getFormattedContent(content)}</p>
           <div className="pt-1">
             <MediaLayout media={media} />
           </div>
-          <div className="py-2 text-xs text-[#5B5B5B] mt-4 flex gap-2 font-light">
+          <div className="py-2 text-xs text-text-3 mt-4 flex gap-2 font-light">
             {time}
           </div>
           <EchoStats
@@ -102,7 +100,7 @@ const EchoPage = ({ params }) => {
             echoReplyCount={replies}
           />
           <div
-            className={`flex justify-between md:grid grid-cols-5 pt-3 border-t border-[#D7D7D7] ${
+            className={`flex justify-between md:grid grid-cols-5 pt-3 border-t border-border-3 ${
               likes === 0 && reposts === 0 && replies === 0 && "mt-5"
             }`}
           >
@@ -118,17 +116,13 @@ const EchoPage = ({ params }) => {
               echoId={id}
             />
             <ShareButton echoId={id} shares={shares} />
-            <BookmarkButton
-              echoId={id}
-              isEchoBookmarked={isBookmarked}
-              bgColor="text-[#FFFFFF]"
-            />
+            <BookmarkButton echoId={id} isEchoBookmarked={isBookmarked} />
           </div>
         </div>
       </div>
       {user && (
         <button
-          className="border-y border-[#D7D7D7] py-1 px-4 w-full mt-1"
+          className="border-y border-border-1 py-1 px-4 w-full mt-1"
           onClick={() => {
             setReplyEchoData({
               ...echo,
@@ -136,7 +130,7 @@ const EchoPage = ({ params }) => {
             setShowCreateModal(true);
           }}
         >
-          <div className="flex gap-2 rounded-3xl bg-[#F1F3F5] p-2">
+          <div className="flex gap-2 rounded-3xl bg-bg-6 p-2 text-text-1">
             <div className="shrink-0 relative size-6 rounded-full overflow-hidden">
               <Image src={userAvatar} fill alt="user-avatar" />
             </div>

@@ -6,7 +6,7 @@ const EditProfileButton = ({ user }) => {
   return (
     <div className="flex items-center">
       <button
-        className="text-xs text-[#414141] bg-[#E6E6E6] py-2 px-4 rounded-3xl font-bold"
+        className="text-xs text-text-7 bg-bg-2 py-2 px-4 rounded-3xl font-bold"
         onClick={() => setShowEditPopup(true)}
       >
         Edit Profile

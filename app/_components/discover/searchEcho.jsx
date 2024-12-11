@@ -14,11 +14,11 @@ const SearchEcho = () => {
   return (
     <div
       className={`flex ${
-        searchFocused ? "bg-[#E9E9E9]" : "bg-[#B9B9B9]"
+        searchFocused ? "bg-bg-4" : "bg-bg-2"
       } items-center gap-2 pl-2 duration-[200ms] py-1 rounded-[4px]`}
     >
-      <div className="relative w-6 h-6">
-        <SearchIcon colour="#414141" strokeWidth="2.5" />
+      <div className="stroke-text-6">
+        <SearchIcon width="18px" height="18px" strokeWidth="2.5" />
       </div>
       <input
         type="text"
@@ -26,9 +26,9 @@ const SearchEcho = () => {
         id="searchEcho"
         className={`${
           searchFocused
-            ? "bg-[#E9E9E9] placeholder:text-[#8C8C8C]"
-            : "bg-[#B9B9B9] placeholder:text-[#414141]"
-        } placeholder:text-[14px] placeholder:font-light outline-none pr-2 w-full duration-[200ms]`}
+            ? "bg-bg-4 placeholder:text-text-6"
+            : "bg-bg-2 placeholder:text-text-7"
+        } placeholder:text-[14px] placeholder:font-light outline-none pr-2 w-full duration-[200ms] text-text-1`}
         placeholder="Search Echoes"
         onFocus={handleFocus}
         onBlur={handleFocusOut}

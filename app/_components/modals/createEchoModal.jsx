@@ -6,6 +6,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useGlobalContext } from "../../context";
 import EmojiPickerModal from "../reusables/emojiPicker";
 import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
+import MediaUploadIcon from "../../../public/_assets/svgComponents/mediaUploadIcon";
+import EmojiIcon from "../../../public/_assets/svgComponents/emojiIcon";
 
 const CreateEcho = ({ isOpen, setIsOpen }) => {
   const { user, replyEchoData, setReplyEchoData } = useGlobalContext();
@@ -89,28 +91,30 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <form
         onSubmit={handleSubmit}
-        className="w-full bg-[#E9E9E9] rounded-md py-3 px-3 flex flex-col gap-3"
+        className="w-full bg-bg-4 rounded-md py-3 px-3 flex flex-col gap-3"
       >
         <EmojiPickerModal
           showEmojiPicker={showEmojiPicker}
           onEmojiPickerClose={onEmojiPickerClose}
           onEmojiClick={onEmojiClick}
         />
-        <div className="flex justify-between items-center pb-2 px-2 border-b border-[#D7D7D7]">
+        <div className="flex justify-between items-center pb-2 px-2 border-b border-border-1">
           <div>
-            <button onClick={onClose}>Cancel</button>
+            <button className="text-text-1" onClick={onClose}>
+              Cancel
+            </button>
           </div>
           <div>
             <button
               type="submit"
-              className="text-[#E9E9E9] bg-[#000000] py-1 px-4 rounded-3xl font-bold"
+              className="text-text-0 bg-bg-5 py-1 px-4 rounded-3xl font-bold"
             >
               {replyEchoData ? "Reply" : "Post"}
             </button>
           </div>
         </div>
         {replyEchoData && (
-          <div className="py-3 border-b border-[#D7D7D7]">
+          <div className="py-3 border-b border-border-1">
             <div className="flex gap-2">
               <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
                 <Image
@@ -120,10 +124,12 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
                 />
               </div>
               <div>
-                <p className="text-sm font-bold text-[#1B1B1B] pr-1">
+                <p className="text-sm font-bold text-text-2 pr-1">
                   {replyEchoData?.name}
                 </p>
-                <p className="text-sm line-clamp-4">{replyEchoData?.content}</p>
+                <p className="text-sm line-clamp-4 text-text-4">
+                  {replyEchoData?.content}
+                </p>
               </div>
             </div>
           </div>
@@ -137,7 +143,7 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
             />
           </div>
           <textarea
-            className="w-full p-2 max-h-40 min-h-28  border-none rounded-md outline-none focus:outline-none bg-[#E9E9E9] resize-none"
+            className="w-full p-2 max-h-40 min-h-28 border-none rounded-md placeholder:text-text-6 outline-none text-text-1 focus:outline-none bg-bg-4 resize-none"
             placeholder={
               replyEchoData ? "Write your reply" : "What's happening?"
             }
@@ -176,13 +182,14 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
             ))}
           </div>
         )}
-        <div className="flex justify-between items-center px-2 pt-2 border-t border-[#D7D7D7]">
+        <div className="flex justify-between items-center px-2 pt-2 border-t border-border-1">
           <div className="flex gap-3">
             <div>
-              <label htmlFor="mediaInput">
-                <div className="relative size-7 cursor-pointer">
-                  <Image src="/_assets/media-upload.svg" fill alt="media-svg" />
-                </div>
+              <label
+                className="fill-red-500 cursor-pointer"
+                htmlFor="mediaInput"
+              >
+                <MediaUploadIcon height="28px" width="28px" />
               </label>
               <input
                 id="mediaInput"
@@ -194,10 +201,10 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
               />
             </div>
             <div
-              className="w-7 h-7 relative"
+              className="fill-yellow-500 cursor-pointer"
               onClick={() => setShowEmojiPicker(true)}
             >
-              <Image src="/_assets/emoji.svg" fill alt="emoji-svg" />
+              <EmojiIcon height="28px" width="28px" />
             </div>
           </div>
           <div>

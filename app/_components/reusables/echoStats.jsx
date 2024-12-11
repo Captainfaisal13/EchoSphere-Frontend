@@ -15,22 +15,21 @@ const EchoStats = ({ echoLikedCount, reEchoedCount, echoReplyCount }) => {
 
   return (
     (likeCount > 0 || reEchoCount > 0 || replyEchoCount > 0) && (
-      <div className="py-2 border-t border-[#D7D7D7] flex gap-2 text-sm">
+      <div className="py-2 border-t border-border-1 flex gap-2 text-sm text-text-3">
         {likeCount > 0 && (
           <p>
-            {likeCount} <span className="text-xs text-[#5B5B5B]">likes</span>
+            {likeCount} <span className="text-xs text-text-3">likes</span>
           </p>
         )}
         {reEchoCount > 0 && (
           <p>
-            {reEchoCount}{" "}
-            <span className="text-xs text-[#5B5B5B]">reposts</span>
+            {reEchoCount} <span className="text-xs text-text-3">reposts</span>
           </p>
         )}
         {replyEchoCount > 0 && (
           <p>
             {replyEchoCount}{" "}
-            <span className="text-xs text-[#5B5B5B]">replies</span>
+            <span className="text-xs text-text-3">replies</span>
           </p>
         )}
       </div>

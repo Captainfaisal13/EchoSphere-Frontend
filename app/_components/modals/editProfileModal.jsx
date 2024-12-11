@@ -80,16 +80,16 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
     <Modal isOpen={isOpen} onClose={onClose} postion="center" size="medium">
       <form
         onSubmit={handleSubmit}
-        className="space-y-6 mx-auto p-4 bg-[#E9E9E9] rounded-md"
+        className="space-y-6 mx-auto p-4 bg-bg-4 rounded-md"
       >
-        <h1 className="text-xl font-bold text-[#000000] text-center">
+        <h1 className="text-xl font-bold text-text-1 text-center">
           Edit profile
         </h1>
 
         <div className="relative">
           {/* Cover Picture */}
           <div
-            className="h-36 bg-[#E9E9E9] relative cursor-pointer"
+            className="h-36 bg-bg-4 relative cursor-pointer"
             onClick={handleCoverPicClick}
           >
             <Image
@@ -140,27 +140,27 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
 
         <div className="space-y-2">
           <div>
-            <label className="block text-[#414141]">Name</label>
+            <label className="block text-text-7">Name</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-2 border border-[#D7D7D7] rounded"
+              className="w-full p-2 border border-border-1 rounded"
             />
           </div>
 
           <div>
-            <label className="block text-[#414141]">Bio</label>
+            <label className="block text-text-7">Bio</label>
             <textarea
               value={bio}
               onChange={(e) => setBio(e.target.value)}
-              className="w-full p-2 border border-[#D7D7D7] rounded"
+              className="w-full p-2 border border-border-1 rounded"
               rows="4"
             />
           </div>
           <button
             type="submit"
-            className="px-4 py-2 text-[#E9E9E9] bg-[#000000] rounded"
+            className="px-4 py-2 text-text-0 bg-bg-5 rounded"
           >
             Save Changes
           </button>

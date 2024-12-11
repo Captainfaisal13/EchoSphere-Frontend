@@ -17,8 +17,8 @@ const FollowersUser = ({
           <Image src={userAvatar} fill alt="user-avatar" />
         </div>
         <div className="my-auto">
-          <p className="text-sm font-bold text-[#1B1B1B] pr-1">{name}</p>
-          <p className="font text-xs text-[#5B5B5B]">@{username}</p>
+          <p className="text-sm font-bold text-text-2 pr-1">{name}</p>
+          <p className="font text-xs text-text-3">@{username}</p>
         </div>
       </div>
       {userId !== currentUserId && (

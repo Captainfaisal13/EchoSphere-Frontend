@@ -7,7 +7,8 @@ const OptionIcon = ({ width = "16px", height = "16px" }) => {
       width={width}
       height={height}
       viewBox="0 0 24 24"
-      fill="#000000"
+      // fill="#000000"
+      className="fill-current"
     >
       <title />
 

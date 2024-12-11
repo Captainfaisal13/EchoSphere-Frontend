@@ -6,14 +6,14 @@ const SectionHeader = ({ heading }) => {
   const router = useRouter();
 
   return (
-    <div className="py-2 border-b-[1px] border-b-[#D7D7D7] px-4 relative">
+    <div className="py-2 border-b-[1px] border-border-1 px-4 relative">
       <button
         onClick={() => router.back()}
-        className="my-auto p-[6px] absolute"
+        className="my-auto p-[6px] absolute fill-text-1"
       >
         <BackIcon />
       </button>
-      <h3 className="text-center text-xl font-semibold text-[#000000]">
+      <h3 className="text-center text-xl font-semibold text-text-1">
         {heading}
       </h3>
     </div>

@@ -63,12 +63,12 @@ const ShareEchoModal = ({ isOpen, setIsOpen }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} postion="center" size="small">
-      <div className="relative bg-[#E9E9E9] rounded-md p-4">
+      <div className="relative bg-bg-4 rounded-md p-4 text-text-1">
         <div className="flex justify-between">
           <h1 className="text-base font-semibold text-left w-full">
             Share echo through ...
           </h1>
-          <div className="my-auto cursor-pointer" onClick={onClose}>
+          <div className="my-auto cursor-pointer fill-text-1" onClick={onClose}>
             <CloseIcon width="16" height="16" />
           </div>
         </div>

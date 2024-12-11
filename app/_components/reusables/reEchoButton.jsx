@@ -32,10 +32,10 @@ const ReEchoButton = ({ isReEcho, reEchoedCount, echoId }) => {
 
   return (
     <button className="flex gap-1" onClick={handleReEcho}>
-      <div className={`${isReEchoed ? "fill-green-500" : "fill-[#5B5B5B]"}`}>
+      <div className={`${isReEchoed ? "fill-green-500" : "fill-text-3"}`}>
         <ReEchoIcon />
       </div>
-      <p className="text-xs font-thin my-auto text-[#5B5B5B]">{reEchoCount}</p>
+      <p className="text-xs font-thin my-auto text-text-3">{reEchoCount}</p>
     </button>
   );
 };

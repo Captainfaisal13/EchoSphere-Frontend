@@ -14,12 +14,17 @@ module.exports = {
       },
       colors: {
         bg: {
+          0: "var(--color-bg-0)",
           1: "var(--color-bg-1)",
           2: "var(--color-bg-2)",
           3: "var(--color-bg-3)",
           4: "var(--color-bg-4)",
+          5: "var(--color-bg-5)",
+          6: "var(--color-bg-6)",
+          7: "var(--color-bg-7)",
         },
         text: {
+          0: "var(--color-text-0)",
           1: "var(--color-text-1)",
           2: "var(--color-text-2)",
           3: "var(--color-text-3)",
@@ -29,10 +34,12 @@ module.exports = {
           7: "var(--color-text-7)",
           8: "var(--color-text-8)",
           9: "var(--color-text-9)",
+          10: "var(--color-text-10)",
         },
         border: {
           1: "var(--color-border-1)",
           2: "var(--color-border-2)",
+          3: "var(--color-border-3)",
         },
       },
     },

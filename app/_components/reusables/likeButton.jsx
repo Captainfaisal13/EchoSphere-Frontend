@@ -36,12 +36,12 @@ const LikeButton = ({ isEchoLiked, echoLikedCount, echoId }) => {
         className={`${
           isLiked
             ? "fill-red-600 stroke-red-600"
-            : "fill-transparent stroke-[#5B5B5B]"
+            : "fill-transparent stroke-text-3"
         }`}
       >
         <LikeIcon />
       </div>
-      <p className="text-xs font-thin my-auto text-[#5B5B5B]">{likeCount}</p>
+      <p className="text-xs font-thin my-auto text-text-3">{likeCount}</p>
     </button>
   );
 };

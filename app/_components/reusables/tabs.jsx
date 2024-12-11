@@ -62,7 +62,7 @@ const Tabs = ({ tabList, storageKey, translateOnScroll = true }) => {
   return (
     <div className="relative">
       <div
-        className={`sticky top-12 md:top-0 left-0 right-0 z-10 flex bg-white border-b border-[#D7D7D7] transition-all duration-300 ${
+        className={`sticky top-12 md:top-0 left-0 right-0 z-10 flex bg-bg-0 border-b border-border-1 transition-all duration-300 ${
           !isScrollingUp && translateOnScroll ? "-translate-y-full" : ""
         }`}
       >
@@ -71,9 +71,9 @@ const Tabs = ({ tabList, storageKey, translateOnScroll = true }) => {
             key={id}
             className={`px-4 py-3 ${
               currentHomeTab === index
-                ? "border-b-2"
-                : "hover:bg-[#E6E6E6] text-[#505050]"
-            } border-[#7F7F7F] cursor-pointer text-base`}
+                ? "border-b-2 text-text-1"
+                : "hover:bg-bg-2 text-text-8"
+            } border-border-2 cursor-pointer text-base`}
             onClick={() => handleHomeTabClick(index)}
           >
             {name}

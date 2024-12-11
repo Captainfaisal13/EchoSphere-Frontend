@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../../context";
-import Image from "next/image";
+import ReplyIcon from "../../../public/_assets/svgComponents/replyIcon";
 
 const ReplyButton = ({ replies, echo }) => {
   const { setShowCreateModal, setReplyEchoData } = useGlobalContext();
@@ -21,10 +21,13 @@ const ReplyButton = ({ replies, echo }) => {
         setShowCreateModal(true);
       }}
     >
-      <div className="relative w-4 h-4">
-        <Image src="/_assets/comment-icon.svg" fill alt="reply-icon" />
+      <div className="stroke-text-3">
+        <ReplyIcon height="16px" width="16px" />
       </div>
-      <p className="text-xs font-thin my-auto text-[#5B5B5B]">{repliesCount}</p>
+      {/* <div className="relative w-4 h-4">
+        <Image src="/_assets/comment-icon.svg" fill alt="reply-icon" />
+      </div> */}
+      <p className="text-xs font-thin my-auto text-text-3">{repliesCount}</p>
     </button>
   );
 };

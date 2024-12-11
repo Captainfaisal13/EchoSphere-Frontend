@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html suppressHydrationWarning={true} lang="en">
       <body className={inter.className}>
-        <main className={`flex ${favorit.className} justify-center`}>
+        <main className={`flex ${favorit.className} justify-center bg-bg-0`}>
           <Providers>
             <AppProvider>
               <ConditionalLayout>{children}</ConditionalLayout>

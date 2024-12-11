@@ -4,7 +4,7 @@ import Link from "next/link";
 const ProfileInfo = ({ user }) => {
   return (
     <div>
-      <div className="min-h-[24vh] relative bg-[#E9E9E9]">
+      <div className="min-h-[24vh] relative bg-bg-4">
         {user?.cover && <Image src={user?.cover} fill alt="profile cover" />}
       </div>
       <div>
@@ -22,30 +22,30 @@ const ProfileInfo = ({ user }) => {
         </div>
         <div className="flex flex-col gap-2 mt-2 px-4">
           <div>
-            <h2 className="text-2xl font-bold text-[#1B1B1B]">{user?.name}</h2>
-            <h4 className="text-sm text-[#5B5B5B]">@{user?.username}</h4>
+            <h2 className="text-2xl font-bold text-text-2">{user?.name}</h2>
+            <h4 className="text-sm text-text-3">@{user?.username}</h4>
           </div>
           <div className="text-sm flex gap-4">
             <Link
               href={`/profile/${user?.username}/followings`}
-              className="text-[#5B5B5B] hover:underline"
+              className="text-text-3 hover:underline"
             >
-              <span className="font-bold text-[#000000]">
+              <span className="font-bold text-text-1">
                 {user?.followingCount}
               </span>{" "}
               following
             </Link>
             <Link
               href={`/profile/${user?.username}/followers`}
-              className="text-[#5B5B5B] hover:underline"
+              className="text-text-3 hover:underline"
             >
-              <span className="font-bold text-[#000000]">
+              <span className="font-bold text-text-1">
                 {user?.followerCount}
               </span>{" "}
               followers
             </Link>
           </div>
-          <p>{user?.bio}</p>
+          <p className="text-text-1">{user?.bio}</p>
         </div>
       </div>
     </div>

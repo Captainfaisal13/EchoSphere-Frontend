@@ -30,7 +30,7 @@ const ConditionalLayout = ({ children }) => {
         expandNavbar={expandNavbar}
         setExpandNavbar={setExpandNavbar}
       />
-      <div className="w-[600px] border border-t-0 border-[#D7D7D7] min-h-screen scrollbar-hide pt-12 md:pt-0">
+      <div className="w-[600px] border border-t-0 border-border-1 min-h-screen scrollbar-hide pt-12 md:pt-0">
         <Header expandNavbar={expandNavbar} setExpandNavbar={setExpandNavbar} />
         {children}
       </div>

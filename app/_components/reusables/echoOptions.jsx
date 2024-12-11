@@ -58,7 +58,7 @@ const EchoOptions = ({ echo }) => {
           onClick={() => {
             setShowOption(true);
           }}
-          className="cursor-pointer"
+          className="cursor-pointer fill-text-1"
         >
           <OptionIcon />
         </div>
@@ -66,7 +66,7 @@ const EchoOptions = ({ echo }) => {
       {showOption && user.userId === echo.user && (
         <div
           ref={optionRef}
-          className="absolute bg-white w-64 right-0 top-0 z-50 rounded-md border border-[#D7D7D7] grid"
+          className="absolute bg-white w-64 right-0 top-0 z-50 rounded-md border border-border-1 grid"
         >
           {user.userId === echo.user && (
             <button

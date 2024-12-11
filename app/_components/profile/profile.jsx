@@ -12,14 +12,14 @@ const ProfilePage = ({ username }) => {
   const { data, isLoading, isError, error } = useGetUserProfile({ username });
 
   if (isLoading) {
-    return <h1>Loading Hai....</h1>;
+    return <h1>Loading....</h1>;
   }
 
   if (isError) {
     console.log({ error });
 
     return (
-      <div className="w-[50vw] border border-t-0 border-[#D7D7D7] max-h-screen overflow-scroll scrollbar-hide">
+      <div className="w-[50vw] border border-t-0 border-border-1 max-h-screen overflow-scroll scrollbar-hide">
         <h1>{error.message}</h1>
       </div>
     );

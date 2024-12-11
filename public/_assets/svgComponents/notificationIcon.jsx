@@ -3,7 +3,7 @@ import React from "react";
 const NotificationIcon = ({ colour }) => {
   return (
     <svg
-      fill={colour}
+      // fill={colour}
       height="95%"
       width="95%"
       version="1.1"
@@ -12,6 +12,7 @@ const NotificationIcon = ({ colour }) => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 24 24"
       xmlSpace="preserve"
+      className="fill-current stroke-none"
     >
       <g id="notification">
         <g>

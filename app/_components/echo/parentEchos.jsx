@@ -7,6 +7,8 @@ import ReplyButton from "../reusables/replyButton";
 import LikeButton from "../reusables/likeButton";
 import ReEchoButton from "../reusables/reEchoButton";
 import { formatFullDate, getFormattedContent } from "../navbar/util";
+import ShareButton from "../reusables/shareButton";
+import BookmarkButton from "../reusables/bookmarkButton";
 
 const ParentEchos = ({ parentTweets }) => {
   return (
@@ -14,17 +16,18 @@ const ParentEchos = ({ parentTweets }) => {
       {parentTweets.map((echo) => {
         const {
           _id: id,
-          name,
           username,
+          name,
           userAvatar,
           createdAt,
           content,
           retweets_count: reposts,
           likes_count: likes,
           replies_count: replies,
+          shareCount: shares,
           isLiked,
           isRepost,
-          shares,
+          isBookmarked,
           media,
           parentTweet,
         } = echo;
@@ -38,7 +41,7 @@ const ParentEchos = ({ parentTweets }) => {
               <div className="w-14 pb-[2px]">
                 <div
                   className={`w-[2px] h-4 mx-auto ${
-                    parentTweet && "bg-[#D7D7D7]"
+                    parentTweet && "bg-border-3"
                   }`}
                 ></div>
               </div>
@@ -54,10 +57,10 @@ const ParentEchos = ({ parentTweets }) => {
                   />
                 </div>
                 <Link href={`/profile/${username}`} className="my-auto">
-                  <h2 className="text-base font-semibold text-[#1B1B1B]">
+                  <h2 className="text-base font-semibold text-text-2">
                     {name}
                   </h2>
-                  <h3 className="text-sm text-[#5B5B5B]">@{username}</h3>
+                  <h3 className="text-sm text-text-3">@{username}</h3>
                 </Link>
               </div>
               <div className="my-auto">
@@ -66,20 +69,20 @@ const ParentEchos = ({ parentTweets }) => {
             </div>
             <div className="flex gap-2">
               <div className="w-14 pt-[2px]">
-                <div className="w-[2px] h-full bg-[#D7D7D7] mx-auto"></div>
+                <div className="w-[2px] h-full bg-border-3 mx-auto"></div>
               </div>
               <div className="w-full">
-                <p className="text-lg text-[#2B2B2B]">
+                <p className="text-lg text-text-4">
                   {getFormattedContent(content)}
                 </p>
                 <div className="pt-1">
                   <MediaLayout media={media} />
                 </div>
-                <div className="py-2 text-xs text-[#5B5B5B] mt-4 flex gap-2 font-light">
+                <div className="py-2 text-xs text-text-3 mt-4 flex gap-2 font-light">
                   {formatFullDate(new Date(createdAt))}
                 </div>
                 <div
-                  className={`flex justify-between md:grid grid-cols-5 pt-3 border-t border-[#D7D7D7] ${
+                  className={`flex justify-between md:grid grid-cols-5 pt-3 border-t border-border-3 ${
                     likes === 0 && reposts === 0 && replies === 0 && "mt-5"
                   }`}
                 >
@@ -94,26 +97,8 @@ const ParentEchos = ({ parentTweets }) => {
                     isEchoLiked={isLiked}
                     echoId={id}
                   />
-                  <button className="flex gap-1">
-                    <div className="relative w-4 h-4">
-                      <Image
-                        src="/_assets/share-icon.svg"
-                        fill
-                        alt="share-icon"
-                      />
-                    </div>
-                    <p className="text-xs font-thin my-auto text-[#5B5B5B]">
-                      {shares ? shares : "0"}
-                    </p>
-                  </button>
-
-                  <button className="relative w-4 h-4 justify-self-end">
-                    <Image
-                      src="/_assets/bookmark-icon.svg"
-                      fill
-                      alt="bookmark-icon"
-                    />
-                  </button>
+                  <ShareButton echoId={id} shares={shares} />
+                  <BookmarkButton echoId={id} isEchoBookmarked={isBookmarked} />
                 </div>
               </div>
             </div>

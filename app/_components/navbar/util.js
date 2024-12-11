@@ -19,45 +19,29 @@ import BookmarkIconNav from "../../../public/_assets/svgComponents/bookmarkIconN
 const getIcons = (pathName, title) => {
   switch (title) {
     case "/":
-      return (
-        <HomeIcon colour={`${pathName !== title ? "#505050" : "#000000"}`} />
-      );
+      return <HomeIcon />;
 
     case "/explore":
-      return (
-        <ExploreIcon colour={`${pathName !== title ? "#505050" : "#000000"}`} />
-      );
+      return <ExploreIcon />;
 
     case "/search":
-      return (
-        <SearchIcon colour={`${pathName !== title ? "#505050" : "#000000"}`} />
-      );
+      return <SearchIcon />;
 
     case "/notifications":
-      return (
-        <NotificationIcon
-          colour={`${pathName !== title ? "#505050" : "#000000"}`}
-        />
-      );
+      return <NotificationIcon />;
 
     case "/bookmark":
-      return (
-        <BookmarkIconNav
-          colour={`${pathName !== title ? "#505050" : "#000000"}`}
-        />
-      );
+      return <BookmarkIconNav />;
 
     case "/profile":
       return (
         <ProfileIcon
-          colour={`${!pathName.startsWith(title) ? "#505050" : "#000000"}`}
+        // colour={`${!pathName.startsWith(title) ? "#505050" : "#000000"}`}
         />
       );
 
     case "/settings":
-      return (
-        <SettingIcon colour={`${pathName !== title ? "#505050" : "#000000"}`} />
-      );
+      return <SettingIcon />;
 
     default:
   }
