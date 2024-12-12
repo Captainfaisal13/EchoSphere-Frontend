@@ -72,6 +72,7 @@ const AppProvider = ({ children }) => {
         saveUser,
         user,
         logoutUser,
+        removeUser,
         showCreateModal,
         setShowCreateModal,
         replyEchoData,

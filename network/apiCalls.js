@@ -23,6 +23,10 @@ export const login = async (loginUser) => {
   return apiCall("post", `/auth/login`, loginUser);
 };
 
+export const logout = async () => {
+  return apiCall("delete", `/auth/logout`);
+};
+
 export const updateUser = async (user) => {
   return apiCall("patch", `/users/updateUser`, user);
 };

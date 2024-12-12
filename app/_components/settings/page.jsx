@@ -2,12 +2,25 @@
 import React from "react";
 import SectionHeader from "../reusables/sectionHeader";
 import { useGlobalContext } from "../../context";
+import { useLogout } from "../../../network/customHooks";
+import { useRouter } from "next/navigation";
 
 const Settings = () => {
-  const { theme, toggleTheme } = useGlobalContext();
+  const router = useRouter();
+
+  const { theme, toggleTheme, removeUser } = useGlobalContext();
+  const { mutate: logout } = useLogout();
   const themes = ["light", "dark", "blue"];
 
-  console.log(theme);
+  const handleLogout = () => {
+    logout("", {
+      onSuccess: (data) => {
+        console.log({ logoutResp: data });
+        removeUser();
+        router.push("/login");
+      },
+    });
+  };
 
   return (
     <div>
@@ -33,7 +46,10 @@ const Settings = () => {
         </div>
       </div>
       <div className="p-4 border-t border-border-1">
-        <button className=" text-red-600 px-4 py-2 bg-bg-2 rounded-md border-2 border-border-1">
+        <button
+          className=" text-red-600 px-4 py-2 bg-bg-2 rounded-md border-2 border-border-1"
+          onClick={handleLogout}
+        >
           Sign Out
         </button>
       </div>
