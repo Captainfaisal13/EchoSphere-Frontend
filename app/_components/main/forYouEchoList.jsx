@@ -2,6 +2,7 @@
 import { useGlobalContext } from "../../context";
 import Echos from "../reusables/Echos";
 import { useGetUserEchos } from "../../../network/customHooks";
+import EchoSkeleton from "../reusables/echoSkeleton";
 
 const ForYouEchoList = () => {
   const { user } = useGlobalContext();
@@ -11,7 +12,7 @@ const ForYouEchoList = () => {
   });
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <EchoSkeleton count={5} />;
   }
 
   if (isError) {

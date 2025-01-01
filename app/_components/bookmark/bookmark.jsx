@@ -3,6 +3,7 @@ import React from "react";
 import { useGetBookmarkPosts } from "../../../network/customHooks";
 import Echos from "../reusables/Echos";
 import SectionHeader from "../reusables/sectionHeader";
+import EchoSkeleton from "../reusables/echoSkeleton";
 
 const Bookmark = () => {
   const {
@@ -14,25 +15,24 @@ const Bookmark = () => {
     isFetchingNextPage,
   } = useGetBookmarkPosts();
 
-  if (status === "pending") {
-    return <h1>Loading...</h1>;
-  }
-
-  if (status === "error") {
-    return <p>{error}</p>;
-  }
-
   console.log({ data });
 
   return (
     <>
       <SectionHeader heading="Bookmark" />
-      <Echos
-        echos={data.pages}
-        fetchNextPage={fetchNextPage}
-        hasNextPage={hasNextPage}
-        isFetchingNextPage={isFetchingNextPage}
-      />
+
+      {status === "pending" ? (
+        <EchoSkeleton count={10} />
+      ) : status === "error" ? (
+        <p>{error}</p>
+      ) : (
+        <Echos
+          echos={data.pages}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+        />
+      )}
     </>
   );
 };

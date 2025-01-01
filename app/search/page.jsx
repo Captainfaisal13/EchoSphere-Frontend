@@ -1,11 +1,8 @@
 import React from "react";
+import Search from "../_components/search/search";
 
 const SearchPage = () => {
-  return (
-    <div className="w-[50vw] border border-border-1 max-h-screen overflow-scroll scrollbar-hide">
-      Search
-    </div>
-  );
+  return <Search />;
 };
 
 export default SearchPage;

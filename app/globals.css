@@ -32,7 +32,7 @@
 
 [data-theme="dark"] {
   --color-bg-0: #000000; /*changed */
-  --color-bg-1: #d7d7d7;
+  --color-bg-1: #3f3f3f; /*changed */
   --color-bg-2: #121212; /*changed */
   --color-bg-3: #0d0d0d; /*changed */
   --color-bg-4: #222222; /*changed */
@@ -56,7 +56,7 @@
 
 [data-theme="blue"] {
   --color-bg-0: #001935; /*changed */
-  --color-bg-1: #d7d7d7;
+  --color-bg-1: #21374f; /*changed */
   --color-bg-2: #122943; /*changed */
   --color-bg-3: #0d0d0d; /*changed */
   --color-bg-4: #0b243f; /*changed */

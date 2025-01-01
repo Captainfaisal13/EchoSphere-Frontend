@@ -15,6 +15,55 @@ const BookmarkButton = ({ isEchoBookmarked, echoId }) => {
     // Optimistic UI update
     setIsBookmarked(!isBookmarked);
     bookmarkEcho(echoId, {
+      onSettled: () => {
+        // updating the reply count on the query cache for each tweets/echos
+        const previousEchos = queryClient.getQueriesData({
+          queryKey: ["echo-list-query"],
+        });
+
+        previousEchos.forEach(([queryKey, queryData]) => {
+          // Check if the tweet exists in the current query's data
+          if (queryData?.pages) {
+            const updatedPages = queryData.pages.map((page) => {
+              return page.map((echo) => {
+                if (echo?._id === echoId) {
+                  return {
+                    ...echo,
+                    isBookmarked: !echo?.isBookmarked,
+                  };
+                }
+                return echo;
+              });
+            });
+
+            // Update the cache for this query
+            queryClient.setQueryData(queryKey, {
+              ...queryData,
+              pages: updatedPages,
+            });
+            console.log({ queryKey, queryData });
+            console.log({ updatedPages });
+          }
+        });
+
+        const previousEcho = queryClient.getQueryData([
+          "get-single-echo",
+          echoId,
+        ]);
+
+        if (previousEcho) {
+          console.log("found previous", { previousEcho });
+
+          const updatedEcho = {
+            ...previousEcho,
+            detailedTweet: {
+              ...previousEcho?.detailedTweet,
+              isBookmarked: !previousEcho?.detailedTweet?.isBookmarked,
+            },
+          };
+          queryClient.setQueryData(["get-single-echo", echoId], updatedEcho);
+        }
+      },
       onSuccess: () => {
         queryClient.invalidateQueries({
           queryKey: ["echo-query"],

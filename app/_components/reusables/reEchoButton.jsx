@@ -17,9 +17,72 @@ const ReEchoButton = ({ isReEcho, reEchoedCount, echoId }) => {
     setReEchoCount(isReEchoed ? reEchoCount - 1 : reEchoCount + 1);
     setIsReEchoed(!isReEchoed);
     reEcho(echoId, {
+      onSettled: () => {
+        // updating the likes on the query cache for each tweets/echos
+        const previousEchos = queryClient.getQueriesData({
+          queryKey: ["echo-list-query"],
+        });
+
+        previousEchos.forEach(([queryKey, queryData]) => {
+          // Check if the tweet exists in the current query's data
+          if (queryData?.pages) {
+            const updatedPages = queryData.pages.map((page) => {
+              return page.map((echo) => {
+                if (echo?._id === echoId) {
+                  console.log("true", echo?._id);
+
+                  return {
+                    ...echo,
+                    retweets_count: echo?.isRepost
+                      ? echo?.retweets_count - 1
+                      : echo?.retweets_count + 1,
+                    isRepost: !echo?.isRepost,
+                  };
+                }
+                return echo;
+              });
+            });
+
+            // Update the cache for this query
+            queryClient.setQueryData(queryKey, {
+              ...queryData,
+              pages: updatedPages,
+            });
+            console.log({ queryKey, queryData });
+            console.log({ updatedPages });
+          }
+        });
+        // console.log({ previousEchos });
+
+        const previousEcho = queryClient.getQueryData([
+          "get-single-echo",
+          echoId,
+        ]);
+
+        console.log({ previousEcho });
+
+        if (previousEcho) {
+          const updatedEcho = {
+            ...previousEcho,
+            detailedTweet: {
+              ...previousEcho?.detailedTweet,
+              retweets_count: previousEcho?.detailedTweet?.isRepost
+                ? previousEcho?.detailedTweet?.retweets_count - 1
+                : previousEcho?.detailedTweet?.retweets_count + 1,
+              isRepost: !previousEcho?.detailedTweet?.isRepost,
+            },
+          };
+
+          console.log({ updatedEcho });
+          queryClient.setQueryData(["get-single-echo", echoId], updatedEcho);
+        }
+      },
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: ["echo-query"],
+          queryKey: ["echo-list-query"],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ["get-single-echo", echoId],
         });
       },
     });

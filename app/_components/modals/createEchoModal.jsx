@@ -75,6 +75,58 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
       }
 
       createEcho(formData, {
+        onSettled: () => {
+          if (!replyEchoData) return;
+
+          // updating the reply count on the query cache for each tweets/echos
+          const previousEchos = queryClient.getQueriesData({
+            queryKey: ["echo-list-query"],
+          });
+
+          previousEchos.forEach(([queryKey, queryData]) => {
+            // Check if the tweet exists in the current query's data
+            if (queryData?.pages) {
+              const updatedPages = queryData.pages.map((page) => {
+                return page.map((echo) => {
+                  if (echo?._id === replyEchoData._id) {
+                    return {
+                      ...echo,
+                      replies_count: echo?.replies_count + 1,
+                    };
+                  }
+                  return echo;
+                });
+              });
+
+              // Update the cache for this query
+              queryClient.setQueryData(queryKey, {
+                ...queryData,
+                pages: updatedPages,
+              });
+              console.log({ queryKey, queryData });
+              console.log({ updatedPages });
+            }
+          });
+
+          const previousEcho = queryClient.getQueryData([
+            "get-single-echo",
+            replyEchoData._id,
+          ]);
+
+          if (previousEcho) {
+            const updatedEcho = {
+              ...previousEcho,
+              detailedTweet: {
+                ...previousEcho?.detailedTweet,
+                replies_count: previousEcho?.detailedTweet?.replies_count + 1,
+              },
+            };
+            queryClient.setQueryData(
+              ["get-single-echo", replyEchoData._id],
+              updatedEcho
+            );
+          }
+        },
         onSuccess: (data) => {
           console.log({ data });
 

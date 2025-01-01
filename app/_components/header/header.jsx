@@ -9,11 +9,11 @@ const Header = ({ expandNavbar, setExpandNavbar }) => {
         className="my-auto fill-text-1"
         onClick={() => setExpandNavbar(true)}
       >
-        <BurgerIcon />
+        <BurgerIcon height="22px" width="22px" />
       </button>
-      <div className="text-2xl font-extrabold text-text-1">E</div>
+      <div className="text-3xl font-extrabold text-text-1">E</div>
       <button className="my-auto stroke-text-1">
-        <SearchIcon height="24px" width="24px" strokeWidth="2.5" />
+        <SearchIcon height="22px" width="22px" strokeWidth="2.5" />
       </button>
     </div>
   );

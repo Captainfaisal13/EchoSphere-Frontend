@@ -50,6 +50,60 @@ const ShareEchoModal = ({ isOpen, setIsOpen }) => {
         )}`,
       };
       shareEcho(shareEchoData, {
+        onSettled: () => {
+          if (!shareEchoData) return;
+
+          // updating the reply count on the query cache for each tweets/echos
+          const previousEchos = queryClient.getQueriesData({
+            queryKey: ["echo-list-query"],
+          });
+
+          previousEchos.forEach(([queryKey, queryData]) => {
+            // Check if the tweet exists in the current query's data
+            if (queryData?.pages) {
+              const updatedPages = queryData.pages.map((page) => {
+                return page.map((echo) => {
+                  if (echo?._id === shareEchoData) {
+                    return {
+                      ...echo,
+                      shareCount: echo?.shareCount + 1,
+                    };
+                  }
+                  return echo;
+                });
+              });
+
+              // Update the cache for this query
+              queryClient.setQueryData(queryKey, {
+                ...queryData,
+                pages: updatedPages,
+              });
+              console.log({ queryKey, queryData });
+              console.log({ updatedPages });
+            }
+          });
+
+          const previousEcho = queryClient.getQueryData([
+            "get-single-echo",
+            shareEchoData,
+          ]);
+
+          if (previousEcho) {
+            console.log("found previous", { previousEcho });
+
+            const updatedEcho = {
+              ...previousEcho,
+              detailedTweet: {
+                ...previousEcho?.detailedTweet,
+                shareCount: previousEcho?.detailedTweet?.shareCount + 1,
+              },
+            };
+            queryClient.setQueryData(
+              ["get-single-echo", shareEchoData],
+              updatedEcho
+            );
+          }
+        },
         onSuccess: (data) => {
           console.log(data);
           queryClient.invalidateQueries({

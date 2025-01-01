@@ -45,7 +45,7 @@ const ProfileInfo = ({ user }) => {
               followers
             </Link>
           </div>
-          <p className="text-text-1">{user?.bio}</p>
+          <p className="text-text-1 text-sm">{user?.bio}</p>
         </div>
       </div>
     </div>

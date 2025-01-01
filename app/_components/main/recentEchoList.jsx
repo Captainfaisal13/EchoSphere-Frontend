@@ -1,6 +1,7 @@
 "use client";
 import { useGetRecentEchos } from "../../../network/customHooks";
 import Echos from "../reusables/Echos";
+import EchoSkeleton from "../reusables/echoSkeleton";
 
 const RecentEchoList = () => {
   const {
@@ -13,7 +14,7 @@ const RecentEchoList = () => {
   } = useGetRecentEchos();
 
   if (status === "pending") {
-    return <h1>Loading...</h1>;
+    return <EchoSkeleton count={5} />;
   }
 
   if (status === "error") {

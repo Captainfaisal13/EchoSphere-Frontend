@@ -1,6 +1,7 @@
 "use client";
 import Echos from "../reusables/Echos";
 import { useGetVideosEchos } from "../../../network/customHooks";
+import EchoSkeleton from "../reusables/echoSkeleton";
 
 const VideosEchoList = () => {
   const {
@@ -13,7 +14,7 @@ const VideosEchoList = () => {
   } = useGetVideosEchos();
 
   if (status === "pending") {
-    return <h1>Loading...</h1>;
+    return <EchoSkeleton count={5} />;
   }
 
   if (status === "error") {

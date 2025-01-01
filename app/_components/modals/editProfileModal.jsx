@@ -68,8 +68,7 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
       onSuccess: (data) => {
         console.log({ data });
         queryClient.invalidateQueries({
-          queryKey: ["get-user-profile"],
-          // refetchType: "all",
+          queryKey: ["echo-query"],
         });
       },
     });

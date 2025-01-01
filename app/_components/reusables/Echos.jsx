@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Echo from "./echo";
+import Loader from "./../reusables/loader";
 
 const Echos = ({ echos, fetchNextPage, hasNextPage, isFetchingNextPage }) => {
   const observerRef = useRef();
@@ -33,9 +34,7 @@ const Echos = ({ echos, fetchNextPage, hasNextPage, isFetchingNextPage }) => {
       {echos.map((currentPage) => {
         return currentPage.map((echo) => <Echo key={echo._id} echo={echo} />);
       })}
-      <div ref={observerRef}>
-        {hasNextPage && <h1 className="text-black text-3xl">Loading...</h1>}
-      </div>
+      <div ref={observerRef}>{hasNextPage && <Loader />}</div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import useLocalState from "../../../utils/localState";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useLogin } from "../../../network/customHooks";
+import Loader from "../../_components/reusables/loader";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -81,8 +82,8 @@ const LoginPage = () => {
             placeholder="Password"
             className="border p-2"
           />
-          <button type="submit" className="text-white bg-black py-2">
-            {loading ? "Loading...." : "Submit"}
+          <button type="submit" className="text-white bg-black py-2 text-base">
+            {loading ? <Loader classNames="m-0 size-6" /> : "Submit"}
           </button>
         </form>
         <p>

@@ -1,6 +1,7 @@
 "use client";
 import Echos from "../reusables/Echos";
 import { useGetUserMediaPosts } from "../../../network/customHooks";
+import EchoSkeleton from "../reusables/echoSkeleton";
 
 const MediaEchoList = ({ username }) => {
   const {
@@ -15,7 +16,7 @@ const MediaEchoList = ({ username }) => {
   });
 
   if (status === "pending") {
-    return <h1>Loading...</h1>;
+    return <EchoSkeleton count={3} />;
   }
 
   if (status === "error") {

@@ -1,6 +1,7 @@
 "use client";
 import Echos from "../reusables/Echos";
 import { useGetUserPosts } from "../../../network/customHooks";
+import EchoSkeleton from "../reusables/echoSkeleton";
 
 const PostEchoList = ({ username }) => {
   const {
@@ -13,7 +14,7 @@ const PostEchoList = ({ username }) => {
   } = useGetUserPosts({ username });
 
   if (status === "pending") {
-    return <h1>Loading...</h1>;
+    return <EchoSkeleton count={3} />;
   }
 
   if (status === "error") {

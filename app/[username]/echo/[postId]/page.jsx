@@ -19,6 +19,7 @@ import SectionHeader from "../../../_components/reusables/sectionHeader";
 import ParentEchos from "../../../_components/echo/parentEchos";
 import ShareButton from "../../../_components/reusables/shareButton";
 import BookmarkButton from "../../../_components/reusables/bookmarkButton";
+import Loader from "../../../_components/reusables/loader";
 
 const EchoPage = ({ params }) => {
   const {
@@ -34,7 +35,11 @@ const EchoPage = ({ params }) => {
   const router = useRouter();
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="h-screen flex items-center">
+        <Loader />
+      </div>
+    );
   }
 
   const echo = data.detailedTweet;
