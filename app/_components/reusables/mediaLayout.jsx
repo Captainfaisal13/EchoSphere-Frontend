@@ -11,6 +11,10 @@ const mediaGridResponsive = [
 
 const MediaLayout = ({ media }) => {
   // console.log(media);
+  // Helper function to determine if the file is a video
+  const isVideo = (url) => {
+    return /\.(mp4|webm|mkv|mov)$/i.test(url);
+  };
   return (
     <div className={`gap-1 ${mediaGridResponsive[media.length - 1]}`}>
       {media.map((mediaItem, idx) => {
@@ -21,7 +25,22 @@ const MediaLayout = ({ media }) => {
             }`}
             key={idx}
           >
-            <Image src={mediaItem} fill alt={`echo-media-img-${idx}`} />
+            {isVideo(mediaItem) ? (
+              <video
+                src={mediaItem}
+                className="w-full h-full object-cover"
+                controls
+                muted
+                playsInline
+              />
+            ) : (
+              <Image
+                src={mediaItem}
+                fill
+                alt={`echo-media-img-${idx}`}
+                className="object-cover"
+              />
+            )}
           </div>
         );
       })}

@@ -9,6 +9,7 @@ import BookmarkButton from "./bookmarkButton";
 import Link from "next/link";
 import EchoOptions from "./echoOptions";
 import { formatTimeAgo } from "../navbar/util";
+import { useRouter } from "next/navigation";
 
 const Echo = ({ echo }) => {
   const {
@@ -39,13 +40,14 @@ const Echo = ({ echo }) => {
       </React.Fragment>
     );
   });
+  const router = useRouter();
 
   return (
-    <Link
+    <div
       scroll={true}
-      href={`/${username}/echo/${id}`}
+      onClick={() => router.push(`/${username}/echo/${id}`)}
       key={id}
-      className="flex p-4 gap-2 bg-bg-4 rounded-md"
+      className="flex p-4 gap-2 bg-bg-4 rounded-md cursor-pointer"
     >
       <div className="shrink-0 relative size-10 md:size-12 rounded-full overflow-hidden">
         <Image src={userAvatar} fill alt="user-avatar" />
@@ -80,8 +82,23 @@ const Echo = ({ echo }) => {
             Replied to an <span className="text-blue-600 underline">Echo</span>
           </Link>
         )}
-        <p className="text-sm text-text-4">{formattedContent}</p>
-        <div className="pt-1 pb-3 border-b border-border-3">
+        <p
+          onClick={(e) => {
+            const selection = window.getSelection();
+            if (selection && selection.toString().length > 0) {
+              e.stopPropagation();
+            }
+          }}
+          className="text-sm text-text-4"
+        >
+          {formattedContent}
+        </p>
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          className="pt-1 pb-3 border-b border-border-3"
+        >
           <MediaLayout media={media} />
         </div>
         <div className="flex justify-between md:grid grid-cols-5 pt-3">
@@ -100,7 +117,7 @@ const Echo = ({ echo }) => {
           <BookmarkButton echoId={id} isEchoBookmarked={isBookmarked} />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

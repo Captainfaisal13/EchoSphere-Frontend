@@ -8,9 +8,13 @@ import EmojiPickerModal from "../reusables/emojiPicker";
 import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
 import MediaUploadIcon from "../../../public/_assets/svgComponents/mediaUploadIcon";
 import EmojiIcon from "../../../public/_assets/svgComponents/emojiIcon";
+import { useRouter } from "next/navigation";
 
 const CreateEcho = ({ isOpen, setIsOpen }) => {
-  const { user, replyEchoData, setReplyEchoData } = useGlobalContext();
+  const { user, replyEchoData, setReplyEchoData, isLoading } =
+    useGlobalContext();
+  const router = useRouter();
+
   console.log({ replyEchoData });
 
   const queryClient = useQueryClient();
@@ -43,15 +47,30 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
 
   const handleMediaChange = (e) => {
     const maxFiles = 4;
+    const maxFileSize = 5 * 1024 * 1024; // Maximum file size in bytes (e.g., 5 MB)
+    const allowedFileTypes = ["image/", "video/", "image/gif", "webm"]; // Include gif specifically
+
     const files = Array.from(e.target.files);
     if (files.length + mediaFiles.length > maxFiles) {
       alert(`You can upload up to ${maxFiles} files.`);
       return;
     }
 
-    const validFiles = files.filter(
-      (file) => file.type.startsWith("image/") || file.type.startsWith("video/")
-    );
+    const validFiles = files.filter((file) => {
+      const isValidType = allowedFileTypes.some((type) =>
+        file.type.startsWith(type)
+      );
+      const isValidSize = file.size <= maxFileSize;
+
+      if (!isValidType) {
+        alert(`File type not supported: ${file.name}`);
+      } else if (!isValidSize) {
+        alert(`File size exceeds the limit of 5 MB: ${file.name}`);
+      }
+
+      return isValidType && isValidSize;
+    });
+
     setMediaFiles((prevFiles) => [...prevFiles, ...validFiles]);
   };
 
@@ -62,7 +81,13 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (echoContent.trim()) {
+
+    if (!isLoading && !user) {
+      router.push("/login");
+      return;
+    }
+
+    if (echoContent.trim() || mediaFiles.length) {
       const formData = new FormData();
       formData.append("content", echoContent);
 

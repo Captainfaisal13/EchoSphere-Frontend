@@ -3,15 +3,25 @@ import React, { useEffect, useState } from "react";
 import { useReEcho } from "../../../network/customHooks";
 import ReEchoIcon from "../../../public/_assets/svgComponents/reEchoIcon";
 import { useQueryClient } from "@tanstack/react-query";
+import { useGlobalContext } from "../../context";
+import { useRouter } from "next/navigation";
 
 const ReEchoButton = ({ isReEcho, reEchoedCount, echoId }) => {
   const queryClient = useQueryClient();
+  const { user, isLoading } = useGlobalContext();
+  const router = useRouter();
+
   const { mutate: reEcho } = useReEcho();
   const [isReEchoed, setIsReEchoed] = useState(isReEcho);
   const [reEchoCount, setReEchoCount] = useState(reEchoedCount);
 
   const handleReEcho = async (e) => {
     e.preventDefault();
+
+    if (!isLoading && !user) {
+      router.push("/login");
+      return;
+    }
 
     // Optimistic UI update
     setReEchoCount(isReEchoed ? reEchoCount - 1 : reEchoCount + 1);

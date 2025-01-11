@@ -4,9 +4,9 @@ import Settings from "../_components/settings/page";
 
 const SettingPage = () => {
   return (
-    <CheckAuth>
-      <Settings />
-    </CheckAuth>
+    // <CheckAuth>
+    <Settings />
+    // </CheckAuth>
   );
 };
 

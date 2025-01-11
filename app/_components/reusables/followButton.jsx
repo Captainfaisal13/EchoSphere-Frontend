@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -6,8 +5,13 @@ import { useFollowUnfollowUser } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
 import PlusIcon from "../../../public/_assets/svgComponents/plusIcon";
 import TickIcon from "../../../public/_assets/svgComponents/tickIcon";
+import { useGlobalContext } from "../../context";
+import { useRouter } from "next/navigation";
 
 const FollowButton = ({ isUserFollowed, userId }) => {
+  const { user, isLoading } = useGlobalContext();
+  const router = useRouter();
+
   const queryClient = useQueryClient();
   const { mutate: followUnfollowUser } = useFollowUnfollowUser();
 
@@ -17,6 +21,10 @@ const FollowButton = ({ isUserFollowed, userId }) => {
   }, [isUserFollowed]);
 
   const handleFollow = () => {
+    if (!isLoading && !user) {
+      router.push("/login");
+      return;
+    }
     setIsFollowed(!isFollowed);
     followUnfollowUser(userId, {
       onSuccess: () => {

@@ -1,11 +1,8 @@
 import React from "react";
+import Notifications from "../_components/notifications/notifications";
 
-const NotificationPage = () => {
-  return (
-    <div className="w-[50vw] border border-border-1 max-h-screen overflow-scroll scrollbar-hide">
-      Notifications
-    </div>
-  );
+const NotificationsPage = () => {
+  return <Notifications />;
 };
 
-export default NotificationPage;
+export default NotificationsPage;

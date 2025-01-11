@@ -4,9 +4,9 @@ import CheckAuth from "../checkAuth";
 
 const ExplorePage = () => {
   return (
-    <CheckAuth>
-      <ExploreContent />
-    </CheckAuth>
+    // <CheckAuth>
+    <ExploreContent />
+    // </CheckAuth>
   );
 };
 

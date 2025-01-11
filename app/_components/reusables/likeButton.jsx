@@ -3,9 +3,14 @@ import React, { useEffect, useState } from "react";
 import { useLikeDislikeEcho } from "../../../network/customHooks";
 import LikeIcon from "../../../public/_assets/svgComponents/likeIcon";
 import { useQueryClient } from "@tanstack/react-query";
+import { useGlobalContext } from "../../context";
+import { useRouter } from "next/navigation";
 
 const LikeButton = ({ isEchoLiked, echoLikedCount, echoId }) => {
   const queryClient = useQueryClient();
+  const { user, isLoading } = useGlobalContext();
+  const router = useRouter();
+
   const { mutate: likeDislikeEcho } = useLikeDislikeEcho();
   const [isLiked, setIsLiked] = useState(isEchoLiked);
   const [likeCount, setLikeCount] = useState(echoLikedCount);
@@ -13,6 +18,10 @@ const LikeButton = ({ isEchoLiked, echoLikedCount, echoId }) => {
   const handleLike = async (e) => {
     e.preventDefault();
 
+    if (!isLoading && !user) {
+      router.push("/login");
+      return;
+    }
     // Optimistic UI update
     setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
     setIsLiked(!isLiked);

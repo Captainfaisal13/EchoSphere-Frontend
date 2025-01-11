@@ -3,14 +3,24 @@ import React, { useEffect, useState } from "react";
 import { useBookmarkEcho } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
 import BookmarkIcon from "../../../public/_assets/svgComponents/bookmarkIcon";
+import { useGlobalContext } from "../../context";
+import { useRouter } from "next/navigation";
 
 const BookmarkButton = ({ isEchoBookmarked, echoId }) => {
   const queryClient = useQueryClient();
+  const { user, isLoading } = useGlobalContext();
+  const router = useRouter();
+
   const { mutate: bookmarkEcho } = useBookmarkEcho();
   const [isBookmarked, setIsBookmarked] = useState(isEchoBookmarked);
 
   const handleBookmark = async (e) => {
     e.preventDefault();
+
+    if (!isLoading && !user) {
+      router.push("/login");
+      return;
+    }
 
     // Optimistic UI update
     setIsBookmarked(!isBookmarked);
