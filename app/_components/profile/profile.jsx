@@ -7,12 +7,13 @@ import ProfileInfo from "./profileInfo";
 import Tabs from "../reusables/tabs";
 import { useGetUserProfile } from "../../../network/customHooks";
 import SectionHeader from "../reusables/sectionHeader";
+import ProfilePageLoader from "../reusables/profilePageLoader";
 
 const ProfilePage = ({ username }) => {
   const { data, isLoading, isError, error } = useGetUserProfile({ username });
 
   if (isLoading) {
-    return <h1>Loading....</h1>;
+    return <ProfilePageLoader />;
   }
 
   if (isError) {

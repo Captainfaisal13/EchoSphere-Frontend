@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure the HTML and Body take full height */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Force the scrollbar to appear on all pages */
+body {
+  overflow-y: scroll; /* This ensures the vertical scrollbar always appears */
+}
+
 /* bg - #D7D7D7, #E6E6E6, #B9B9B9, #E9E9E9 */
 /* text - #1B1B1B(black), #5B5B5B(gray), #1B1B1B(black), 000000(black),  #2B2B2B(black), #F1F3F5(very light gray), #808080, #8C8C8C, #414141, #505050, */
 /* border - #D7D7D7 , #7F7F7F */

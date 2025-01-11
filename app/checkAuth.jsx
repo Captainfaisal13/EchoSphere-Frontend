@@ -11,7 +11,7 @@ const CheckAuth = ({ children }) => {
     }
   }, [isLoading, user]);
 
-  if (isLoading || !user) return <p>loading..</p>;
+  if (isLoading || !user) return <p className="w-full">loading..</p>;
   return <div>{children}</div>;
 };
 
