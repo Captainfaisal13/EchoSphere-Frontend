@@ -10,6 +10,8 @@ const Settings = () => {
 
   const { theme, toggleTheme, removeUser, user, isLoading } =
     useGlobalContext();
+  console.log({ themeFromSetting: theme });
+
   const { mutate: logout } = useLogout();
   const themes = ["light", "dark", "blue"];
 

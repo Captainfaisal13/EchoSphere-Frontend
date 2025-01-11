@@ -1,10 +1,12 @@
 "use client";
 import axios from "axios";
+import { useTheme } from "next-themes";
 import React, { useContext, useState, useEffect } from "react";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  // const [theme, setTheme] = useState("light");
+  const { theme, setTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -46,16 +48,16 @@ const AppProvider = ({ children }) => {
 
   const toggleTheme = (newTheme) => {
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
+    // localStorage.setItem("theme", newTheme);
+    // document.documentElement.setAttribute("data-theme", newTheme);
   };
 
-  useEffect(() => {
-    // Get the saved theme from localStorage or default to light
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
-    document.documentElement.setAttribute("data-theme", savedTheme);
-  }, []);
+  // useEffect(() => {
+  //   // Get the saved theme from localStorage or default to light
+  //   const savedTheme = localStorage.getItem("theme") || "light";
+  //   setTheme(savedTheme);
+  //   document.documentElement.setAttribute("data-theme", savedTheme);
+  // }, []);
 
   useEffect(() => {
     fetchUser();
