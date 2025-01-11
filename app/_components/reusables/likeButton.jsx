@@ -16,7 +16,7 @@ const LikeButton = ({ isEchoLiked, echoLikedCount, echoId }) => {
   const [likeCount, setLikeCount] = useState(echoLikedCount);
 
   const handleLike = async (e) => {
-    e.preventDefault();
+    e.stopPropagation();
 
     if (!isLoading && !user) {
       router.push("/login");

@@ -3,13 +3,21 @@ import { useParams } from "next/navigation";
 import { useGetUserFollowings } from "../../../network/customHooks";
 import { useGlobalContext } from "../../context";
 import FollowerUser from "../reusables/followersUser";
+import Loader from "../reusables/loader";
 
 const FollowingsSection = () => {
   const { user } = useGlobalContext();
   const params = useParams();
-  const { data, isLoading } = useGetUserFollowings({ username: params.slug });
+  const { data, isLoading, isRefetching } = useGetUserFollowings({
+    username: params.slug,
+  });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading || isRefetching)
+    return (
+      <div className="mt-20">
+        <Loader />
+      </div>
+    );
   console.log({ data });
 
   return (

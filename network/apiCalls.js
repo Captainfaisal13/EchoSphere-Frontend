@@ -114,3 +114,7 @@ export const getUserLikedPosts = async ({ username, pageParam }) => {
 export const getUserMediaPosts = async ({ username, pageParam }) => {
   return apiCall("get", `/feed/user/${username}/media?page=${pageParam}`);
 };
+
+export const getUsers = async ({ pageParam }) => {
+  return apiCall("get", `/feed/getUsers?page=${pageParam}`);
+};

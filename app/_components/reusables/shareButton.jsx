@@ -11,7 +11,7 @@ const ShareButton = ({ shares, echoId }) => {
   }, [shares]);
 
   const handleShare = (e) => {
-    e.preventDefault();
+    e.stopPropagation();
     setShareEchoData(echoId);
     setShowShareModal(true);
   };

@@ -15,7 +15,7 @@ const BookmarkButton = ({ isEchoBookmarked, echoId }) => {
   const [isBookmarked, setIsBookmarked] = useState(isEchoBookmarked);
 
   const handleBookmark = async (e) => {
-    e.preventDefault();
+    e.stopPropagation();
 
     if (!isLoading && !user) {
       router.push("/login");

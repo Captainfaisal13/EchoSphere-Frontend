@@ -20,6 +20,7 @@ import ParentEchos from "../../../_components/echo/parentEchos";
 import ShareButton from "../../../_components/reusables/shareButton";
 import BookmarkButton from "../../../_components/reusables/bookmarkButton";
 import Loader from "../../../_components/reusables/loader";
+import CrownIcon from "../../../../public/_assets/svgComponents/crownIcon";
 
 const EchoPage = ({ params }) => {
   const {
@@ -83,7 +84,15 @@ const EchoPage = ({ params }) => {
               <Image src={userAvatar} fill alt={`${username}-profile-image`} />
             </div>
             <Link href={`/profile/${username}`}>
-              <h2 className="text-base font-semibold text-text-2">{name}</h2>
+              <div className="flex">
+                <h2 className="text-base font-semibold text-text-2">{name}</h2>
+                {username === "captainfaisal" && (
+                  <div className="ml-1 fill-text-1 my-auto">
+                    <CrownIcon />
+                    {/* <Image src="/_assets/crown-icon.svg" fill alt="crown-icon" /> */}
+                  </div>
+                )}
+              </div>
               <h3 className="text-sm text-text-3">@{username}</h3>
             </Link>
           </div>

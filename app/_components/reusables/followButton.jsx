@@ -20,7 +20,8 @@ const FollowButton = ({ isUserFollowed, userId }) => {
     setIsFollowed(isUserFollowed);
   }, [isUserFollowed]);
 
-  const handleFollow = () => {
+  const handleFollow = (e) => {
+    e.stopPropagation();
     if (!isLoading && !user) {
       router.push("/login");
       return;

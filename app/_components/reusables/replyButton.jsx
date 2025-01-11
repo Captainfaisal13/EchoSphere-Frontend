@@ -16,7 +16,7 @@ const ReplyButton = ({ replies, echo }) => {
   }, [replies]);
 
   const handleReplyButton = (e) => {
-    e.preventDefault();
+    e.stopPropagation();
 
     if (!isLoading && !user) {
       router.push("/login");

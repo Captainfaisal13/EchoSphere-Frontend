@@ -6,7 +6,7 @@ import { useUpdateUser } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
 
 const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
-  const { mutate: updateUser } = useUpdateUser();
+  const { mutate: updateUser, isPending } = useUpdateUser();
   const queryClient = useQueryClient();
 
   const [name, setName] = useState(user?.name || "");
@@ -66,13 +66,13 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
 
     updateUser(formData, {
       onSuccess: (data) => {
+        onClose();
         console.log({ data });
         queryClient.invalidateQueries({
-          queryKey: ["echo-query"],
+          queryKey: ["get-user-profile"],
         });
       },
     });
-    onClose();
   };
 
   return (
@@ -95,11 +95,15 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
               src={
                 coverPicPreview
                   ? URL.createObjectURL(coverPicPreview)
-                  : user?.cover || "/_assets/images/poster1.png"
+                  : user?.cover || "/_assets/insert-image-icon.svg"
               }
               fill
               alt="profile cover"
-              className="object-cover"
+              className={`${
+                coverPicPreview || user?.cover
+                  ? "object-cover"
+                  : "object-contain"
+              }`}
             />
           </div>
 
@@ -144,7 +148,7 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-2 border border-border-1 rounded"
+              className="py-2 px-4 rounded-lg bg-bg-4 placeholder:text-text-6 placeholder:font-thin focus:outline-border-3 border border-border-3 text-text-1 w-full"
             />
           </div>
 
@@ -153,7 +157,7 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
             <textarea
               value={bio}
               onChange={(e) => setBio(e.target.value)}
-              className="w-full p-2 border border-border-1 rounded"
+              className="py-2 px-4 rounded-lg bg-bg-4 placeholder:text-text-6 placeholder:font-thin focus:outline-border-3 border border-border-3 text-text-1 w-full"
               rows="4"
             />
           </div>
@@ -161,7 +165,7 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
             type="submit"
             className="px-4 py-2 text-text-0 bg-bg-5 rounded"
           >
-            Save Changes
+            {isPending ? "Saving Changes..." : "Save Changes"}
           </button>
         </div>
       </form>

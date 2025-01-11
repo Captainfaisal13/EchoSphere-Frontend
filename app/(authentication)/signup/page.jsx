@@ -64,7 +64,7 @@ const SignUpPage = () => {
           <h1 className="text-text-2 text-3xl xl:text-5xl font-bold">
             Create Account
           </h1>
-          <p className="text-text-8 text-sm xl:text-lg font-medium">
+          <p className="text-bg-5 text-sm xl:text-lg font-medium">
             Echo your voice in the infinite sphere!
           </p>
         </div>

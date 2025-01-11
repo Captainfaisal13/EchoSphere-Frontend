@@ -1,11 +1,19 @@
 import Image from "next/image";
 import ConditionalButtons from "./conditionalButtons";
 import Link from "next/link";
+import CrownIcon from "../../../public/_assets/svgComponents/crownIcon";
 const ProfileInfo = ({ user }) => {
   return (
     <div>
       <div className="min-h-[24vh] relative bg-bg-4">
-        {user?.cover && <Image src={user?.cover} fill alt="profile cover" />}
+        {user?.cover && (
+          <Image
+            src={user?.cover}
+            fill
+            alt="profile cover"
+            className="object-cover"
+          />
+        )}
       </div>
       <div>
         <div className="flex justify-between px-4">
@@ -22,7 +30,15 @@ const ProfileInfo = ({ user }) => {
         </div>
         <div className="flex flex-col gap-2 mt-2 px-4">
           <div>
-            <h2 className="text-2xl font-bold text-text-2">{user?.name}</h2>
+            <div className="flex">
+              <h2 className="text-2xl font-bold text-text-2">{user?.name}</h2>
+              {user?.username === "captainfaisal" && (
+                <div className="ml-1 fill-text-1 mb-auto">
+                  <CrownIcon height="28px" width="28px" />
+                  {/* <Image src="/_assets/crown-icon.svg" fill alt="crown-icon" /> */}
+                </div>
+              )}
+            </div>
             <h4 className="text-sm text-text-3">@{user?.username}</h4>
           </div>
           <div className="text-sm flex gap-4">

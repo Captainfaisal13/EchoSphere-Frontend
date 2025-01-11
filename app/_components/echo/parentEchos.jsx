@@ -9,6 +9,7 @@ import ReEchoButton from "../reusables/reEchoButton";
 import { formatFullDate, getFormattedContent } from "../navbar/util";
 import ShareButton from "../reusables/shareButton";
 import BookmarkButton from "../reusables/bookmarkButton";
+import CrownIcon from "../../../public/_assets/svgComponents/crownIcon";
 
 const ParentEchos = ({ parentTweets }) => {
   return (
@@ -57,9 +58,17 @@ const ParentEchos = ({ parentTweets }) => {
                   />
                 </div>
                 <Link href={`/profile/${username}`} className="my-auto">
-                  <h2 className="text-base font-semibold text-text-2">
-                    {name}
-                  </h2>
+                  <div className="flex">
+                    <h2 className="text-base font-semibold text-text-2">
+                      {name}
+                    </h2>
+                    {username === "captainfaisal" && (
+                      <div className="ml-1 fill-text-1 my-auto">
+                        <CrownIcon />
+                        {/* <Image src="/_assets/crown-icon.svg" fill alt="crown-icon" /> */}
+                      </div>
+                    )}
+                  </div>
                   <h3 className="text-sm text-text-3">@{username}</h3>
                 </Link>
               </div>
@@ -72,7 +81,7 @@ const ParentEchos = ({ parentTweets }) => {
                 <div className="w-[2px] h-full bg-border-3 mx-auto"></div>
               </div>
               <div className="w-full">
-                <p className="text-lg text-text-4">
+                <p className="text-lg text-text-4 break-all">
                   {getFormattedContent(content)}
                 </p>
                 <div className="pt-1">

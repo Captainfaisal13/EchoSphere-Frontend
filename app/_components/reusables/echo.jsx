@@ -10,6 +10,7 @@ import Link from "next/link";
 import EchoOptions from "./echoOptions";
 import { formatTimeAgo } from "../navbar/util";
 import { useRouter } from "next/navigation";
+import CrownIcon from "../../../public/_assets/svgComponents/crownIcon";
 
 const Echo = ({ echo }) => {
   const {
@@ -60,9 +61,10 @@ const Echo = ({ echo }) => {
           >
             <span className="text-sm font-bold flex items-center pr-1 hover:underline">
               <span className="line-clamp-1">{name}</span>
-              {username === "shaikhfaisal" && (
-                <div className="ml-1 relative size-[18px] my-auto">
-                  <Image src="/_assets/crown-icon.svg" fill alt="crown-icon" />
+              {username === "captainfaisal" && (
+                <div className="ml-1 fill-text-1 mb-auto">
+                  <CrownIcon />
+                  {/* <Image src="/_assets/crown-icon.svg" fill alt="crown-icon" /> */}
                 </div>
               )}
             </span>

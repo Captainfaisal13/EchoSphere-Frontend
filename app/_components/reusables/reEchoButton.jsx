@@ -16,7 +16,7 @@ const ReEchoButton = ({ isReEcho, reEchoedCount, echoId }) => {
   const [reEchoCount, setReEchoCount] = useState(reEchoedCount);
 
   const handleReEcho = async (e) => {
-    e.preventDefault();
+    e.stopPropagation();
 
     if (!isLoading && !user) {
       router.push("/login");

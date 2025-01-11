@@ -18,6 +18,7 @@ import {
   getUserPosts,
   getUserProfile,
   getUserReplies,
+  getUsers,
   getVideosEchos,
   likeDislikeEcho,
   login,
@@ -235,6 +236,19 @@ export const useGetUserMediaPosts = ({ username }) => {
   return useInfiniteQuery({
     queryKey: ["echo-list-query", "get-user-media-posts"],
     queryFn: ({ pageParam }) => getUserMediaPosts({ pageParam, username }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
+  });
+};
+
+export const useGetUsers = () => {
+  return useInfiniteQuery({
+    queryKey: ["get-users"],
+    queryFn: ({ pageParam }) => getUsers({ pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       const nextPage =
