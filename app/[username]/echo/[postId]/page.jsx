@@ -92,7 +92,9 @@ const EchoPage = ({ params }) => {
           </div>
         </div>
         <div className="p-2">
-          <p className="text-lg text-text-4">{getFormattedContent(content)}</p>
+          <p className="text-lg text-text-4 break-all">
+            {getFormattedContent(content)}
+          </p>
           <div className="pt-1">
             <MediaLayout media={media} />
           </div>

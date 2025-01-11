@@ -19,7 +19,7 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
 
   const queryClient = useQueryClient();
   const { mutate: createEcho } = useCreateEcho();
-
+  const MAX_CHAR_COUNT = 300;
   const [echoContent, setEchoContent] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [mediaFiles, setMediaFiles] = useState([]);
@@ -164,6 +164,16 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
     }
   };
 
+  const handleEchoContentChange = (e) => {
+    setEchoContent(e.target.value.slice(0, MAX_CHAR_COUNT));
+  };
+
+  const getProgressPercentage = () => {
+    return (echoContent.length / MAX_CHAR_COUNT) * 100;
+  };
+
+  const progressPercentage = getProgressPercentage();
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <form
@@ -226,7 +236,7 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
             }
             rows="6"
             value={echoContent}
-            onChange={(e) => setEchoContent(e.target.value)}
+            onChange={handleEchoContentChange}
             ref={textareaRef}
           ></textarea>
         </div>
@@ -284,8 +294,39 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
               <EmojiIcon height="28px" width="28px" />
             </div>
           </div>
-          <div>
+          {/* <div>
             <div className="bg-white w-8 h-8 rounded-full"></div>
+          </div> */}
+          {/* Circular Progress Bar */}
+          <div className="relative w-10 h-10">
+            <svg className="w-full h-full">
+              <circle
+                cx="20"
+                cy="20"
+                r="18"
+                className="text-gray-300"
+                strokeWidth="3"
+                fill="none"
+                stroke="currentColor"
+              />
+              <circle
+                cx="20"
+                cy="20"
+                r="18"
+                className={`${
+                  progressPercentage > 90 ? "text-red-500" : "text-blue-500"
+                }`}
+                strokeWidth="3"
+                fill="none"
+                strokeDasharray="113" // 2 * Math.PI * 18
+                strokeDashoffset={113 - (113 * progressPercentage) / 100} // Fill dynamically
+                strokeLinecap="round"
+                transform="rotate(-90 20 20)"
+              />
+            </svg>
+            <span className="absolute inset-0 flex items-center justify-center text-xs font-medium">
+              {MAX_CHAR_COUNT - echoContent.length}
+            </span>
           </div>
         </div>
       </form>
