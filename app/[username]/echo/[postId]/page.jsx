@@ -101,7 +101,7 @@ const EchoPage = ({ params }) => {
           </div>
         </div>
         <div className="p-2">
-          <p className="text-lg text-text-4 break-all">
+          <p className="text-lg text-text-4 word-container">
             {getFormattedContent(content)}
           </p>
           <div className="pt-1">

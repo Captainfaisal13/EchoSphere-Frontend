@@ -81,7 +81,7 @@ const ParentEchos = ({ parentTweets }) => {
                 <div className="w-[2px] h-full bg-border-3 mx-auto"></div>
               </div>
               <div className="w-full">
-                <p className="text-lg text-text-4 break-all">
+                <p className="text-lg text-text-4 word-container">
                   {getFormattedContent(content)}
                 </p>
                 <div className="pt-1">

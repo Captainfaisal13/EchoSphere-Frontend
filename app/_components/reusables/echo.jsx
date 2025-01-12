@@ -91,7 +91,7 @@ const Echo = ({ echo }) => {
               e.stopPropagation();
             }
           }}
-          className="text-sm text-text-4 break-all"
+          className="text-sm text-text-4 word-container"
         >
           {formattedContent}
         </p>

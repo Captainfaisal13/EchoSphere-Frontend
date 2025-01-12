@@ -10,11 +10,11 @@ import SectionHeader from "../reusables/sectionHeader";
 import ProfilePageLoader from "../reusables/profilePageLoader";
 
 const ProfilePage = ({ username }) => {
-  const { data, isLoading, isError, error, isRefetching } = useGetUserProfile({
+  const { data, isLoading, isError, error } = useGetUserProfile({
     username,
   });
 
-  if (isLoading || isRefetching) {
+  if (isLoading) {
     return <ProfilePageLoader />;
   }
 
