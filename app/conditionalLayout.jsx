@@ -4,6 +4,7 @@ import Header from "./_components/header/header";
 import Navbar from "./_components/navbar/navbar";
 import CreateEchoModal from "./_components/modals/createEchoModal";
 import ShareEchoModal from "./_components/modals/shareEchoModal";
+import ImageModal from "./_components/modals/imageModal";
 import EchoButton from "./_components/navbar/echoButton";
 import { useGlobalContext } from "./context";
 import Discover from "./_components/discover/discover";
@@ -17,6 +18,8 @@ const ConditionalLayout = ({ children }) => {
     setShowCreateModal,
     showShareModal,
     setShowShareModal,
+    imageModalData,
+    setImageModalData,
   } = useGlobalContext();
 
   const NO_LAYOUT_ROUTES = ["/signup", "/login"];
@@ -44,6 +47,7 @@ const ConditionalLayout = ({ children }) => {
         setIsOpen={setShowCreateModal}
       />
       <ShareEchoModal isOpen={showShareModal} setIsOpen={setShowShareModal} />
+      <ImageModal isOpen={imageModalData} setIsOpen={setImageModalData} />
     </>
   ) : (
     <>{children}</>

@@ -9,6 +9,7 @@ import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
 import MediaUploadIcon from "../../../public/_assets/svgComponents/mediaUploadIcon";
 import EmojiIcon from "../../../public/_assets/svgComponents/emojiIcon";
 import { useRouter } from "next/navigation";
+import Loader from "../reusables/loader";
 
 const CreateEcho = ({ isOpen, setIsOpen }) => {
   const { user, replyEchoData, setReplyEchoData, isLoading } =
@@ -18,7 +19,7 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
   console.log({ replyEchoData });
 
   const queryClient = useQueryClient();
-  const { mutate: createEcho } = useCreateEcho();
+  const { mutate: createEcho, isPending } = useCreateEcho();
   const MAX_CHAR_COUNT = 300;
   const [echoContent, setEchoContent] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -26,6 +27,7 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
   const textareaRef = useRef(null);
 
   const onClose = () => {
+    if (isPending) return;
     setIsOpen(false);
     setEchoContent("");
     setReplyEchoData(null);
@@ -154,13 +156,12 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
         },
         onSuccess: (data) => {
           console.log({ data });
-
+          onClose(); // Close the modal after echo creation
           queryClient.invalidateQueries({
             queryKey: ["echo-query"],
           });
         },
       });
-      onClose(); // Close the modal after echo creation
     }
   };
 
@@ -194,9 +195,17 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
           <div>
             <button
               type="submit"
-              className="text-text-0 bg-bg-5 py-1 px-4 rounded-3xl font-bold"
+              className="text-text-0 bg-bg-5 py-1 px-4 rounded-3xl font-bold m-0"
             >
-              {replyEchoData ? "Reply" : "Post"}
+              {isPending ? (
+                <div className="px-2 m-0">
+                  <Loader classNames="size-6 m-0" />
+                </div>
+              ) : replyEchoData ? (
+                "Reply"
+              ) : (
+                "Post"
+              )}
             </button>
           </div>
         </div>

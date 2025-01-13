@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import { useGlobalContext } from "../../context";
 
 const mediaGridResponsive = [
   "grid grid-cols-1",
@@ -10,6 +11,8 @@ const mediaGridResponsive = [
 ];
 
 const MediaLayout = ({ media }) => {
+  const { setImageModalData } = useGlobalContext();
+
   // console.log(media);
   // Helper function to determine if the file is a video
   const isVideo = (url) => {
@@ -32,13 +35,19 @@ const MediaLayout = ({ media }) => {
                 controls
                 muted
                 playsInline
+                autoPlay
               />
             ) : (
               <Image
                 src={mediaItem}
                 fill
                 alt={`echo-media-img-${idx}`}
-                className="object-cover"
+                className="object-cover cursor-pointer"
+                onClick={() => {
+                  if (mediaItem) {
+                    setImageModalData(mediaItem);
+                  }
+                }}
               />
             )}
           </div>

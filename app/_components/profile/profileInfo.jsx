@@ -2,10 +2,19 @@ import Image from "next/image";
 import ConditionalButtons from "./conditionalButtons";
 import Link from "next/link";
 import CrownIcon from "../../../public/_assets/svgComponents/crownIcon";
+import { useGlobalContext } from "../../context";
 const ProfileInfo = ({ user }) => {
+  const { setImageModalData } = useGlobalContext();
   return (
     <div>
-      <div className="min-h-[24vh] relative bg-bg-4">
+      <div
+        className="min-h-[24vh] relative bg-bg-4"
+        onClick={() => {
+          if (user?.cover) {
+            setImageModalData(user?.cover);
+          }
+        }}
+      >
         {user?.cover && (
           <Image
             src={user?.cover}
@@ -17,7 +26,14 @@ const ProfileInfo = ({ user }) => {
       </div>
       <div>
         <div className="flex justify-between px-4">
-          <div className="h-28 w-28 rounded-full relative overflow-hidden mt-[-62px] ">
+          <div
+            className="h-28 w-28 rounded-full relative overflow-hidden mt-[-62px] "
+            onClick={() => {
+              if (user?.avatar) {
+                setImageModalData(user?.avatar);
+              }
+            }}
+          >
             <Image
               src={user?.avatar || "/_assets/images/unknown-image.png"}
               className=""

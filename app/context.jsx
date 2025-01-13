@@ -13,6 +13,7 @@ const AppProvider = ({ children }) => {
   const [replyEchoData, setReplyEchoData] = useState(null);
   const [showShareModal, setShowShareModal] = useState(false);
   const [shareEchoData, setShareEchoData] = useState(null);
+  const [imageModalData, setImageModalData] = useState(null);
 
   const saveUser = (user) => {
     setUser(user);
@@ -85,6 +86,8 @@ const AppProvider = ({ children }) => {
         setShareEchoData,
         theme,
         toggleTheme,
+        imageModalData,
+        setImageModalData,
       }}
     >
       {children}

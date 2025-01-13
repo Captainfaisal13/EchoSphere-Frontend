@@ -6,8 +6,6 @@ import ReEchoButton from "./reEchoButton";
 import ReplyButton from "./replyButton";
 import ShareButton from "./shareButton";
 import BookmarkButton from "./bookmarkButton";
-import Link from "next/link";
-import EchoOptions from "./echoOptions";
 import { formatTimeAgo } from "../navbar/util";
 import { useRouter } from "next/navigation";
 import CrownIcon from "../../../public/_assets/svgComponents/crownIcon";
@@ -55,8 +53,12 @@ const Echo = ({ echo }) => {
       </div>
       <div className="shrink w-full flex flex-col gap-[2px]">
         <div className="flex gap-1 items-center text-text-2 ">
-          <Link
-            href={`/profile/${username}`}
+          <div
+            // href={`/profile/${username}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/profile/${username}`);
+            }}
             className="cursor-pointer flex items-center"
           >
             <span className="text-sm font-bold flex items-center pr-1 hover:underline">
@@ -71,18 +73,22 @@ const Echo = ({ echo }) => {
             <span className="font text-xs text-text-3 ml-2 line-clamp-1">
               @{username}
             </span>
-          </Link>
+          </div>
 
           <div className="flex items-center text-[4px]">&#8226;</div>
           <p className="text-xs font-light">{time}</p>
         </div>
         {parentTweet && (
-          <Link
-            href={`/${username}/echo/${parentTweet}`}
+          <div
+            // href={`/${username}/echo/${parentTweet}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/${username}/echo/${parentTweet}`);
+            }}
             className="text-[10px] text-text-3 font-thin"
           >
             Replied to an <span className="text-blue-600 underline">Echo</span>
-          </Link>
+          </div>
         )}
         <p
           onClick={(e) => {

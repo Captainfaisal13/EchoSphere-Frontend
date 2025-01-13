@@ -5,7 +5,7 @@ const sizeClasses = {
   small: "w-11/12 lg:w-1/3 max-w-[400px]", // yet to design
   medium: "w-11/12 max-w-[600px] ",
   large: "w-3/4", // yet to design
-  full: "w-full", // yet to design
+  full: "w-full h-full !bg-black/50 !rounded-none",
 };
 
 // Vertical positioning classes
@@ -21,13 +21,18 @@ const Modal = ({
   children,
   postion = "top",
   size = "medium",
+  easyClose = false,
 }) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        // onClose();
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target) &&
+        easyClose
+      ) {
+        onClose();
       }
     };
 
