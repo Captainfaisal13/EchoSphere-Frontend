@@ -7,13 +7,9 @@ import ReEchoButton from "../../../_components/reusables/reEchoButton";
 import LikeButton from "../../../_components/reusables/likeButton";
 import EchoOptions from "../../../_components/reusables/echoOptions";
 import EchoStats from "../../../_components/reusables/echoStats";
-import {
-  formatFullDate,
-  getFormattedContent,
-} from "../../../_components/navbar/util";
+import { formatFullDate, getFormattedContent } from "../../../../utils/util";
 import { useRouter } from "next/navigation";
 import Echos from "../../../_components/reusables/Echos";
-import { useGlobalContext } from "../../../context";
 import ReplyButton from "../../../_components/reusables/replyButton";
 import SectionHeader from "../../../_components/reusables/sectionHeader";
 import ParentEchos from "../../../_components/echo/parentEchos";
@@ -21,19 +17,19 @@ import ShareButton from "../../../_components/reusables/shareButton";
 import BookmarkButton from "../../../_components/reusables/bookmarkButton";
 import Loader from "../../../_components/reusables/loader";
 import CrownIcon from "../../../../public/_assets/svgComponents/crownIcon";
+import {
+  setReplyEchoData,
+  setShowCreateModal,
+} from "../../../../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const EchoPage = ({ params }) => {
-  const {
-    user,
-    isLoading: isUserLoading,
-    setShowCreateModal,
-    setReplyEchoData,
-  } = useGlobalContext();
+  const dispatch = useDispatch();
+  const { user, isLoading: isUserLoading } = useSelector((state) => state.user);
+
   const { data, isLoading, isError } = useGetSingleEcho({
     echoId: params.postId,
   });
-
-  const router = useRouter();
 
   if (isLoading) {
     return (
@@ -140,10 +136,12 @@ const EchoPage = ({ params }) => {
         <button
           className="border-y border-border-1 py-1 px-4 w-full mt-1"
           onClick={() => {
-            setReplyEchoData({
-              ...echo,
-            });
-            setShowCreateModal(true);
+            dispatch(
+              setReplyEchoData({
+                ...echo,
+              })
+            );
+            dispatch(setShowCreateModal(true));
           }}
         >
           <div className="flex gap-2 rounded-3xl bg-bg-6 p-2 text-text-1">

@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect } from "react";
-import { useGlobalContext } from "./context";
 import { redirect } from "next/navigation";
 import Loader from "./_components/reusables/loader";
+import { useSelector } from "react-redux";
 
 const CheckAuth = ({ children }) => {
-  const { user, isLoading } = useGlobalContext();
+  const { user, isLoading } = useSelector((state) => state.user);
   useEffect(() => {
     if (!isLoading && !user) {
       redirect("/login");

@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useLikeDislikeEcho } from "../../../network/customHooks";
 import LikeIcon from "../../../public/_assets/svgComponents/likeIcon";
 import { useQueryClient } from "@tanstack/react-query";
-import { useGlobalContext } from "../../context";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const LikeButton = ({ isEchoLiked, echoLikedCount, echoId }) => {
   const queryClient = useQueryClient();
-  const { user, isLoading } = useGlobalContext();
+  const { user, isLoading } = useSelector((state) => state.user);
   const router = useRouter();
 
   const { mutate: likeDislikeEcho } = useLikeDislikeEcho();

@@ -1,9 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import discoverProfiles from "../../data/discoverProfiles";
 import { useGetUsers } from "../../../network/customHooks";
 import FollowButton from "../reusables/followButton";
-import { useGlobalContext } from "../../context";
 import Link from "next/link";
 import Loader from "../reusables/loader";
 import { useRouter } from "next/navigation";

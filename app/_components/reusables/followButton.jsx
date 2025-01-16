@@ -5,11 +5,11 @@ import { useFollowUnfollowUser } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
 import PlusIcon from "../../../public/_assets/svgComponents/plusIcon";
 import TickIcon from "../../../public/_assets/svgComponents/tickIcon";
-import { useGlobalContext } from "../../context";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const FollowButton = ({ isUserFollowed, userId }) => {
-  const { user, isLoading } = useGlobalContext();
+  const { user, isLoading } = useSelector((state) => state.user);
   const router = useRouter();
 
   const queryClient = useQueryClient();

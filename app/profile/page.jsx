@@ -1,10 +1,10 @@
 "use client";
 import { redirect } from "next/navigation";
 import React, { useEffect } from "react";
-import { useGlobalContext } from "../context";
+import { useSelector } from "react-redux";
 
 const ProfilePageRedirect = () => {
-  const { user, isLoading } = useGlobalContext();
+  const { user, isLoading } = useSelector((state) => state.user);
   console.log({ profileUser: user });
 
   useEffect(() => {

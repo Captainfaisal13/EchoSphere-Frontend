@@ -6,7 +6,7 @@ import ReEchoButton from "./reEchoButton";
 import ReplyButton from "./replyButton";
 import ShareButton from "./shareButton";
 import BookmarkButton from "./bookmarkButton";
-import { formatTimeAgo } from "../navbar/util";
+import { formatTimeAgo } from "../../../utils/util";
 import { useRouter } from "next/navigation";
 import CrownIcon from "../../../public/_assets/svgComponents/crownIcon";
 

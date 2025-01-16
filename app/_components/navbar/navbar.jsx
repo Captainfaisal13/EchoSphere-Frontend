@@ -1,10 +1,9 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import NavButtons from "./navButtons";
 import EchoButton from "./echoButton";
 import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
 
-const Navbar = ({ expandNavbar, setExpandNavbar, setShowCreateModal }) => {
+const Navbar = ({ expandNavbar, setExpandNavbar }) => {
   return (
     <nav
       className={`bg-bg-0 fixed md:sticky z-30 h-full top-0 left-0 md:block w-64 md:w-24 lg:w-60 flex-col gap-8 transition-transform md:translate-x-0 ${
@@ -30,7 +29,7 @@ const Navbar = ({ expandNavbar, setExpandNavbar, setShowCreateModal }) => {
           <NavButtons />
         </div>
         <div className="hidden md:block">
-          <EchoButton setShowCreateModal={setShowCreateModal} />
+          <EchoButton />
         </div>
       </div>
     </nav>

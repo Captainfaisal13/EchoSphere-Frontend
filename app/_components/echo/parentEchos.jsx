@@ -6,7 +6,7 @@ import MediaLayout from "../reusables/mediaLayout";
 import ReplyButton from "../reusables/replyButton";
 import LikeButton from "../reusables/likeButton";
 import ReEchoButton from "../reusables/reEchoButton";
-import { formatFullDate, getFormattedContent } from "../navbar/util";
+import { formatFullDate, getFormattedContent } from "../../../utils/util";
 import ShareButton from "../reusables/shareButton";
 import BookmarkButton from "../reusables/bookmarkButton";
 import CrownIcon from "../../../public/_assets/svgComponents/crownIcon";

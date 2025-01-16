@@ -1,22 +1,26 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Modal from "../reusables/modal";
 import Image from "next/image";
 import { useCreateEcho } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
-import { useGlobalContext } from "../../context";
 import EmojiPickerModal from "../reusables/emojiPicker";
 import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
 import MediaUploadIcon from "../../../public/_assets/svgComponents/mediaUploadIcon";
 import EmojiIcon from "../../../public/_assets/svgComponents/emojiIcon";
 import { useRouter } from "next/navigation";
 import Loader from "../reusables/loader";
+import {
+  setReplyEchoData,
+  setShowCreateModal,
+} from "../../../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-const CreateEcho = ({ isOpen, setIsOpen }) => {
-  const { user, replyEchoData, setReplyEchoData, isLoading } =
-    useGlobalContext();
+const CreateEcho = () => {
+  const dispatch = useDispatch();
+  const { user, isLoading, showCreateModal, replyEchoData } = useSelector(
+    (state) => state.user
+  );
   const router = useRouter();
-
-  console.log({ replyEchoData });
 
   const queryClient = useQueryClient();
   const { mutate: createEcho, isPending } = useCreateEcho();
@@ -28,10 +32,10 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
 
   const onClose = () => {
     if (isPending) return;
-    setIsOpen(false);
     setEchoContent("");
-    setReplyEchoData(null);
     setMediaFiles([]);
+    dispatch(setShowCreateModal(false));
+    dispatch(setReplyEchoData(null));
   };
 
   const onEmojiPickerClose = () => {
@@ -176,7 +180,7 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
   const progressPercentage = getProgressPercentage();
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={showCreateModal} onClose={onClose}>
       <form
         onSubmit={handleSubmit}
         className="w-full bg-bg-4 rounded-md py-3 px-3 flex flex-col gap-3"
@@ -223,7 +227,7 @@ const CreateEcho = ({ isOpen, setIsOpen }) => {
                 <p className="text-sm font-bold text-text-2 pr-1">
                   {replyEchoData?.name}
                 </p>
-                <p className="text-sm line-clamp-4 text-text-4">
+                <p className="text-sm line-clamp-4 text-text-4 word-container">
                   {replyEchoData?.content}
                 </p>
               </div>

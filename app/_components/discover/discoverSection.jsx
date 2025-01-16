@@ -1,15 +1,11 @@
 "use client";
-import Link from "next/link";
+import { useSelector } from "react-redux";
 import { useGetUsers } from "../../../network/customHooks";
-import { useGlobalContext } from "../../context";
 import FollowerUser from "../reusables/followersUser";
 import Loader from "../reusables/loader";
-import FollowButton from "../reusables/followButton";
-import Image from "next/image";
-import SectionHeader from "../reusables/sectionHeader";
 
 const DiscoverSection = () => {
-  const { user } = useGlobalContext();
+  const { user } = useSelector((state) => state.user);
   const { data: users, isLoading } = useGetUsers();
 
   if (isLoading)

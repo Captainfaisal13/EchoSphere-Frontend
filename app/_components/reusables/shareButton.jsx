@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useGlobalContext } from "../../context";
 import ShareIcon from "../../../public/_assets/svgComponents/shareIcon";
+import {
+  setShareEchoData,
+  setShowShareModal,
+} from "../../../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const ShareButton = ({ shares, echoId }) => {
-  const { setShowShareModal, setShareEchoData } = useGlobalContext();
+  const dispatch = useDispatch();
   const [shareCount, setShareCount] = useState(shares);
 
   useEffect(() => {
@@ -12,8 +16,8 @@ const ShareButton = ({ shares, echoId }) => {
 
   const handleShare = (e) => {
     e.stopPropagation();
-    setShareEchoData(echoId);
-    setShowShareModal(true);
+    dispatch(setShareEchoData(echoId));
+    dispatch(setShowShareModal(true));
   };
 
   return (

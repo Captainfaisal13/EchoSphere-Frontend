@@ -2,9 +2,13 @@ import React from "react";
 import Modal from "../reusables/modal";
 import Image from "next/image";
 import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
-import { useGlobalContext } from "../../context";
 import { useShareEcho } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
+import {
+  setShareEchoData,
+  setShowShareModal,
+} from "../../../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const ShareButtons = [
   {
@@ -18,14 +22,16 @@ const ShareButtons = [
   { id: 4, name: "linkedin" },
 ];
 
-const ShareEchoModal = ({ isOpen, setIsOpen }) => {
+const ShareEchoModal = () => {
+  const dispatch = useDispatch();
+  const { showShareModal, shareEchoData } = useSelector((state) => state.user);
   const queryClient = useQueryClient();
-  const { shareEchoData, setShareEchoData } = useGlobalContext();
+
   const { mutate: shareEcho } = useShareEcho();
 
   const onClose = () => {
-    setIsOpen(false);
-    setShareEchoData(null);
+    dispatch(setShowShareModal(false));
+    dispatch(setShareEchoData(null));
   };
 
   const tweetUrl =
@@ -116,7 +122,12 @@ const ShareEchoModal = ({ isOpen, setIsOpen }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} postion="center" size="small">
+    <Modal
+      isOpen={showShareModal}
+      onClose={onClose}
+      postion="center"
+      size="small"
+    >
       <div className="relative bg-bg-4 rounded-md p-4 text-text-1">
         <div className="flex justify-between">
           <h1 className="text-base font-semibold text-left w-full">
@@ -126,30 +137,28 @@ const ShareEchoModal = ({ isOpen, setIsOpen }) => {
             <CloseIcon width="16" height="16" />
           </div>
         </div>
-        {isOpen && (
-          <div className="flex justify-between gap-4 overflow-x-scroll">
-            {ShareButtons.map(({ id, name }) => {
-              return (
-                <button
-                  key={id}
-                  className="space-y-1 mt-4 mb-2"
-                  onClick={() => handleShare(name)}
-                >
-                  <div className="size-[58px] p-4 bg-white rounded-full mx-auto">
-                    <div className="size-[22px] relative m-auto">
-                      <Image
-                        src={`/_assets/${name}-icon.svg`}
-                        fill
-                        alt={`${name}-icon`}
-                      />
-                    </div>
+        <div className="flex justify-between gap-4 overflow-x-scroll">
+          {ShareButtons.map(({ id, name }) => {
+            return (
+              <button
+                key={id}
+                className="space-y-1 mt-4 mb-2"
+                onClick={() => handleShare(name)}
+              >
+                <div className="size-[58px] p-4 bg-white rounded-full mx-auto">
+                  <div className="size-[22px] relative m-auto">
+                    <Image
+                      src={`/_assets/${name}-icon.svg`}
+                      fill
+                      alt={`${name}-icon`}
+                    />
                   </div>
-                  <p className="text-xs">{name}</p>
-                </button>
-              );
-            })}
-          </div>
-        )}
+                </div>
+                <p className="text-xs">{name}</p>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </Modal>
   );

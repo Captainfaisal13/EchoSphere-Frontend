@@ -4,12 +4,14 @@ import SectionHeader from "../reusables/sectionHeader";
 import { useGlobalContext } from "../../context";
 import { useLogout } from "../../../network/customHooks";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser } from "../../../redux/slices/userSlice";
 
 const Settings = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
-
-  const { theme, toggleTheme, removeUser, user, isLoading } =
-    useGlobalContext();
+  const { theme, toggleTheme } = useGlobalContext();
+  const { user } = useSelector((state) => state.user);
   console.log({ themeFromSetting: theme });
 
   const { mutate: logout } = useLogout();
@@ -19,7 +21,7 @@ const Settings = () => {
     logout("", {
       onSuccess: (data) => {
         console.log({ logoutResp: data });
-        removeUser();
+        dispatch(removeUser());
         router.push("/login");
       },
     });

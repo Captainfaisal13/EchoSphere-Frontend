@@ -1,7 +1,11 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { useGlobalContext } from "../../context";
+import {
+  setImageModalData,
+  setShowImageModal,
+} from "../../../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const mediaGridResponsive = [
   "grid grid-cols-1",
@@ -11,7 +15,7 @@ const mediaGridResponsive = [
 ];
 
 const MediaLayout = ({ media }) => {
-  const { setImageModalData } = useGlobalContext();
+  const dispatch = useDispatch();
 
   // console.log(media);
   // Helper function to determine if the file is a video
@@ -45,7 +49,8 @@ const MediaLayout = ({ media }) => {
                 className="object-cover cursor-pointer"
                 onClick={() => {
                   if (mediaItem) {
-                    setImageModalData(mediaItem);
+                    dispatch(setImageModalData(mediaItem));
+                    dispatch(setShowImageModal(true));
                   }
                 }}
               />

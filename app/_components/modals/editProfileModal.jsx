@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { useUpdateUser } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
 import Cropper from "react-easy-crop";
-import { getCroppedImg } from "../../_components/navbar/util";
+import { getCroppedImg } from "../../../utils/util";
 
 const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
   const { mutate: updateUser, isPending } = useUpdateUser();

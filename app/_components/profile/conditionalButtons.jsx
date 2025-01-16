@@ -1,10 +1,10 @@
 import React from "react";
-import { useGlobalContext } from "../../context";
 import EditProfileButton from "./editProfileButton";
 import FollowButton from "../reusables/followButton";
+import { useSelector } from "react-redux";
 
 const ConditionalButtons = ({ user }) => {
-  const { user: loggedUser, isLoading } = useGlobalContext();
+  const { user: loggedUser, isLoading } = useSelector((state) => state.user);
   if (isLoading) return null;
 
   return user.username === loggedUser?.username ? (

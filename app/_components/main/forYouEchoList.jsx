@@ -1,11 +1,11 @@
 "use client";
-import { useGlobalContext } from "../../context";
 import Echos from "../reusables/Echos";
 import { useGetUserEchos } from "../../../network/customHooks";
 import EchoSkeleton from "../reusables/echoSkeleton";
+import { useSelector } from "react-redux";
 
 const ForYouEchoList = () => {
-  const { user } = useGlobalContext();
+  const { user } = useSelector((state) => state.user);
 
   const { data, isLoading, isError, error } = useGetUserEchos({
     userId: user.userId,

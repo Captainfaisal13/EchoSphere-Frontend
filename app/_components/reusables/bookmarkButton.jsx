@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useBookmarkEcho } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
 import BookmarkIcon from "../../../public/_assets/svgComponents/bookmarkIcon";
-import { useGlobalContext } from "../../context";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const BookmarkButton = ({ isEchoBookmarked, echoId }) => {
   const queryClient = useQueryClient();
-  const { user, isLoading } = useGlobalContext();
+  const { user, isLoading } = useSelector((state) => state.user);
   const router = useRouter();
 
   const { mutate: bookmarkEcho } = useBookmarkEcho();

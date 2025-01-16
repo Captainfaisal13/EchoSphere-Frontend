@@ -1,17 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import { useGlobalContext } from "../../context";
 import useLocalState from "../../../utils/localState";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useSignup } from "../../../network/customHooks";
 import Loader from "../../_components/reusables/loader";
+import { useDispatch } from "react-redux";
+import { saveUser } from "../../../redux/slices/userSlice";
 
 const SignUpPage = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
 
-  const { saveUser } = useGlobalContext();
   const [values, setValues] = useState({
     name: "",
     username: "",
@@ -32,7 +33,7 @@ const SignUpPage = () => {
       text: `Welcome, ${data.name}. Redirecting to dashboard...`,
       type: "success",
     });
-    saveUser(data);
+    dispatch(saveUser(data));
     router.push("/");
   };
 

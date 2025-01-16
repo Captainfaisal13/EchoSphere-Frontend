@@ -1,10 +1,10 @@
 import React from "react";
-import ExploreIcon from "../../../public/_assets/svgComponents/exploreIcon";
-import HomeIcon from "../../../public/_assets/svgComponents/homeIcon";
-import NotificationIcon from "../../../public/_assets/svgComponents/notificationIcon";
-import ProfileIcon from "../../../public/_assets/svgComponents/profileIcon";
-import SearchIcon from "../../../public/_assets/svgComponents/searchIcon";
-import SettingIcon from "../../../public/_assets/svgComponents/settingIcon";
+import ExploreIcon from "../public/_assets/svgComponents/exploreIcon";
+import HomeIcon from "../public/_assets/svgComponents/homeIcon";
+import NotificationIcon from "../public/_assets/svgComponents/notificationIcon";
+import ProfileIcon from "../public/_assets/svgComponents/profileIcon";
+import SearchIcon from "../public/_assets/svgComponents/searchIcon";
+import SettingIcon from "../public/_assets/svgComponents/settingIcon";
 import {
   differenceInSeconds,
   differenceInMinutes,
@@ -14,7 +14,7 @@ import {
   differenceInYears,
   format,
 } from "date-fns";
-import BookmarkIconNav from "../../../public/_assets/svgComponents/bookmarkIconNav";
+import BookmarkIconNav from "../public/_assets/svgComponents/bookmarkIconNav";
 
 const getIcons = (pathName, title) => {
   switch (title) {

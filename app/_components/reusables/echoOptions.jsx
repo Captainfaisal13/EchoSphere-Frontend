@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import OptionIcon from "../../../public/_assets/svgComponents/optionIcon";
-import { useGlobalContext } from "../../context";
 import { useDeleteEcho } from "../../../network/customHooks";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const EchoOptions = ({ echo }) => {
-  const { user } = useGlobalContext();
+  const { user } = useSelector((state) => state.user);
   const [showOption, setShowOption] = useState(false);
   const optionRef = useRef(null);
   const router = useRouter();

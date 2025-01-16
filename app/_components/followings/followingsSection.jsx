@@ -1,12 +1,12 @@
 "use client";
 import { useParams } from "next/navigation";
 import { useGetUserFollowings } from "../../../network/customHooks";
-import { useGlobalContext } from "../../context";
 import FollowerUser from "../reusables/followersUser";
 import Loader from "../reusables/loader";
+import { useSelector } from "react-redux";
 
 const FollowingsSection = () => {
-  const { user } = useGlobalContext();
+  const { user } = useSelector((state) => state.user);
   const params = useParams();
   const { data, isLoading, isRefetching } = useGetUserFollowings({
     username: params.slug,

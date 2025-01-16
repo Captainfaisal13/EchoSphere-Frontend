@@ -1,12 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useGlobalContext } from "../../context";
 import ReplyIcon from "../../../public/_assets/svgComponents/replyIcon";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setReplyEchoData,
+  setShowCreateModal,
+} from "../../../redux/slices/userSlice";
 
 const ReplyButton = ({ replies, echo }) => {
-  const { setShowCreateModal, setReplyEchoData, user, isLoading } =
-    useGlobalContext();
+  const dispatch = useDispatch();
+  const { user, isLoading } = useSelector((state) => state.user);
   const router = useRouter();
 
   const [repliesCount, setRepliesCount] = useState(replies);
@@ -23,10 +27,12 @@ const ReplyButton = ({ replies, echo }) => {
       return;
     }
 
-    setReplyEchoData({
-      ...echo,
-    });
-    setShowCreateModal(true);
+    dispatch(
+      setReplyEchoData({
+        ...echo,
+      })
+    );
+    dispatch(setShowCreateModal(true));
   };
 
   return (

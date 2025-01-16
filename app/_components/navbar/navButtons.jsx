@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import navbarList from "../../data/navbarList.json";
-import { getIcons, handleNavClick, icon } from "./util";
+import { getIcons, handleNavClick, icon } from "../../../utils/util";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useGlobalContext } from "../../context";
+import { useSelector } from "react-redux";
 
 const NavButtons = () => {
-  const { user } = useGlobalContext();
+  const { user } = useSelector((state) => state.user);
   const [currentSelectIcon, setCurrrentSelectedIcon] = useState(0);
   const pathName = usePathname();
   // console.log(pathName);

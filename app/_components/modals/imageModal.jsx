@@ -1,18 +1,25 @@
 import React from "react";
-import { useGlobalContext } from "../../context";
 import Modal from "../reusables/modal";
 import Image from "next/image";
 import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
+import {
+  setImageModalData,
+  setShowImageModal,
+} from "../../../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-const ImageModal = ({ isOpen, setIsOpen }) => {
-  const { imageModalData, setImageModalData } = useGlobalContext();
+const ImageModal = () => {
+  const dispatch = useDispatch();
+  const { imageModalData, showImageModal } = useSelector((state) => state.user);
+
   const onClose = () => {
-    setIsOpen(false);
-    setImageModalData(null);
+    dispatch(setShowImageModal(false));
+    dispatch(setImageModalData(null));
   };
+
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={showImageModal}
       onClose={onClose}
       postion="center"
       size="full"

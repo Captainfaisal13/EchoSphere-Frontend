@@ -1,16 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import { useGlobalContext } from "../../context";
 import useLocalState from "../../../utils/localState";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useLogin } from "../../../network/customHooks";
 import Loader from "../../_components/reusables/loader";
+import { useDispatch } from "react-redux";
+import { saveUser } from "../../../redux/slices/userSlice";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
-
-  const { saveUser } = useGlobalContext();
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -29,7 +29,7 @@ const LoginPage = () => {
       text: `Welcome, ${data.name}. Redirecting to dashboard...`,
       type: "success",
     });
-    saveUser(data);
+    dispatch(saveUser(data));
     router.push("/");
   };
 

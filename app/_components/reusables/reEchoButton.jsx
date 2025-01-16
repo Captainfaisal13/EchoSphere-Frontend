@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useReEcho } from "../../../network/customHooks";
 import ReEchoIcon from "../../../public/_assets/svgComponents/reEchoIcon";
 import { useQueryClient } from "@tanstack/react-query";
-import { useGlobalContext } from "../../context";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const ReEchoButton = ({ isReEcho, reEchoedCount, echoId }) => {
   const queryClient = useQueryClient();
-  const { user, isLoading } = useGlobalContext();
+  const { user, isLoading } = useSelector((state) => state.user);
   const router = useRouter();
 
   const { mutate: reEcho } = useReEcho();

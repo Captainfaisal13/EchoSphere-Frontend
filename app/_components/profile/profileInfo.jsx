@@ -2,16 +2,24 @@ import Image from "next/image";
 import ConditionalButtons from "./conditionalButtons";
 import Link from "next/link";
 import CrownIcon from "../../../public/_assets/svgComponents/crownIcon";
-import { useGlobalContext } from "../../context";
+import {
+  setImageModalData,
+  setShowImageModal,
+} from "../../../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
+
 const ProfileInfo = ({ user }) => {
-  const { setImageModalData } = useGlobalContext();
+  const dispatch = useDispatch();
   return (
     <div>
       <div
-        className="min-h-[24vh] relative bg-bg-4"
+        className={`min-h-[24vh] relative bg-bg-4  ${
+          user?.cover && "cursor-pointer"
+        }`}
         onClick={() => {
           if (user?.cover) {
-            setImageModalData(user?.cover);
+            dispatch(setShowImageModal(true));
+            dispatch(setImageModalData(user?.cover));
           }
         }}
       >
@@ -27,10 +35,13 @@ const ProfileInfo = ({ user }) => {
       <div>
         <div className="flex justify-between px-4">
           <div
-            className="h-28 w-28 rounded-full relative overflow-hidden mt-[-62px] "
+            className={`h-28 w-28 rounded-full relative overflow-hidden mt-[-62px] ${
+              user?.avatar && "cursor-pointer"
+            }`}
             onClick={() => {
               if (user?.avatar) {
-                setImageModalData(user?.avatar);
+                dispatch(setShowImageModal(true));
+                dispatch(setImageModalData(user?.avatar));
               }
             }}
           >
@@ -51,7 +62,6 @@ const ProfileInfo = ({ user }) => {
               {user?.username === "captainfaisal" && (
                 <div className="ml-1 fill-text-1 mb-auto">
                   <CrownIcon height="28px" width="28px" />
-                  {/* <Image src="/_assets/crown-icon.svg" fill alt="crown-icon" /> */}
                 </div>
               )}
             </div>
