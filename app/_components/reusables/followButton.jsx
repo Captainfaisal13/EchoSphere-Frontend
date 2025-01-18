@@ -30,7 +30,13 @@ const FollowButton = ({ isUserFollowed, userId }) => {
     followUnfollowUser(userId, {
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: ["echo-query"],
+          queryKey: ["get-user-profile"],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ["echo-list-query"],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ["get-users"],
         });
       },
     });

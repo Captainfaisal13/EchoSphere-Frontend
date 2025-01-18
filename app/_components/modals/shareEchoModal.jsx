@@ -113,7 +113,7 @@ const ShareEchoModal = () => {
         onSuccess: (data) => {
           console.log(data);
           queryClient.invalidateQueries({
-            queryKey: ["echo-query"],
+            queryKey: ["echo-list-query"],
           });
         },
       });

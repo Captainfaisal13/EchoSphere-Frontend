@@ -44,7 +44,10 @@ const EchoOptions = ({ echo }) => {
     deleteEcho(echoId, {
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: ["echo-query"],
+          queryKey: ["get-user-profile"],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ["echo-list-query"],
         });
       },
     });

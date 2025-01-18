@@ -162,8 +162,9 @@ const CreateEcho = () => {
           console.log({ data });
           onClose(); // Close the modal after echo creation
           queryClient.invalidateQueries({
-            queryKey: ["echo-query"],
+            queryKey: ["echo-list-query"],
           });
+          queryClient.invalidateQueries(["get-single-echo", replyEchoData._id]);
         },
       });
     }

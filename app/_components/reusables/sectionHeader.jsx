@@ -13,7 +13,11 @@ const SectionHeader = ({ heading }) => {
       >
         <BackIcon />
       </button>
-      <h3 className="text-center text-xl font-semibold text-text-1">
+      <h3
+        className={`text-center text-xl font-semibold text-text-1 line-clamp-1 word-container ${
+          heading?.length > 30 && "ml-6"
+        }`}
+      >
         {heading}
       </h3>
     </div>

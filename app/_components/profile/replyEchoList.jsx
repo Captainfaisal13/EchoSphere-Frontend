@@ -14,7 +14,7 @@ const ReplyEchoList = ({ username }) => {
   } = useGetUserReplies({ username });
 
   if (status === "pending") {
-    return <EchoSkeleton count={3} />;
+    return <EchoSkeleton count={5} />;
   }
 
   if (status === "error") {
@@ -22,12 +22,14 @@ const ReplyEchoList = ({ username }) => {
   }
 
   return (
-    <Echos
-      echos={data.pages}
-      fetchNextPage={fetchNextPage}
-      hasNextPage={hasNextPage}
-      isFetchingNextPage={isFetchingNextPage}
-    />
+    <div className="min-h-[calc(100vh-96px)] md:min-h-[calc(100vh-50px)]">
+      <Echos
+        echos={data.pages}
+        fetchNextPage={fetchNextPage}
+        hasNextPage={hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+      />
+    </div>
   );
 };
 

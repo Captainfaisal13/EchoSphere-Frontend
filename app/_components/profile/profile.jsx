@@ -8,11 +8,22 @@ import Tabs from "../reusables/tabs";
 import { useGetUserProfile } from "../../../network/customHooks";
 import SectionHeader from "../reusables/sectionHeader";
 import ProfilePageLoader from "../reusables/profilePageLoader";
+import { useEffect, useRef } from "react";
 
 const ProfilePage = ({ username }) => {
-  const { data, isLoading, isError, error } = useGetUserProfile({
+  const { data, isLoading, isError, error, isRefetching } = useGetUserProfile({
     username,
   });
+
+  useEffect(() => {
+    if (isLoading || isRefetching) {
+      sessionStorage.setItem("profile-tab", 0);
+      sessionStorage.setItem("profile-tab-0", 0);
+      sessionStorage.setItem("profile-tab-1", 0);
+      sessionStorage.setItem("profile-tab-2", 0);
+      sessionStorage.setItem("profile-tab-3", 0);
+    }
+  }, [isLoading, isRefetching]);
 
   if (isLoading) {
     return <ProfilePageLoader />;

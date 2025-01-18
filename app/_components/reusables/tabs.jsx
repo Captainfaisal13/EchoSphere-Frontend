@@ -40,6 +40,16 @@ const Tabs = ({ tabList, storageKey, translateOnScroll = true }) => {
     // Update the last scroll position
     lastScrollY.current = currentScrollY;
 
+    // handle scroll for the profile tabs
+    if (storageKey === "profile-tab") {
+      Array(4)
+        .fill(",")
+        .map((ele, index) =>
+          sessionStorage.setItem(`${storageKey}-${index}`, currentScrollY)
+        );
+      return;
+    }
+
     // Save scroll position in session storage
     sessionStorage.setItem(`${storageKey}-${currentHomeTab}`, currentScrollY);
   };

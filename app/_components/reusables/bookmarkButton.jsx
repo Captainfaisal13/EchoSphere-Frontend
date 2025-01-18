@@ -76,7 +76,7 @@ const BookmarkButton = ({ isEchoBookmarked, echoId }) => {
       },
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: ["echo-query"],
+          queryKey: ["echo-list-query"],
         });
       },
     });

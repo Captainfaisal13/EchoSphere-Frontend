@@ -6,6 +6,7 @@ import { useUpdateUser } from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
 import Cropper from "react-easy-crop";
 import { getCroppedImg } from "../../../utils/util";
+import Loader from "../reusables/loader";
 
 const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
   const { mutate: updateUser, isPending } = useUpdateUser();
@@ -99,7 +100,7 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
         onClose();
         queryClient.invalidateQueries({ queryKey: ["get-user-profile"] });
         queryClient.invalidateQueries({
-          queryKey: ["echo-query"],
+          queryKey: ["echo-list-query"],
         });
       },
     });
@@ -195,10 +196,16 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
             <div className="flex gap-2">
               <button
                 type="submit"
-                className="px-4 py-2 text-text-0 bg-bg-5 rounded"
-                disabled={isPending}
+                className="px-4 py-2 text-text-0 bg-bg-5 rounded disabled:cursor-not-allowed w-40"
+                disabled={isPending || name?.length > 50}
               >
-                {isPending ? "Saving Changes..." : "Save Changes"}
+                {isPending ? (
+                  <div className=" m-0">
+                    <Loader classNames="size-6 m-0" />
+                  </div>
+                ) : (
+                  "Save Changes"
+                )}
               </button>
               <button
                 type="submit"

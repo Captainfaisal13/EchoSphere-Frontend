@@ -32,15 +32,17 @@ const DiscoverPeople = () => {
                   router.push(`/profile/${username}`);
                 }}
                 key={_id}
-                className="flex justify-between cursor-pointer"
+                className="flex gap-2 justify-between cursor-pointer"
               >
                 <div className="flex gap-2 items-center">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden flex-none">
                     <Image src={avatar} fill alt="avatar" />
                   </div>
                   <div className="text-sm">
                     <div className="flex">
-                      <h3 className="text-sm font-bold text-text-2">{name}</h3>
+                      <h3 className="text-sm font-bold text-text-2 line-clamp-1">
+                        {name}
+                      </h3>
                       {username === "captainfaisal" && (
                         <div className="ml-1 fill-text-1 mb-auto">
                           <CrownIcon />

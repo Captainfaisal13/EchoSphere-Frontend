@@ -62,7 +62,7 @@ const Echo = ({ echo }) => {
             className="cursor-pointer flex items-center"
           >
             <span className="text-sm font-bold flex items-center pr-1 hover:underline">
-              <span className="line-clamp-1">{name}</span>
+              <span className="line-clamp-1 word-container">{name}</span>
               {username === "captainfaisal" && (
                 <div className="ml-1 fill-text-1 mb-auto">
                   <CrownIcon />
@@ -70,7 +70,7 @@ const Echo = ({ echo }) => {
                 </div>
               )}
             </span>
-            <span className="font text-xs text-text-3 ml-2 line-clamp-1">
+            <span className="font text-xs text-text-3 ml-2 line-clamp-1  word-container">
               @{username}
             </span>
           </div>
