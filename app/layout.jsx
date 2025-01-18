@@ -9,9 +9,9 @@ import { ThemeProvider } from "next-themes";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Echospehere",
+  title: "Echosphere",
   description:
-    "Let your voice be Echoed and Heard within out limitless Spehere",
+    "Let Your Voice Resonate Across the Infinite Sphere of Echosphere.",
 };
 
 export default function RootLayout({ children }) {

@@ -65,8 +65,8 @@ const ParentEchos = ({ parentTweets }) => {
                       {name}
                     </h2>
                     {username === "captainfaisal" && (
-                      <div className="ml-1 fill-text-1 my-auto">
-                        <CrownIcon />
+                      <div className="ml-1 mb-1 fill-text-1 my-auto">
+                        <CrownIcon height="14px" width="14px" />
                         {/* <Image src="/_assets/crown-icon.svg" fill alt="crown-icon" /> */}
                       </div>
                     )}
