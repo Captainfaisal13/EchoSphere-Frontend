@@ -36,7 +36,9 @@ const ParentEchos = ({ parentTweets }) => {
           <Link
             key={id}
             href={`/${username}/echo/${id}`}
-            className="px-4 block"
+            className={`mx-2 md:mx-4 px-4 bg-bg-4 block ${
+              !parentTweet && "mt-2 md:mt-4 rounded-t-md"
+            }`}
           >
             <div className="flex gap-2">
               <div className="w-14 pb-[2px]">
@@ -50,7 +52,7 @@ const ParentEchos = ({ parentTweets }) => {
             </div>
             <div className="flex justify-between">
               <div className="flex gap-2">
-                <div className="size-12 relative rounded-full overflow-hidden">
+                <div className="size-10 ml-1 relative rounded-full overflow-hidden">
                   <Image
                     src={userAvatar}
                     fill
@@ -59,7 +61,7 @@ const ParentEchos = ({ parentTweets }) => {
                 </div>
                 <Link href={`/profile/${username}`} className="my-auto">
                   <div className="flex">
-                    <h2 className="text-base font-semibold text-text-2">
+                    <h2 className="text-sm font-semibold text-text-2">
                       {name}
                     </h2>
                     {username === "captainfaisal" && (
@@ -69,7 +71,7 @@ const ParentEchos = ({ parentTweets }) => {
                       </div>
                     )}
                   </div>
-                  <h3 className="text-sm text-text-3">@{username}</h3>
+                  <h3 className="text-xs text-text-3">@{username}</h3>
                 </Link>
               </div>
               <div className="my-auto">
@@ -81,7 +83,7 @@ const ParentEchos = ({ parentTweets }) => {
                 <div className="w-[2px] h-full bg-border-3 mx-auto"></div>
               </div>
               <div className="w-full">
-                <p className="text-lg text-text-4 word-container">
+                <p className="text-sm text-text-4 word-container">
                   {getFormattedContent(content)}
                 </p>
                 <div className="pt-1">
@@ -110,6 +112,12 @@ const ParentEchos = ({ parentTweets }) => {
                   <BookmarkButton echoId={id} isEchoBookmarked={isBookmarked} />
                 </div>
               </div>
+            </div>
+            <div className="flex gap-2">
+              <div className="w-14 pb-[2px]">
+                <div className={`w-[2px] h-4 mx-auto ${"bg-border-3"}`}></div>
+              </div>
+              <div className="w-full"></div>
             </div>
           </Link>
         );

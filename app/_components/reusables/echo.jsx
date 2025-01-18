@@ -121,7 +121,7 @@ const Echo = ({ echo }) => {
             isEchoLiked={isLiked}
             echoId={id}
           />
-          <ShareButton echoId={id} shares={shares} />
+          <ShareButton echo={echo} shares={shares} />
           <BookmarkButton echoId={id} isEchoBookmarked={isBookmarked} />
         </div>
       </div>

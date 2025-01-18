@@ -6,7 +6,7 @@ import {
 } from "../../../redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 
-const ShareButton = ({ shares, echoId }) => {
+const ShareButton = ({ shares, echo }) => {
   const dispatch = useDispatch();
   const [shareCount, setShareCount] = useState(shares);
 
@@ -16,7 +16,7 @@ const ShareButton = ({ shares, echoId }) => {
 
   const handleShare = (e) => {
     e.stopPropagation();
-    dispatch(setShareEchoData(echoId));
+    dispatch(setShareEchoData(echo));
     dispatch(setShowShareModal(true));
   };
 

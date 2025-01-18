@@ -65,7 +65,11 @@ const EchoPage = ({ params }) => {
     <div>
       <SectionHeader heading="Echo" />
       <ParentEchos parentTweets={data.parentsDetailedTweet} />
-      <div className="px-4">
+      <div
+        className={`mx-2 mb-2 md:mx-4 md:mb-4 px-4 pb-2 bg-bg-4 ${
+          !parentTweet ? "rounded-md mt-2 md:mt-4" : "rounded-b-md"
+        }`}
+      >
         <div className="flex gap-2">
           <div className="w-14 pb-[2px]">
             <div
@@ -96,7 +100,7 @@ const EchoPage = ({ params }) => {
             <EchoOptions echo={echo} />
           </div>
         </div>
-        <div className="p-2">
+        <div className="py-2">
           <p className="text-lg text-text-4 word-container">
             {getFormattedContent(content)}
           </p>
@@ -112,9 +116,7 @@ const EchoPage = ({ params }) => {
             echoReplyCount={replies}
           />
           <div
-            className={`flex justify-between md:grid grid-cols-5 pt-3 border-t border-border-3 ${
-              likes === 0 && reposts === 0 && replies === 0 && "mt-5"
-            }`}
+            className={`flex justify-between md:grid grid-cols-5 pt-3 border-t border-border-3`}
           >
             <ReplyButton echo={echo} replies={replies} />
             <ReEchoButton
@@ -127,14 +129,14 @@ const EchoPage = ({ params }) => {
               isEchoLiked={isLiked}
               echoId={id}
             />
-            <ShareButton echoId={id} shares={shares} />
+            <ShareButton echo={echo} shares={shares} />
             <BookmarkButton echoId={id} isEchoBookmarked={isBookmarked} />
           </div>
         </div>
       </div>
       {user && (
         <button
-          className="border-y border-border-1 py-1 px-4 w-full mt-1"
+          className="border-y border-border-1 py-1 px-2 md:px-4 w-full mt-1"
           onClick={() => {
             dispatch(
               setReplyEchoData({

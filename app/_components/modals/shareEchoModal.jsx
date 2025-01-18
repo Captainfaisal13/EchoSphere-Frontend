@@ -34,28 +34,27 @@ const ShareEchoModal = () => {
     dispatch(setShareEchoData(null));
   };
 
-  const tweetUrl =
-    "https://www.youtube.com/watch?v=_OCVnHdvV2E&ab_channel=Mythpat";
+  const echoUrl = `http://localhost:3000/${shareEchoData?.username}/echo/${shareEchoData?._id}`;
   const handleShare = (platform) => {
     if (platform === "copy") {
-      navigator.clipboard.writeText(tweetUrl);
+      navigator.clipboard.writeText(echoUrl);
       alert("Link copied to clipboard!");
     } else {
       const shareLinks = {
         twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-          "Check out this tweet!"
-        )}&url=${encodeURIComponent(tweetUrl)}`,
+          "Check out this echo!"
+        )}&url=${encodeURIComponent(echoUrl)}`,
         whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(
-          `Check out this tweet! ${tweetUrl}`
+          `Check out this echo! ${echoUrl}`
         )}`,
         facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-          tweetUrl
+          echoUrl
         )}`,
-        linkedin: `https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
-          tweetUrl
+        linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+          echoUrl
         )}`,
       };
-      shareEcho(shareEchoData, {
+      shareEcho(shareEchoData?._id, {
         onSettled: () => {
           if (!shareEchoData) return;
 
@@ -69,7 +68,7 @@ const ShareEchoModal = () => {
             if (queryData?.pages) {
               const updatedPages = queryData.pages.map((page) => {
                 return page.map((echo) => {
-                  if (echo?._id === shareEchoData) {
+                  if (echo?._id === shareEchoData?._id) {
                     return {
                       ...echo,
                       shareCount: echo?.shareCount + 1,
@@ -91,7 +90,7 @@ const ShareEchoModal = () => {
 
           const previousEcho = queryClient.getQueryData([
             "get-single-echo",
-            shareEchoData,
+            shareEchoData?._id,
           ]);
 
           if (previousEcho) {
@@ -105,7 +104,7 @@ const ShareEchoModal = () => {
               },
             };
             queryClient.setQueryData(
-              ["get-single-echo", shareEchoData],
+              ["get-single-echo", shareEchoData?._id],
               updatedEcho
             );
           }
