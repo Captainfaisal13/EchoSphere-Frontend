@@ -1,5 +1,4 @@
 import axiosInstance from "./axiosInstance";
-const url = "http://localhost:5000/api/v1";
 
 const apiCall = async (method, url, data = null, params = null) => {
   try {
