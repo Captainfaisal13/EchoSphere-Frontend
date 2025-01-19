@@ -7,7 +7,7 @@ export const fetchUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:5000/api/v1/users/showMe`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/showMe`,
         { withCredentials: true }
       );
       return data.user;
