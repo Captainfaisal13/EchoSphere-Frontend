@@ -7,8 +7,11 @@ import { useQueryClient } from "@tanstack/react-query";
 import Cropper from "react-easy-crop";
 import { getCroppedImg } from "../../../utils/util";
 import Loader from "../reusables/loader";
+import { fetchUser } from "../../../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
+  const dispatch = useDispatch();
   const { mutate: updateUser, isPending } = useUpdateUser();
   const queryClient = useQueryClient();
 
@@ -98,6 +101,7 @@ const EditProfileModal = ({ isOpen, setIsOpen, user }) => {
     updateUser(formData, {
       onSuccess: () => {
         onClose();
+        dispatch(fetchUser());
         queryClient.invalidateQueries({ queryKey: ["get-user-profile"] });
         queryClient.invalidateQueries({
           queryKey: ["echo-list-query"],
