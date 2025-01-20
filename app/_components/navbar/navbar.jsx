@@ -35,7 +35,7 @@ const Navbar = ({ expandNavbar, setExpandNavbar }) => {
               </button>
             </div>
           </div>
-          <NavButtons />
+          <NavButtons setExpandNavbar={setExpandNavbar} />
         </div>
         <div className="hidden md:block">
           <EchoButton />

@@ -15,9 +15,9 @@ const Header = ({ expandNavbar, setExpandNavbar }) => {
       <Link href="/" className="text-3xl font-extrabold text-text-1">
         eO
       </Link>
-      <button className="my-auto stroke-text-1">
+      <Link href="/search" className="my-auto stroke-text-1">
         <SearchIcon height="22px" width="22px" strokeWidth="2.5" />
-      </button>
+      </Link>
     </div>
   );
 };

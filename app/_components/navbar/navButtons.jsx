@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
-const NavButtons = () => {
+const NavButtons = ({ setExpandNavbar }) => {
   const { user } = useSelector((state) => state.user);
   const [currentSelectIcon, setCurrrentSelectedIcon] = useState(0);
   const pathName = usePathname();
@@ -18,7 +18,10 @@ const NavButtons = () => {
         return (
           <li
             key={idx}
-            onClick={() => handleNavClick(idx, setCurrrentSelectedIcon)}
+            onClick={() => {
+              handleNavClick(idx, setCurrrentSelectedIcon);
+              setExpandNavbar(false);
+            }}
           >
             <Link
               href={

@@ -4,7 +4,7 @@ import SectionHeader from "./sectionHeader";
 const profilePageLoader = () => {
   return (
     <div className="">
-      <SectionHeader heading="-------" />
+      <SectionHeader heading="Profile" />
       <div className="min-h-[24vh] relative bg-bg-4"></div>
       <div>
         <div className="flex justify-between px-4">

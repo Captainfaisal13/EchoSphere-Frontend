@@ -52,7 +52,7 @@ const ProfilePage = ({ username }) => {
 
   return (
     <div>
-      <SectionHeader heading={`${data?.name}`} />
+      <SectionHeader heading={"Profile"} />
       <div className="flex flex-col gap-4">
         <ProfileInfo user={data} />
         <Tabs
