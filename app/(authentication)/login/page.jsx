@@ -62,7 +62,7 @@ const LoginPage = () => {
         </div>
       </div>
       <div className="md:col-span-3 flex items-center justify-center xl:justify-start border-l border-border-1 xl:pl-10">
-        <div className="text-center space-y-4 w-full md:w-auto px-10 md:px-0">
+        <div className="text-center space-y-4 md:w-auto px-10 md:px-0">
           {alert.show && (
             <p
               className={`${

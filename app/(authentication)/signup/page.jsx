@@ -71,7 +71,7 @@ const SignUpPage = () => {
         </div>
       </div>
       <div className="md:col-span-3 flex items-center justify-center xl:justify-start border-l border-border-1 xl:pl-10">
-        <div className="md:w-96 text-center space-y-4 w-full px-10 md:px-0">
+        <div className="text-center space-y-4 md:w-auto px-10 md:px-0">
           {alert.show && (
             <p
               className={` ${
@@ -84,7 +84,7 @@ const SignUpPage = () => {
           <h1 className="font-bold text-3xl text-text-2">Sign Up</h1>
           <form
             onSubmit={onSubmit}
-            className="grid gap-4 rounded-md border-border-1"
+            className="md:w-96 grid gap-4 rounded-md border-border-1"
           >
             <input
               type="name"
