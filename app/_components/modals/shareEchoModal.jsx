@@ -34,7 +34,7 @@ const ShareEchoModal = () => {
     dispatch(setShareEchoData(null));
   };
 
-  const echoUrl = `http://localhost:3000/${shareEchoData?.username}/echo/${shareEchoData?._id}`;
+  const echoUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}${shareEchoData?.username}/echo/${shareEchoData?._id}`;
   const handleShare = (platform) => {
     if (platform === "copy") {
       navigator.clipboard.writeText(echoUrl);
