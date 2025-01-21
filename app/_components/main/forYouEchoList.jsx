@@ -8,7 +8,7 @@ const ForYouEchoList = () => {
   const { user } = useSelector((state) => state.user);
 
   const { data, isLoading, isError, error } = useGetUserEchos({
-    userId: user.userId,
+    userId: user?.userId,
   });
 
   if (isLoading) {

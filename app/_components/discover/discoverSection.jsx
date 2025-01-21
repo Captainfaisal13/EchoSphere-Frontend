@@ -22,7 +22,7 @@ const DiscoverSection = () => {
           return (
             <FollowerUser
               key={_id}
-              currentUserId={user.userId}
+              currentUserId={user?.userId}
               isFollowed={isFollowed}
               name={name}
               userAvatar={avatar}

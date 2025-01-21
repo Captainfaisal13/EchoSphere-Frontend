@@ -31,7 +31,7 @@ const LikeEchoList = ({ username }) => {
     <div className="min-h-[calc(100vh-96px)] md:min-h-[calc(100vh-50px)]">
       {data.pages[0]?.length === 0 ? (
         <div className="text-center pt-10 mx-4">
-          {user && user.username === username ? (
+          {user && user?.username === username ? (
             <h1 className="text-text-1">
               This feed is empty! You may need to{" "}
               <Link href="/explore" className="text-text-9">

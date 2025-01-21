@@ -66,12 +66,12 @@ const EchoOptions = ({ echo }) => {
           <OptionIcon />
         </div>
       )}
-      {showOption && user.userId === echo.user && (
+      {showOption && user?.userId === echo.user && (
         <div
           ref={optionRef}
           className="absolute bg-bg-0 w-64 right-0 top-0 z-50 rounded-md border border-border-1 grid"
         >
-          {user.userId === echo.user && (
+          {user?.userId === echo.user && (
             <button
               className="p-2 text-left text-xs text-text-1"
               onClick={() => handleDeleteEcho(echo._id)}

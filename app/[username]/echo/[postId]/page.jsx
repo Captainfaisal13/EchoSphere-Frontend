@@ -151,7 +151,7 @@ const EchoPage = ({ params }) => {
               <Image src={userAvatar} fill alt="user-avatar" />
             </div>
             <p className="text-sm my-auto">
-              Write your reply as {user.username}
+              Write your reply as {user?.username}
             </p>
           </div>
         </button>

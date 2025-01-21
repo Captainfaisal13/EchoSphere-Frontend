@@ -27,7 +27,7 @@ const NavButtons = ({ setExpandNavbar }) => {
               href={
                 !user || title.toLowerCase() !== "profile"
                   ? `/${title.toLowerCase()}`
-                  : `/${title.toLowerCase()}/${user.username}`
+                  : `/${title.toLowerCase()}/${user?.username}`
               }
             >
               <div className="py-3 px-4 md:px-0 lg:px-4 hover:bg-bg-2">

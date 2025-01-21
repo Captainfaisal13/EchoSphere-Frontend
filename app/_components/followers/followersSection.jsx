@@ -25,7 +25,7 @@ const FollowersSection = () => {
         return (
           <FollowersUser
             key={userId}
-            currentUserId={user.userId}
+            currentUserId={user?.userId}
             isFollowed={isFollowed}
             name={name}
             userAvatar={userAvatar}
