@@ -148,7 +148,7 @@ const EchoPage = ({ params }) => {
         >
           <div className="flex gap-2 rounded-3xl bg-bg-6 p-2 text-text-1">
             <div className="shrink-0 relative size-6 rounded-full overflow-hidden">
-              <Image src={userAvatar} fill alt="user-avatar" />
+              <Image src={user?.avatar} fill alt="user-avatar" />
             </div>
             <p className="text-sm my-auto">
               Write your reply as {user?.username}
