@@ -338,7 +338,7 @@ const CreateEcho = () => {
                 transform="rotate(-90 20 20)"
               />
             </svg>
-            <span className="absolute inset-0 flex items-center justify-center text-xs font-medium">
+            <span className="absolute inset-0 flex items-center justify-center text-xs font-medium text-text-1">
               {MAX_CHAR_COUNT - echoContent.length}
             </span>
           </div>
