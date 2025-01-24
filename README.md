@@ -29,7 +29,7 @@
 
 - Frontend: Built with Next.js, TailwindCSS responsive and efficient UI, and TanStack Query for query management and caching.
 - State Management: Redux Toolkit for optimal state handling and API integration.
-- Backend: Node.js and Express.js for a robust server-side architecture.
+- Backend: Node.js and Express.js for a robust server-side architecture [backend URL](https://github.com/Captainfaisal13/EchoSphere-Backend).
 - Database: MongoDB with mongoose for efficient and scalable data storage.
 - Media Management: Multer and Cloudinary for seamless media uploads from server memory(disk) to cloud.
 - Authentication: JWT-based secure authentication with access and refresh tokens.
