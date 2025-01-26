@@ -219,7 +219,10 @@ const CreateEcho = () => {
             <div className="flex gap-2">
               <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
                 <Image
-                  src={replyEchoData?.userAvatar || "/_assets/images/dp.jpg"}
+                  src={
+                    replyEchoData?.userAvatar ||
+                    "/_assets/images/unknown-image.png"
+                  }
                   fill
                   alt="user-image"
                 />
@@ -238,7 +241,7 @@ const CreateEcho = () => {
         <div className="flex gap-2">
           <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
             <Image
-              src={user?.avatar || "/_assets/images/dp.jpg"}
+              src={user?.avatar || "/_assets/images/unknown-image.png"}
               fill
               alt="user-image"
             />
