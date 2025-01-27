@@ -170,6 +170,14 @@ const CreateEcho = () => {
     }
   };
 
+  // Add the handleCmdCtrlClick function
+  const handleCmdCtrlClick = (event) => {
+    if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+      event.preventDefault();
+      handleSubmit(event);
+    }
+  };
+
   const handleEchoContentChange = (e) => {
     setEchoContent(e.target.value.slice(0, MAX_CHAR_COUNT));
   };
@@ -183,6 +191,7 @@ const CreateEcho = () => {
   return (
     <Modal isOpen={showCreateModal} onClose={onClose}>
       <form
+        onKeyDown={handleCmdCtrlClick}
         onSubmit={handleSubmit}
         className="w-full bg-bg-4 rounded-md py-3 px-3 flex flex-col gap-3"
       >
