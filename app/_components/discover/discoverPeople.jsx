@@ -20,7 +20,7 @@ const DiscoverPeople = () => {
   return (
     <div className="flex flex-col bg-bg-2 rounded-[4px]">
       <h2 className="p-4 border-b border-border-1 text-text-1">
-        Check out these peoples
+        Check out these people
       </h2>
       <div className="flex flex-col gap-4 px-3 py-4">
         {users.pages[0]
