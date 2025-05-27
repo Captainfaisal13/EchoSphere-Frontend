@@ -6,7 +6,7 @@ import ReEchoButton from "./reEchoButton";
 import ReplyButton from "./replyButton";
 import ShareButton from "./shareButton";
 import BookmarkButton from "./bookmarkButton";
-import { formatTimeAgo } from "../../../utils/util";
+import { formatTimeAgo, getFormattedContent } from "../../../utils/util";
 import { useRouter } from "next/navigation";
 import CrownIcon from "../../../public/_assets/svgComponents/crownIcon";
 
@@ -31,14 +31,6 @@ const Echo = ({ echo }) => {
 
   const time = formatTimeAgo(new Date(createdAt));
 
-  const formattedContent = content.split("\n").map((line, index) => {
-    return (
-      <React.Fragment key={index}>
-        {line}
-        <br />
-      </React.Fragment>
-    );
-  });
   const router = useRouter();
 
   return (
@@ -99,7 +91,7 @@ const Echo = ({ echo }) => {
           }}
           className="text-sm text-text-4 word-container"
         >
-          {formattedContent}
+          {getFormattedContent(content)}
         </p>
         <div
           onClick={(e) => {

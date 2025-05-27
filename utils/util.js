@@ -87,16 +87,41 @@ const formatFullDate = (date) => {
   return format(date, "MMMM d, yyyy 'at' hh:mm a");
 };
 
-const getFormattedContent = (content) => {
-  return content.split("\n").map((line, index) => {
+const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+const getFormattedContent = (content) =>
+  content.split("\n").map((line, lineIndex) => {
+    const parts = line.split(urlRegex); // split line into URLs and other text
+
     return (
-      <React.Fragment key={index}>
-        {line}
+      <React.Fragment key={lineIndex}>
+        {parts.map((part, i) => {
+          if (urlRegex.test(part)) {
+            return (
+              <a
+                key={`link-${lineIndex}-${i}`}
+                href={part}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 underline break-words font-mono font-semibold"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {part}
+              </a>
+            );
+          } else {
+            return (
+              <React.Fragment key={`text-${lineIndex}-${i}`}>
+                {part}
+              </React.Fragment>
+            );
+          }
+        })}
         <br />
       </React.Fragment>
     );
   });
-};
+
 export const createImage = (url) => {
   return new Promise((resolve, reject) => {
     const image = new Image();
