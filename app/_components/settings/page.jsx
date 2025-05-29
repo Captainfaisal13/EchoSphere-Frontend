@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SectionHeader from "../reusables/sectionHeader";
 import { useGlobalContext } from "../../context";
 import { useLogout } from "../../../network/customHooks";
@@ -7,15 +7,18 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../../../redux/slices/userSlice";
 
+export const themes = ["light", "dark", "blue"];
+
 const Settings = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { theme, toggleTheme } = useGlobalContext();
+  const { theme, toggleTheme, systemTheme } = useGlobalContext();
   const { user } = useSelector((state) => state.user);
-  console.log({ themeFromSetting: theme });
+  // console.log({ themeFromSetting: { theme, systemTheme } });
+
+  const [currentTheme, setCurrentTheme] = useState("");
 
   const { mutate: logout } = useLogout();
-  const themes = ["light", "dark", "blue"];
 
   const handleLogout = () => {
     logout("", {
@@ -26,6 +29,14 @@ const Settings = () => {
       },
     });
   };
+
+  useEffect(() => {
+    if (theme === "system") {
+      setCurrentTheme(systemTheme);
+    } else {
+      setCurrentTheme(theme);
+    }
+  }, [theme, systemTheme]);
 
   return (
     <div>
@@ -38,7 +49,7 @@ const Settings = () => {
               <button
                 key={themeName}
                 className={`px-4 py-2 rounded ${
-                  theme === themeName
+                  themeName === currentTheme
                     ? "bg-bg-2 text-text-1 border-2 border-border-1"
                     : "bg-gray-200 text-gray-800"
                 }`}

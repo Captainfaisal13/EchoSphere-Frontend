@@ -7,7 +7,7 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const dispatch = useDispatch();
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, systemTheme } = useTheme();
   const { user } = useSelector((state) => state.user);
 
   const toggleTheme = (newTheme) => {
@@ -25,6 +25,7 @@ const AppProvider = ({ children }) => {
       value={{
         theme,
         toggleTheme,
+        systemTheme,
       }}
     >
       {children}
