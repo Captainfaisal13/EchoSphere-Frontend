@@ -7,9 +7,8 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../../../redux/slices/userSlice";
 
-export const themes = ["light", "dark", "blue"];
-
 const Settings = () => {
+  const themes = ["light", "dark", "blue"];
   const dispatch = useDispatch();
   const router = useRouter();
   const { theme, toggleTheme, systemTheme } = useGlobalContext();
