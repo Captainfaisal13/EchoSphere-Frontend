@@ -9,7 +9,7 @@ const BackIcon = ({ height = "16px", width = "16px" }) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       xmlnsa="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-      className="fill-current"
+      className="!fill-current"
       version="1.1"
       baseProfile="tiny"
       id="Layer_1"

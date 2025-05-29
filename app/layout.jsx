@@ -5,6 +5,7 @@ import ConditionalLayout from "./conditionalLayout";
 import { AppProvider } from "./context";
 import Providers from "./providers";
 import { ThemeProvider } from "next-themes";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +20,17 @@ export default function RootLayout({ children }) {
     <html suppressHydrationWarning={true} lang="en">
       <body className={inter.className}>
         <main className={`flex ${favorit.className} justify-center bg-bg-0`}>
-          <ThemeProvider>
-            <Providers>
-              <AppProvider>
-                <ConditionalLayout>{children}</ConditionalLayout>
-              </AppProvider>
-            </Providers>
-          </ThemeProvider>
+          <GoogleOAuthProvider
+            clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+          >
+            <ThemeProvider>
+              <Providers>
+                <AppProvider>
+                  <ConditionalLayout>{children}</ConditionalLayout>
+                </AppProvider>
+              </Providers>
+            </ThemeProvider>
+          </GoogleOAuthProvider>
         </main>
       </body>
     </html>

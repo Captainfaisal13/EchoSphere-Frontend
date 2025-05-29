@@ -22,6 +22,7 @@ import {
   getVideosEchos,
   likeDislikeEcho,
   login,
+  loginWithGoogle,
   logout,
   reEcho,
   shareEcho,
@@ -35,6 +36,10 @@ export const useSignup = () => {
 
 export const useLogin = () => {
   return useMutation({ mutationFn: (loginUser) => login(loginUser) });
+};
+
+export const useLoginWithGoogle = () => {
+  return useMutation({ mutationFn: (loginUser) => loginWithGoogle(loginUser) });
 };
 
 export const useLogout = () => {

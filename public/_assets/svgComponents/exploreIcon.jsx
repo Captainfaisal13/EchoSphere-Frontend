@@ -16,7 +16,7 @@ const ExploreIcon = ({ colour }) => {
         <g
           id="icons_Q2"
           data-name="icons Q2"
-          className="fill-current"
+          className="!fill-current"
           stroke="none"
         >
           <path d="M24,6A18,18,0,1,1,6,24,18.1,18.1,0,0,1,24,6m0-4A22,22,0,1,0,46,24,21.9,21.9,0,0,0,24,2Z" />

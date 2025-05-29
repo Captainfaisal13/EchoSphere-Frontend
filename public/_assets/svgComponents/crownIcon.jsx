@@ -5,7 +5,7 @@ const CrownIcon = ({ height = "16px", width = "16px" }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      className="fill-current"
+      className="!fill-current"
       //   fill="#ffffff"
       height={height}
       width={width}

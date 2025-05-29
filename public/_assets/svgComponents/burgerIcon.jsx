@@ -8,7 +8,7 @@ const BurgerIcon = ({ height = "20px", width = "20px" }) => {
       height={height}
       viewBox="0 0 28 28"
       // fill="none"
-      className="fill-current"
+      className="!fill-current"
     >
       <path
         d="M3 7C3 6.44771 3.44772 6 4 6H24C24.5523 6 25 6.44771 25 7C25 7.55229 24.5523 8 24 8H4C3.44772 8 3 7.55229 3 7Z"

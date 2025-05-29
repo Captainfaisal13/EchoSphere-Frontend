@@ -22,6 +22,10 @@ export const login = async (loginUser) => {
   return apiCall("post", `/auth/login`, loginUser);
 };
 
+export const loginWithGoogle = async (credential) => {
+  return apiCall("post", `/auth/login/google`, credential);
+};
+
 export const logout = async () => {
   return apiCall("delete", `/auth/logout`);
 };
