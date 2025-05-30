@@ -7,7 +7,7 @@ const MediaUploadIcon = ({ width = "20px", height = "20px" }) => {
       height={height}
       viewBox="0 0 24 24"
       //   fill="none"
-      className="fill-current"
+      className="!fill-current"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
