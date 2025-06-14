@@ -50,7 +50,7 @@ const DiscoverPeople = () => {
                         </div>
                       )}
                     </div>
-                    <p className="font text-xs text-text-3 line-clamp-1">
+                    <p className="font text-xs text-text-3 line-clamp-1 word-container">
                       @{username}
                     </p>
                   </div>

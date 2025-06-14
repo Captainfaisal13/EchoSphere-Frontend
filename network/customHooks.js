@@ -7,6 +7,7 @@ import {
   followUnfollowUser,
   getBookmarkEchos,
   getFollowingEchos,
+  getNotifications,
   getPhotosEchos,
   getRecentFeedEchos,
   getSingleEcho,
@@ -261,4 +262,21 @@ export const useGetUsers = () => {
       return nextPage;
     },
   });
+};
+
+export const useGetNotifications = () => {
+  return useQuery({
+    queryKey: ["get-notifications"],
+    queryFn: () => getNotifications(),
+  });
+  // return useInfiniteQuery({
+  //   queryKey: ["get-notifications"],
+  //   queryFn: ({ pageParam }) => getNotifications({ pageParam }),
+  //   initialPageParam: 1,
+  //   getNextPageParam: (lastPage, allPages) => {
+  //     const nextPage =
+  //       lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+  //     return nextPage;
+  //   },
+  // });
 };

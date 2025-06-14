@@ -121,3 +121,11 @@ export const getUserMediaPosts = async ({ username, pageParam }) => {
 export const getUsers = async ({ pageParam }) => {
   return apiCall("get", `/feed/getUsers?page=${pageParam}`);
 };
+
+export const getNotifications = async () => {
+  return apiCall("get", `/notification`);
+};
+
+// export const getNotifications = async ({ pageParam }) => {
+//   return apiCall("get", `/notification?page=${pageParam}`);
+// };

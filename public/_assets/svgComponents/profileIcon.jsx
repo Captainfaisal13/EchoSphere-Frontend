@@ -1,10 +1,10 @@
 import React from "react";
 
-const ProfileIcon = ({ colour }) => {
+const ProfileIcon = ({ width = "20px", height = "20px" }) => {
   return (
     <svg
-      width="100%"
-      height="100%"
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       className="!fill-current"

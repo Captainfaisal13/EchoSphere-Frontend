@@ -62,7 +62,7 @@ const Echo = ({ echo }) => {
                 </div>
               )}
             </span>
-            <span className="font text-xs text-text-3 ml-2 line-clamp-1  word-container">
+            <span className="font text-xs text-text-3 ml-2 line-clamp-1 word-container">
               @{username}
             </span>
           </div>
