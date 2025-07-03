@@ -38,7 +38,7 @@ const NavButtons = ({ setExpandNavbar }) => {
                         : "fill-text-8 stroke-text-8"
                     }`}
                   >
-                    {getIcons(pathName, "/" + title.toLowerCase())}
+                    {getIcons("/" + title.toLowerCase())}
                     {title.toLowerCase() === "notifications" &&
                       user?.unreadNotificationsCount > 0 && (
                         <span className="bg-bg-7 px-1 absolute rounded-full -top-2 left-[50%] text-[10px] font-bold text-white">

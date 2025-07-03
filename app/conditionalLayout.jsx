@@ -8,6 +8,7 @@ import ImageModal from "./_components/modals/imageModal";
 import EchoButton from "./_components/navbar/echoButton";
 import Discover from "./_components/discover/discover";
 import { usePathname } from "next/navigation";
+import BottomNavbar from "./_components/bottomNavbar/bottomNavbar";
 
 const ConditionalLayout = ({ children }) => {
   const pathname = usePathname();
@@ -25,8 +26,9 @@ const ConditionalLayout = ({ children }) => {
         {children}
       </div>
       <Discover />
+      <BottomNavbar />
 
-      <div className="block md:hidden fixed bottom-8 right-8">
+      <div className="block md:hidden fixed bottom-14 right-6">
         <EchoButton />
       </div>
       <CreateEchoModal />

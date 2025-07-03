@@ -10,7 +10,7 @@ const EchoButton = () => {
     <div className="align-middle pb-4 flex justify-center">
       <button
         onClick={() => dispatch(setShowCreateModal(true))}
-        className="flex gap-2 px-6 lg:px-16 py-6 md:py-2 lg:py-3 justify-center items-center bg-bg-7 rounded-full md:rounded-[32px] text-text-5 fill-text-5 font-bold"
+        className="flex gap-2 px-5 lg:px-16 py-5 md:py-2 lg:py-3 justify-center items-center bg-bg-7 rounded-full md:rounded-[32px] text-text-5 fill-text-5 font-bold"
       >
         <EditIcon />
         <span className="hidden lg:inline text-sm">Echo</span>

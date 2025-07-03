@@ -16,7 +16,7 @@ import {
 } from "date-fns";
 import BookmarkIconNav from "../public/_assets/svgComponents/bookmarkIconNav";
 
-const getIcons = (pathName, title) => {
+const getIcons = (title) => {
   switch (title) {
     case "/":
       return <HomeIcon />;
