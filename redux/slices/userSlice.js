@@ -31,6 +31,8 @@ const userSlice = createSlice({
     shareEchoData: null,
     showImageModal: false,
     imageModalData: null,
+    showNotificationsToast: false,
+    shouldNotificationClear: true,
   },
   reducers: {
     saveUser: (state, action) => {
@@ -56,6 +58,23 @@ const userSlice = createSlice({
     },
     setImageModalData: (state, action) => {
       state.imageModalData = action.payload;
+    },
+    incrementUserUnreadNotificationsCount: (state) => {
+      if (state.user) {
+        state.user.unreadNotificationsCount =
+          (state.user.unreadNotificationsCount || 0) + 1;
+      }
+    },
+    clearUserUnreadNotificationsCount: (state) => {
+      if (state.user) {
+        state.user.unreadNotificationsCount = 0;
+      }
+    },
+    setShowNotificationsToast: (state, action) => {
+      state.showNotificationsToast = action.payload;
+    },
+    setShouldNotificationClear: (state, action) => {
+      state.shouldNotificationClear = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -83,6 +102,10 @@ export const {
   setShareEchoData,
   setShowImageModal,
   setImageModalData,
+  incrementUserUnreadNotificationsCount,
+  clearUserUnreadNotificationsCount,
+  setShowNotificationsToast,
+  setShouldNotificationClear,
 } = userSlice.actions;
 
 export default userSlice.reducer;

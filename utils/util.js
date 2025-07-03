@@ -47,10 +47,6 @@ const getIcons = (pathName, title) => {
   }
 };
 
-const handleNavClick = (idx, setCurrrentSelectedIcon) => {
-  setCurrrentSelectedIcon(idx);
-};
-
 const formatTimeAgo = (date) => {
   const now = new Date();
   const diffInSeconds = differenceInSeconds(now, date);
@@ -166,7 +162,6 @@ const getCroppedImg = async (imageSrc, crop) => {
 
 export {
   getIcons,
-  handleNavClick,
   formatTimeAgo,
   formatFullDate,
   getFormattedContent,

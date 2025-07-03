@@ -2,6 +2,7 @@
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import {
   bookmarkEcho,
+  clearUnreadNotificationsCount,
   createEcho,
   deleteEcho,
   followUnfollowUser,
@@ -265,18 +266,25 @@ export const useGetUsers = () => {
 };
 
 export const useGetNotifications = () => {
-  return useQuery({
-    queryKey: ["get-notifications"],
-    queryFn: () => getNotifications(),
-  });
-  // return useInfiniteQuery({
+  // return useQuery({
   //   queryKey: ["get-notifications"],
-  //   queryFn: ({ pageParam }) => getNotifications({ pageParam }),
-  //   initialPageParam: 1,
-  //   getNextPageParam: (lastPage, allPages) => {
-  //     const nextPage =
-  //       lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
-  //     return nextPage;
-  //   },
+  //   queryFn: () => getNotifications(),
   // });
+
+  return useInfiniteQuery({
+    queryKey: ["get-notifications"],
+    queryFn: ({ pageParam }) => getNotifications({ pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
+  });
+};
+
+export const useClearUnreadNotificationsCount = () => {
+  return useMutation({
+    mutationFn: () => clearUnreadNotificationsCount(),
+  });
 };

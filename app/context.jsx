@@ -1,15 +1,18 @@
 "use client";
 import { useTheme } from "next-themes";
-import React, { useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import { fetchUser } from "../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-const AppContext = React.createContext();
+import { useSocket } from "../utils/hooks/useSocket";
+import { useNotificationClear } from "../utils/hooks/useNotificationClear";
+const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const dispatch = useDispatch();
   const { theme, setTheme, systemTheme } = useTheme();
   const { user } = useSelector((state) => state.user);
-
+  const socket = useSocket();
+  useNotificationClear();
   const toggleTheme = (newTheme) => {
     setTheme(newTheme);
   };
@@ -26,6 +29,7 @@ const AppProvider = ({ children }) => {
         theme,
         toggleTheme,
         systemTheme,
+        socket: socket.current,
       }}
     >
       {children}

@@ -164,7 +164,9 @@ const CreateEcho = () => {
           queryClient.invalidateQueries({
             queryKey: ["echo-list-query"],
           });
-          queryClient.invalidateQueries(["get-single-echo", replyEchoData._id]);
+          queryClient.invalidateQueries({
+            queryKey: ["get-single-echo", replyEchoData._id],
+          });
         },
       });
     }
@@ -172,7 +174,7 @@ const CreateEcho = () => {
 
   // Add the handleCmdCtrlClick function
   const handleCmdCtrlClick = (event) => {
-    if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+    if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
       event.preventDefault();
       handleSubmit(event);
     }
