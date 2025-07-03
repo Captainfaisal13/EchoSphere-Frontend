@@ -17,9 +17,7 @@ export const useSocket = () => {
 
   // Initialize socket connection when the component mounts
   useEffect(() => {
-    socket.current = io(process.env.NEXT_PUBLIC_BACKEND_BASE_URL, {
-      transports: ["websocket"],
-    });
+    socket.current = io(process.env.NEXT_PUBLIC_BACKEND_BASE_URL);
     return () => {
       socket.current.disconnect();
     };
