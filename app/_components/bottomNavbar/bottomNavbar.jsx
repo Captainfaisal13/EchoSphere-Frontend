@@ -40,7 +40,7 @@ const BottomNavbar = () => {
             className="text-gray-600 hover:text-blue-500 p-4"
           >
             <div
-              className={`w-5 h-5 text-text-8 m-auto relative ${
+              className={`h-6 w-6 text-text-8 m-auto relative ${
                 pathName === "/" + title.toLowerCase() ||
                 (title === "Profile" &&
                   pathName.startsWith("/" + title.toLowerCase()))

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProfileIcon = ({ width = "20px", height = "20px" }) => {
+const ProfileIcon = ({ width = "100%", height = "100%" }) => {
   return (
     <svg
       width={width}

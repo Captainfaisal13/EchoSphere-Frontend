@@ -53,7 +53,7 @@ const Notifications = () => {
         ) : status === "error" ? (
           <p>{error}</p>
         ) : (
-          <div className="px-2 md:px-5 py-2 md:py-4 flex flex-col gap-2 md:gap-4">
+          <div className="px-2 md:px-5 pt-2 pb-16 md:pt-4 md:pb-4 flex flex-col gap-2 md:gap-4">
             {notifications.pages.map((currentPage) => {
               return currentPage.map(
                 ({ _id, type, sender, tweet, repliedTweet, createdAt }) => {

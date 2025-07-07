@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchIcon = ({ height = "20px", width = "20px", strokeWidth }) => {
+const SearchIcon = ({ height = "100%", width = "100%", strokeWidth }) => {
   return (
     <svg
       width={width}
