@@ -69,7 +69,7 @@ const HeaderSearch = () => {
 
           {!isLoading && results.pages[0].length === 0 && (
             <p className="p-4 text-text-3 text-sm">
-              No results found for "{debouncedQuery}"
+              No results found for &quot;{debouncedQuery}&quot;
             </p>
           )}
 

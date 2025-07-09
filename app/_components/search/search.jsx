@@ -58,7 +58,7 @@ const SearchPage = () => {
       <div className="mt-4">
         {results.pages[0].length === 0 && debouncedQuery && !isLoading && (
           <p className="text-gray-500 px-2 md:px-4 text-sm">
-            No users found for "{debouncedQuery}"
+            No users found for &quot;{debouncedQuery}&quot;
           </p>
         )}
 
