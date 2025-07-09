@@ -122,6 +122,10 @@ export const getUsers = async ({ pageParam }) => {
   return apiCall("get", `/feed/getUsers?page=${pageParam}`);
 };
 
+export const getSearchUsers = async ({ query, pageParam }) => {
+  return apiCall("get", `/users/search?query=${query}&page=${pageParam}`);
+};
+
 export const getNotifications = async ({ pageParam }) => {
   return apiCall("get", `/notification?page=${pageParam}`);
 };

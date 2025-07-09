@@ -21,7 +21,8 @@
     "react-dom": "^18",
     "react-easy-crop": "^5.2.0",
     "react-redux": "^9.2.0",
-    "socket.io-client": "^4.8.1"
+    "socket.io-client": "^4.8.1",
+    "use-debounce": "^10.0.5"
   },
   "devDependencies": {
     "@types/node": "22.5.5",

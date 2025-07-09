@@ -11,6 +11,7 @@ import {
   getNotifications,
   getPhotosEchos,
   getRecentFeedEchos,
+  getSearchUsers,
   getSingleEcho,
   getTextEchos,
   getUserFollowers,
@@ -265,12 +266,21 @@ export const useGetUsers = () => {
   });
 };
 
-export const useGetNotifications = () => {
-  // return useQuery({
-  //   queryKey: ["get-notifications"],
-  //   queryFn: () => getNotifications(),
-  // });
+export const useGetSearchUsers = ({ query }) => {
+  return useInfiniteQuery({
+    queryKey: ["get-search-users", query],
+    queryFn: ({ pageParam }) => getSearchUsers({ pageParam, query }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage =
+        lastPage?.length >= 10 ? allPages?.length + 1 : undefined;
+      return nextPage;
+    },
+    enabled: !!query.trim(),
+  });
+};
 
+export const useGetNotifications = () => {
   return useInfiniteQuery({
     queryKey: ["get-notifications"],
     queryFn: ({ pageParam }) => getNotifications({ pageParam }),
