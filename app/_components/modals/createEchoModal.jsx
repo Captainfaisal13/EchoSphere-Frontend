@@ -1,7 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Modal from "../reusables/modal";
 import Image from "next/image";
-import { useCreateEcho } from "../../../network/customHooks";
+import {
+  useAutoCompleteEcho,
+  useCreateEcho,
+} from "../../../network/customHooks";
 import { useQueryClient } from "@tanstack/react-query";
 import EmojiPickerModal from "../reusables/emojiPicker";
 import CloseIcon from "../../../public/_assets/svgComponents/closeIcon";
@@ -14,6 +17,7 @@ import {
   setShowCreateModal,
 } from "../../../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useDebounce } from "use-debounce";
 
 const CreateEcho = () => {
   const dispatch = useDispatch();
@@ -29,6 +33,53 @@ const CreateEcho = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [mediaFiles, setMediaFiles] = useState([]);
   const textareaRef = useRef(null);
+
+  const {
+    mutate: fetchSuggestion,
+    data: suggestion,
+    isPending: isAutoCompletePending,
+  } = useAutoCompleteEcho();
+
+  const [suggestedText, setSuggestedText] = useState("");
+  const [hasSuggested, setHasSuggested] = useState(false);
+  const [debouncedInput] = useDebounce(echoContent, 1500);
+
+  useEffect(() => {
+    if (!debouncedInput.trim()) {
+      setSuggestedText("");
+      setHasSuggested(false);
+      return;
+    }
+
+    // Only suggest if we haven't already for this post
+    if (!hasSuggested && debouncedInput.length >= 10) {
+      fetchSuggestion(
+        { prompt: debouncedInput },
+        {
+          onSuccess: (result) => {
+            setSuggestedText(result);
+            setHasSuggested(true); // to prevent future suggestions
+          },
+          onError: (err) => {
+            console.error("AI fetch failed:", err);
+          },
+        }
+      );
+    }
+  }, [debouncedInput]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Tab" && suggestedText && suggestedText !== echoContent) {
+        e.preventDefault();
+        setEchoContent(suggestedText);
+        setSuggestedText("");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [suggestedText, echoContent]);
 
   const onClose = () => {
     if (isPending) return;
@@ -249,25 +300,75 @@ const CreateEcho = () => {
             </div>
           </div>
         )}
-        <div className="flex gap-2">
-          <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
-            <Image
-              src={user?.avatar || "/_assets/images/unknown-image.png"}
-              fill
-              alt="user-image"
-            />
+
+        <div className="flex flex-col gap-1 w-full">
+          <div className="flex gap-2">
+            {/* Avatar */}
+            <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
+              <Image
+                src={user?.avatar || "/_assets/images/unknown-image.png"}
+                fill
+                alt="user-image"
+              />
+            </div>
+
+            {/* Ghost Suggestion + Textarea */}
+            <div className="relative w-full">
+              {/* Ghost suggestion layer */}
+              <div
+                className="absolute top-0 left-0 w-full p-2 max-h-40 min-h-28 rounded-md whitespace-pre-wrap break-words text-text-6 opacity-50 pointer-events-none z-50"
+                aria-hidden="true"
+              >
+                {echoContent}
+                <span className="text-text-4">
+                  {suggestedText?.replace(echoContent, "")}
+                </span>
+              </div>
+
+              {/* Textarea */}
+              <textarea
+                className="w-full p-2 max-h-40 min-h-28 border-none rounded-md placeholder:text-text-6 outline-none text-text-1 focus:outline-none bg-bg-4 resize-none relative z-10"
+                placeholder={
+                  replyEchoData
+                    ? "Write your reply"
+                    : "What's happening? Write more than 10 characters to get AI suggestions..."
+                }
+                rows="6"
+                value={echoContent}
+                onChange={handleEchoContentChange}
+                ref={textareaRef}
+              ></textarea>
+            </div>
           </div>
-          <textarea
-            className="w-full p-2 max-h-40 min-h-28 border-none rounded-md placeholder:text-text-6 outline-none text-text-1 focus:outline-none bg-bg-4 resize-none"
-            placeholder={
-              replyEchoData ? "Write your reply" : "What's happening?"
-            }
-            rows="6"
-            value={echoContent}
-            onChange={handleEchoContentChange}
-            ref={textareaRef}
-          ></textarea>
+
+          {/* Accept Suggestion Button */}
+          {suggestedText && (
+            <div className="mt-2 flex flex-col md:flex-row gap-2 items-start md:items-center justify-between px-2">
+              <div className="text-sm text-text-6 italic mb-1 sm:mb-0 sm:inline-block">
+                ✨ AI suggestion ready
+                <span className="hidden sm:inline">
+                  {" "}
+                  — press{" "}
+                  <kbd className="px-1 py-0.5 bg-bg-3 text-xs rounded">
+                    Tab
+                  </kbd>{" "}
+                  or
+                </span>{" "}
+                tap to accept
+              </div>
+              <button
+                onClick={() => {
+                  setEchoContent(suggestedText);
+                  setSuggestedText("");
+                }}
+                className="text-sm font-medium text-blue-500 hover:text-blue-600 transition-colors px-3 py-1 rounded-lg border border-blue-500 hover:bg-blue-50 active:scale-95 w-full md:w-auto"
+              >
+                Accept
+              </button>
+            </div>
+          )}
         </div>
+
         {mediaFiles.length > 0 && (
           <div className="flex gap-2 flex-wrap">
             {mediaFiles.map((file, index) => (

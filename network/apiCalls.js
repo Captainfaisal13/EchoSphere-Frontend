@@ -38,6 +38,10 @@ export const createEcho = async (echoContent) => {
   return apiCall("post", `/tweet`, echoContent);
 };
 
+export const autoCompleteEcho = async (prompt) => {
+  return apiCall("post", `/tweet/autoComplete`, prompt);
+};
+
 export const getSingleEcho = async ({ echoId }) => {
   return apiCall("get", `/tweet/${echoId}`);
 };

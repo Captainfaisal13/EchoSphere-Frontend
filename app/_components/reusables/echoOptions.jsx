@@ -61,7 +61,7 @@ const EchoOptions = ({ echo }) => {
           onClick={() => {
             setShowOption(true);
           }}
-          className="cursor-pointer fill-text-1"
+          className="cursor-pointer text-text-2"
         >
           <OptionIcon />
         </div>

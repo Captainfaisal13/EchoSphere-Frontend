@@ -1,6 +1,7 @@
 "use client";
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import {
+  autoCompleteEcho,
   bookmarkEcho,
   clearUnreadNotificationsCount,
   createEcho,
@@ -135,6 +136,12 @@ export const useGetVideosEchos = () => {
 export const useCreateEcho = () => {
   return useMutation({
     mutationFn: (echoContent) => createEcho(echoContent),
+  });
+};
+
+export const useAutoCompleteEcho = () => {
+  return useMutation({
+    mutationFn: (prompt) => autoCompleteEcho(prompt),
   });
 };
 
